@@ -79,7 +79,14 @@ body.about #header {
 	height: 120px;
 	background: #db6d16
 		    url(../images/background.png);
+	padding: 1px 5px 0px 0px;
 }
+
+body.about #header p {
+	vertical-align: middle;
+	text-align: right;
+}
+
 
 h1 {
 	margin: 0;
@@ -92,6 +99,7 @@ h1 {
 #content {
 
 	margin-right: 280px;
+	padding-top: 15px;
 }
 
 #content .padding {
