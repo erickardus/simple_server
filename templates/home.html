@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action= 'list_server' method="get">
+        {% csrf_token %}
+        <input type="submit" value="Server List" id="toggle1" />
+    </form>
+
+    <form action= 'creator_step1' method="get">
+        {% csrf_token %}
+        <input type="submit" value="Create Server" id="toggle2" />
+    </form>
+
+{% endblock content %}
+
+
+
+

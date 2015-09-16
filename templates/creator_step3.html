@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Creating Server:</h3> <br><br>
+    <b>Image Id:</b> {{  image }}<br>
+    <b>Name Tag:</b> {{  name }} <br>
+    <b>Flavor:</b> {{  flavor }} <br>
+    <b>Runlist:</b> {{ runlist }} <br><br><br><br>
+
+    {% for line in output %}
+
+    {{ line }}<br>
+
+    {% endfor %}
+
+
+
+{% endblock content %}

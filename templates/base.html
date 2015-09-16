@@ -1,0 +1,44 @@
+<html>
+    <head>
+        {% load staticfiles %}
+    	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    	<title>Softtek - Simple Server Provisioner</title>
+    	<style type="text/css" media="all">@import "{% static "css/master.css" %}";</style>
+    </head>
+
+    <body class="about">
+
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/list_server">Server List</a>
+            <a href="/creator_step1">Create Server</a>
+        </nav>
+
+        <div id="page-container">
+
+	        <div id="header">
+		        <h1><img src="{% static "images/softtek.png" %}" width="150" height="78" alt="Enlighten Designs" border="0" /></h1>
+	        </div>
+
+	        <div id="content">
+
+                {% block content %}{% endblock content %}
+
+	        </div>
+
+	        <div id="footer">
+	            <div id="altnav">
+		            <a href="#">About</a> -
+            		<a href="#">Contact the dev</a>
+	            </div>
+
+	            <div id="copyright">
+    	            Copyright &copy; <a href="https://www.softtek.com//">Softtek</a><br />
+    	            Powered by <a href="https://www.djangoproject.com//">Django</a>
+    	        </div>
+            </div>
+
+</div>
+
+</body>
+</html>
