@@ -2,12 +2,14 @@
 
 {% block content %}
 
-    {{ image }}
+    <h2>Choose Software to install:</h2>
 
-<form action="creator_step3" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+    <br>
+
+    <form action="creator_step3" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
 
 {% endblock content %}

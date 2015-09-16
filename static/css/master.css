@@ -76,9 +76,9 @@ body.contact dt#contact a:hover {
 }
 
 body.about #header {
-	height: 150px;
+	height: 120px;
 	background: #db6d16
-		    url(../images/technology_background.jpg);
+		    url(../images/background.png);
 }
 
 h1 {

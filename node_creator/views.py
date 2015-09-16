@@ -13,7 +13,7 @@ def creator_step1(request):
 def creator_step2(request):
 
     if request.method == 'POST':
-        form_past = Server(request.POST or None)
+        form_past = Server(request.POST)
         if form_past.is_valid():
             new_form = Software(request.POST or None)
             name = form_past.cleaned_data['name']

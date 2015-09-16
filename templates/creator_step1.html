@@ -2,11 +2,15 @@
 
 {% block content %}
 
-<form action="creator_step2" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
+    <h2>Choose a Server size and OS:</h2>
+
+    <br>
+
+    <form action="creator_step2" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
 
 
 
