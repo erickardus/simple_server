@@ -47,7 +47,12 @@ def creator_step3(request):
 
 
 def create_action(image, flavor, name, runlist):
-    return subprocess.check_output(["ruby", "create_node.rb", "-I", image, "-f", flavor, "-N", name, "-r", runlist], cwd="C:/Users/erick.ramirez/chef-hosted-repo")
+    #return subprocess.check_output(["ruby", "create_node.rb", "-I", image, "-f", flavor, "-N", name, "-r", runlist], cwd="C:/Users/erick.ramirez/chef-hosted-repo")
+    try:
+        return subprocess.check_output(["ruby", "create_node.rb", "-I", image, "-f", flavor, "-N", name, "-r", runlist], cwd="C:/Users/erick.ramirez/chef-hosted-repo", stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as exc:
+        return exc.output
+
 
 
 

@@ -24,7 +24,7 @@ body {
 
 /* Main Navigation */
 
-#main-nav { height: 50px; }
+#main-nav { height: 20px; }
 #main-nav dl { margin: 0; padding: 0; }
 
 /* IE5 Mac Hack \*/ 
@@ -76,7 +76,7 @@ body.contact dt#contact a:hover {
 }
 
 body.about #header {
-	height: 120px;
+	height: 100px;
 	background: #db6d16
 		    url(../images/background.png);
 	padding: 1px 5px 0px 0px;
@@ -98,7 +98,7 @@ h1 {
 
 #content {
 
-	margin-right: 280px;
+	margin-right: 0px;
 	padding-top: 15px;
 }
 
@@ -147,4 +147,14 @@ h1 {
 
 #footer a:hover {
 	color: #db6d16;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }

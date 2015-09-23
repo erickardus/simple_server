@@ -4,11 +4,21 @@
     	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     	<title>Softtek - Simple Server Provisioner</title>
     	<style type="text/css" media="all">@import "{% static "css/master.css" %}";</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
+</script>
+
     </head>
 
     <body class="about">
+    <div class="loader"></div>
 
-        <nav>
+
+        <nav id="main-nav">
             <a href="/">Home</a> |
             <a href="/list_server">Server List</a> |
             <a href="/creator_step1">Create Server</a>
@@ -40,5 +50,11 @@
 
 </div>
 
+
+
 </body>
+
+
+
+<div class="se-pre-con"></div>
 </html>
