@@ -7,13 +7,13 @@ BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 
 
-def creator_step1(request):
-    form = CreateClusterStep1(request.POST or None)
+def aws_creator_step1(request):
 
+    form = CreateClusterStep1(request.POST or None)
     return render(request, 'creator_step1.html', {'form': form})
 
 
-def creator_step2(request):
+def aws_creator_step2(request):
 
     if request.method == 'POST':
         form_past = CreateClusterStep1(request.POST)
@@ -30,7 +30,7 @@ def creator_step2(request):
                                                           'user': user})
 
 
-def creator_step3(request):
+def aws_creator_step3(request):
 
     if request.method == 'POST':
         form_past = CreateClusterStep2(request.POST or None)

@@ -23,10 +23,6 @@ machine_batch "cluster" do
     1.upto(1) do |i|
         machine "server#{i}" do
             
-                recipe 'apache'
-            
-                recipe 'mysql'
-            
             
         end
     end

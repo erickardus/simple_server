@@ -16,14 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from home.views import Home
 from node_list.views import NodeList
-from aws_cluster_create.views import creator_step1, creator_step2, creator_step3
+from cluster_create.views import cluster_creator
+from aws_cluster_create.views import aws_creator_step1, aws_creator_step2, aws_creator_step3
 
 urlpatterns = [
     url(r'^$', Home.as_view()),
     #url(r'admin$', include(admin.site.urls)),
     url(r'^list_server$', NodeList.as_view()),
-    url(r'^creator_step1$', creator_step1, name='creator_step1'),
-    url(r'^creator_step2$', creator_step2, name='created_step2'),
-    url(r'^creator_step3$', creator_step3, name='created_step3'),
+    url(r'^cluster_create$', cluster_creator, name='cluster_creator'),
+    url(r'^aws_creator_step1$', aws_creator_step1, name='aws_creator_step1'),
+    url(r'^aws_creator_step2$', aws_creator_step2, name='aws_created_step2'),
+    url(r'^aws_creator_step3$', aws_creator_step3, name='aws_created_step3'),
 
 ]
