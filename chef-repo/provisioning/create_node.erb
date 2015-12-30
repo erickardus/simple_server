@@ -7,11 +7,11 @@ server_name = "<%= @name %>"
 num_servers = <%= @number %>
 
 with_machine_options({
-  ssh_username: "<%= @ssh_username %>",
-  bootstrap_options: {
-    image_id: "<%= @ami %>",
-    instance_type: "<%= @instance_type %>",
-  },
+    ssh_username: "<%= @ssh_username %>",
+    bootstrap_options: {
+        image_id: "<%= @ami %>",
+        instance_type: "<%= @instance_type %>",
+    },
 })
 
 with_chef_server "<%= @chef_url %>",
@@ -20,18 +20,23 @@ with_chef_server "<%= @chef_url %>",
 
 
 machine_batch "cluster" do
-  1.upto(<%= @number %>) do |i|
-    machine "<%= @name %>#{i}" do
-      recipe "apache"
+    1.upto(<%= @number %>) do |i|
+        machine "<%= @name %>#{i}" do
+            <% for recipe in @runlist %>
+                recipe '<%= recipe %>'
+            <% end %>
+            <% for role in @roles %>
+                role '<%= role %>'
+            <% end %>
+        end
     end
-  end
 end
 
 ruby_block "print out public IPs" do
- block do
-   nodes = search(:node, "name:<%= @name %>*")
-   for node in nodes
-     Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
-   end
- end
+    block do
+        nodes = search(:node, "name:<%= @name %>*")
+        for node in nodes
+            Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
+        end
+    end
 end

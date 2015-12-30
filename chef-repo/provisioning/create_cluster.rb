@@ -10,7 +10,9 @@ options = {
   :ssh_username => "ec2-user",
   :ami => "ami-60b6c60a",
   :instance_type => "t2.micro",
-  :chef_url => "https://manage.chef.io/organizations/simple_server"
+  :chef_url => "https://manage.chef.io/organizations/simple_server",
+  :roles => [],
+  :runlist => []
 }
 
 
@@ -24,6 +26,8 @@ OptionParser.new do |opt|
   opt.on('-a', '--ami AMI-ID') { |o| options[:ami] = o if o != ""}
   opt.on('-t', '--type INSTANCE-TYPE') { |o| options[:instance_type] = o if o != ""}
   opt.on('-c', '--chef_url CHEF-URL') { |o| options[:chef_url] = o if o != ""}
+  opt.on("--roles role1,role2,role3", Array, "List of roles") { |o| options[:roles] = o if o != ""}
+  opt.on("--runlist recipe1,recipe2,recipe3", Array, "List of recipes") { |o| options[:runlist] = o if o != ""}
 end.parse!
 
 
@@ -38,6 +42,8 @@ class BindMe
     @ami = options[:ami]
     @instance_type = options[:instance_type]
     @chef_url = options[:chef_url]
+    @roles = options[:roles]
+    @runlist = options[:runlist]
     @template = File.read('./create_node.erb')
   end
 

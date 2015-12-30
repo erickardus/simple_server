@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 971168018,
-        "kb_available": 877947834,
-        "kb_used": 93220184,
+        "kb_available": 876518318,
+        "kb_used": 94649700,
         "percent_used": 9,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1403508",
-        "free_space_in_paging_files": "849508",
-        "free_virtual_memory": "1671992",
+        "free_physical_memory": "1747264",
+        "free_space_in_paging_files": "1923648",
+        "free_virtual_memory": "3338860",
         "install_date": "20151224220931.000000-360",
         "large_system_cache": null,
         "last_boot_up_time": "20151229005233.496944-360",
-        "local_date_time": "20151229212054.487000-360",
+        "local_date_time": "20151230113647.846000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,8 +78,8 @@
           "en-US"
         ],
         "name": "Microsoft Windows 8.1 Single Language|C:\\WINDOWS|\\Device\\Harddisk0\\Partition5",
-        "number_of_licensed_users": 0,
-        "number_of_processes": 119,
+        "number_of_licensed_users": null,
+        "number_of_processes": 101,
         "number_of_users": 2,
         "operating_system_sku": 100,
         "organization": "",
@@ -98,14 +98,14 @@
         "serial_number": "00179-40326-32389-AAOEM",
         "service_pack_major_version": 0,
         "service_pack_minor_version": 0,
-        "size_stored_in_paging_files": "1755268",
+        "size_stored_in_paging_files": "2570956",
         "status": "OK",
         "suite_mask": 784,
         "system_device": "\\Device\\HarddiskVolume5",
         "system_directory": "C:\\WINDOWS\\system32",
         "system_drive": "C:",
         "total_swap_space_size": null,
-        "total_virtual_memory_size": "5832940",
+        "total_virtual_memory_size": "6648628",
         "total_visible_memory_size": "4077672",
         "version": "6.3.9600",
         "windows_directory": "C:\\WINDOWS"
@@ -6511,11 +6511,11 @@
     },
     "memory": {
       "swap": {
-        "total": "1755268kB",
-        "free": "849580kB"
+        "total": "2570956kB",
+        "free": "1923716kB"
       },
       "total": "4077672kB",
-      "free": "1387384kB"
+      "free": "1713700kB"
     },
     "network": {
       "interfaces": {
@@ -6533,8 +6533,8 @@
             "default_ttl": null,
             "description": "NIC PCI-E de LAN inal��mbrica 802.11n Realtek RTL8188CE",
             "dhcp_enabled": true,
-            "dhcp_lease_expires": "20151230160908.000000-360",
-            "dhcp_lease_obtained": "20151229160908.000000-360",
+            "dhcp_lease_expires": "20151231102610.000000-360",
+            "dhcp_lease_obtained": "20151230102610.000000-360",
             "dhcp_server": "192.168.1.254",
             "dns_domain": null,
             "dns_domain_suffix_search_order": [
@@ -6638,7 +6638,7 @@
             "power_management_supported": false,
             "product_name": "NIC PCI-E de LAN inal��mbrica 802.11n Realtek RTL8188CE",
             "service_name": "RTWlanE",
-            "speed": "168000000",
+            "speed": "174000000",
             "status": null,
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
@@ -6834,14 +6834,17 @@
     "platform": "windows",
     "platform_version": "6.3.9600",
     "platform_family": "windows",
-    "uptime_seconds": 73704,
-    "uptime": "20 hours 28 minutes 24 seconds",
+    "uptime_seconds": 125066,
+    "uptime": "1 day 10 hours 44 minutes 26 seconds",
     "virtualization": {
       "systems": {
 
       }
     },
     "languages": {
+      "nodejs": {
+        "version": "0.12.7"
+      },
       "perl": {
         "version": "5.22.0",
         "archname": "x86_64-msys-thread-multi"
@@ -6908,7 +6911,7 @@
 
       }
     },
-    "ohai_time": 1451445663.2235641,
+    "ohai_time": 1451497029.255435,
     "root_group": "Administradores",
     "recipes": [
 

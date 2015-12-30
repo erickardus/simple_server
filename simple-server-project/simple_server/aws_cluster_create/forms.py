@@ -59,5 +59,6 @@ class CreateClusterStep2(forms.Form):
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
-    runlist = forms.CharField(label='Runlist', max_length=25, required=False)
+    roles = forms.CharField(label='Roles', max_length=40, required=False)
+    runlist = forms.CharField(label='Runlist', max_length=40, required=False)
 

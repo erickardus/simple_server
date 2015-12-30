@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from home.views import Home
 from node_list.views import NodeList
-from node_creator.views import creator_step1, creator_step2, creator_step3
+from aws_cluster_create.views import creator_step1, creator_step2, creator_step3
 
 urlpatterns = [
     url(r'^$', Home.as_view()),

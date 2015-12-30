@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from node_creator.forms import CreateClusterStep1, CreateClusterStep2
+from aws_cluster_create.forms import CreateClusterStep1, CreateClusterStep2
 import subprocess
 import os
 
-BASE_DIR = os.path.join(os.path.dirname(__file__), "..\..\..")
+BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 
 
@@ -38,12 +38,13 @@ def creator_step3(request):
             ami = form_past.cleaned_data['ami']
             instance_type = form_past.cleaned_data['instance_type']
             name = form_past.cleaned_data['name']
+            roles = form_past.cleaned_data['roles']
             runlist = form_past.cleaned_data['runlist']
             region = form_past.cleaned_data['region']
             number = form_past.cleaned_data['number']
             user = form_past.cleaned_data['user']
 
-            output = create_action(region, number, user, ami, instance_type, name, runlist)
+            output = create_action(region, number, user, ami, instance_type, name, roles, runlist)
             output = output.decode('utf-8').split('\n')
             context = {
                 "output": output,
@@ -56,13 +57,13 @@ def creator_step3(request):
             return render(request, 'creator_step3.html', context)
 
 
-def create_action(region, number, user, ami, instance_type, name, runlist):
+def create_action(region, number, user, ami, instance_type, name, roles, runlist):
 
     try:
 
         return subprocess.check_output(["ruby", "create_cluster.rb", "-r", region, "-n", name, "-N", number, "-u", user,
-                                        "-a", ami, "-t", instance_type], cwd=PROVISIONING_DIR,
-                                       stderr=subprocess.STDOUT)
+                                        "-a", ami, "-t", instance_type, "--roles", roles,
+                                        "--runlist", runlist], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output
 

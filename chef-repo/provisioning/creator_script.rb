@@ -7,11 +7,11 @@ server_name = "server"
 num_servers = 1
 
 with_machine_options({
-  ssh_username: "ec2-user",
-  bootstrap_options: {
-    image_id: "ami-60b6c60a",
-    instance_type: "t2.micro",
-  },
+    ssh_username: "ec2-user",
+    bootstrap_options: {
+        image_id: "ami-60b6c60a",
+        instance_type: "t2.micro",
+    },
 })
 
 with_chef_server "https://manage.chef.io/organizations/simple_server",
@@ -20,18 +20,23 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
 
 
 machine_batch "cluster" do
-  1.upto(1) do |i|
-    machine "server#{i}" do
-      recipe "apache"
+    1.upto(1) do |i|
+        machine "server#{i}" do
+            
+                recipe 'apache'
+            
+                recipe 'mysql'
+            
+            
+        end
     end
-  end
 end
 
 ruby_block "print out public IPs" do
- block do
-   nodes = search(:node, "name:server*")
-   for node in nodes
-     Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
-   end
- end
+    block do
+        nodes = search(:node, "name:server*")
+        for node in nodes
+            Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
+        end
+    end
 end
