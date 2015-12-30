@@ -1,0 +1,17 @@
+
+You will need to create the following env variables in your machine:
+
+
+ENV["AWS_ACCESS_KEY_ID"]
+
+ENV["AWS_SECRET_ACCESS_KEY"]
+
+ENV["AWS_DEFAULT_REGION"]
+ENV["AWS_DEFAULT_OUTPUT"]
+
+Example:
+
+set AWS_ACCESS_KEY_ID=AAAABBBBCCCCDDDDEEEE
+set AWS_SECRET_ACCESS_KEY=76TjRiiV3tc89AKo5FmicwESK5X8QHps7aUGEpo0
+set AWS_DEFAULT_REGION=us-east-1
+set AWS_DEFAULT_OUTPUT=json

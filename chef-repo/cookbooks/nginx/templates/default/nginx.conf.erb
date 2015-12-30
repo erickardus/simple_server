@@ -1,0 +1,20 @@
+events {
+    worker_connections  1024;
+}
+http {
+      server {
+        location / {
+            root   /data_test/www;
+        }
+        location /images/ {
+            root   /data_test;
+        }
+    }
+      server {
+       listen 8080;
+         root /data_test/proxy;
+
+         location / {
+        }
+       }
+    }

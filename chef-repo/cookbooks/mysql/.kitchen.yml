@@ -1,0 +1,15 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: chef/centos-6.5
+
+suites:
+  - name: default
+    run_list:
+      - recipe[mysql::default]
+    attributes:
