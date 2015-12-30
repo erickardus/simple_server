@@ -53,6 +53,7 @@ def aws_cluster_creator_step3(request):
                 "runlist": runlist,
                 "instance_type": instance_type,
                 "name": name,
+                "roles": roles,
             }
 
             return render(request, 'aws_cluster_creator_step3.html', context)

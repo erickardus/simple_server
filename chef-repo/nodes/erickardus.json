@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 971168018,
-        "kb_available": 876514828,
-        "kb_used": 94653190,
+        "kb_available": 876512473,
+        "kb_used": 94655545,
         "percent_used": 9,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1702248",
-        "free_space_in_paging_files": "1951664",
-        "free_virtual_memory": "3381748",
+        "free_physical_memory": "1536860",
+        "free_space_in_paging_files": "1921644",
+        "free_virtual_memory": "3179648",
         "install_date": "20151224220931.000000-360",
         "large_system_cache": null,
         "last_boot_up_time": "20151229005233.496944-360",
-        "local_date_time": "20151230120555.277000-360",
+        "local_date_time": "20151230122008.343000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -79,7 +79,7 @@
         ],
         "name": "Microsoft Windows 8.1 Single Language|C:\\WINDOWS|\\Device\\Harddisk0\\Partition5",
         "number_of_licensed_users": null,
-        "number_of_processes": 99,
+        "number_of_processes": 101,
         "number_of_users": 2,
         "operating_system_sku": 100,
         "organization": "",
@@ -6512,10 +6512,10 @@
     "memory": {
       "swap": {
         "total": "2570956kB",
-        "free": "1951800kB"
+        "free": "1921740kB"
       },
       "total": "4077672kB",
-      "free": "1665984kB"
+      "free": "1512876kB"
     },
     "network": {
       "interfaces": {
@@ -6558,7 +6558,7 @@
               "192.168.1.65",
               "fe80::6166:4c1:9d1a:bf93"
             ],
-            "ip_connection_metric": 25,
+            "ip_connection_metric": 30,
             "ip_enabled": true,
             "ip_filter_security_enabled": false,
             "ip_port_security_enabled": null,
@@ -6638,7 +6638,7 @@
             "power_management_supported": false,
             "product_name": "NIC PCI-E de LAN inal��mbrica 802.11n Realtek RTL8188CE",
             "service_name": "RTWlanE",
-            "speed": "174000000",
+            "speed": "168000000",
             "status": null,
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
@@ -6834,8 +6834,8 @@
     "platform": "windows",
     "platform_version": "6.3.9600",
     "platform_family": "windows",
-    "uptime_seconds": 126815,
-    "uptime": "1 day 11 hours 13 minutes 35 seconds",
+    "uptime_seconds": 127666,
+    "uptime": "1 day 11 hours 27 minutes 46 seconds",
     "virtualization": {
       "systems": {
 
@@ -6911,7 +6911,7 @@
 
       }
     },
-    "ohai_time": 1451498778.815669,
+    "ohai_time": 1451499630.95458,
     "root_group": "Administradores",
     "recipes": [
 
