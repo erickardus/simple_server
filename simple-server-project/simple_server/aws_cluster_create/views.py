@@ -63,7 +63,7 @@ def create_action(region, number, user, ami, instance_type, name, roles, runlist
 
     try:
 
-        return subprocess.check_output(["ruby", "create_cluster.rb", "-r", region, "-n", name, "-N", number, "-u", user,
+        return subprocess.check_output(["ruby", "aws_cluster_creator.rb", "-r", region, "-n", name, "-N", number, "-u", user,
                                         "-a", ami, "-t", instance_type, "--roles", roles,
                                         "--runlist", runlist], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:

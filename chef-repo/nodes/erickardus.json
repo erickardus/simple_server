@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 971168018,
-        "kb_available": 876484743,
-        "kb_used": 94683275,
+        "kb_available": 876420157,
+        "kb_used": 94747861,
         "percent_used": 9,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1568588",
-        "free_space_in_paging_files": "1956340",
-        "free_virtual_memory": "3226556",
+        "free_physical_memory": "1339556",
+        "free_space_in_paging_files": "1904716",
+        "free_virtual_memory": "3048280",
         "install_date": "20151224220931.000000-360",
         "large_system_cache": null,
         "last_boot_up_time": "20151229005233.496944-360",
-        "local_date_time": "20151230134116.620000-360",
+        "local_date_time": "20151230144259.180000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,8 +78,8 @@
           "en-US"
         ],
         "name": "Microsoft Windows 8.1 Single Language|C:\\WINDOWS|\\Device\\Harddisk0\\Partition5",
-        "number_of_licensed_users": 0,
-        "number_of_processes": 100,
+        "number_of_licensed_users": null,
+        "number_of_processes": 102,
         "number_of_users": 2,
         "operating_system_sku": 100,
         "organization": "",
@@ -6512,10 +6512,10 @@
     "memory": {
       "swap": {
         "total": "2570956kB",
-        "free": "1956344kB"
+        "free": "1904828kB"
       },
       "total": "4077672kB",
-      "free": "1547928kB"
+      "free": "1309156kB"
     },
     "network": {
       "interfaces": {
@@ -6533,8 +6533,8 @@
             "default_ttl": null,
             "description": "NIC PCI-E de LAN inal��mbrica 802.11n Realtek RTL8188CE",
             "dhcp_enabled": true,
-            "dhcp_lease_expires": "20151231102610.000000-360",
-            "dhcp_lease_obtained": "20151230102610.000000-360",
+            "dhcp_lease_expires": "20151231142949.000000-360",
+            "dhcp_lease_obtained": "20151230142949.000000-360",
             "dhcp_server": "192.168.1.254",
             "dns_domain": null,
             "dns_domain_suffix_search_order": [
@@ -6834,8 +6834,8 @@
     "platform": "windows",
     "platform_version": "6.3.9600",
     "platform_family": "windows",
-    "uptime_seconds": 132534,
-    "uptime": "1 day 12 hours 48 minutes 54 seconds",
+    "uptime_seconds": 136237,
+    "uptime": "1 day 13 hours 50 minutes 37 seconds",
     "virtualization": {
       "systems": {
 
@@ -6911,7 +6911,7 @@
 
       }
     },
-    "ohai_time": 1451504492.8426611,
+    "ohai_time": 1451508201.013933,
     "root_group": "Administradores",
     "recipes": [
 

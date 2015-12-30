@@ -3,9 +3,6 @@ require 'chef/provisioning/aws_driver'
 
 with_driver "aws::us-east-1"
 
-server_name = "server"
-num_servers = 1
-
 with_machine_options({
     ssh_username: "ec2-user",
     bootstrap_options: {

@@ -72,13 +72,14 @@ def azure_cluster_creator_step3(request):
             return render(request, 'azure_cluster_creator_step3.html', context)
 
 
-def create_action(region, number, user, ami, instance_type, name, roles, runlist,
+
+def create_action(location, number, password, image_id, vm_size, name, roles, runlist,
                   cloud_service_name, storage_account_name, tcp_endpoints):
 
     try:
 
-        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-r", region, "-n", name, "-N", number, "-u", user,
-                                        "-a", ami, "-t", instance_type, "--roles", roles,
+        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-l", location, "-n", name, "-N", number, "-p", password,
+                                        "-i", image_id, "-s", vm_size, "--roles", roles,
                                         "--runlist", runlist, "--cloud_service_name", cloud_service_name,
                                         "--storage_account_name", storage_account_name,
                                         "tcp_endpoints", tcp_endpoints], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)

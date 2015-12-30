@@ -4,13 +4,13 @@ require 'erb'
 
 # Default options stored here.
 options = {
-  :name => "myserver",
+  :name => "server",
   :number => 1,
   :chef_url => "https://manage.chef.io/organizations/simple_server",
   :roles => [],
   :runlist => [],
-  :cloud_service_name => 'erickardus1',
-  :storage_account_name => 'erickardus1',
+  :cloud_service_name => 'erickardus1xx',
+  :storage_account_name => 'erickardus1xx',
   :vm_size => "Standard_D1",
   :location => "West US",
   :tcp_endpoints => '80:80',

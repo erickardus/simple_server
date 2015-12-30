@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Choose Software to install:</h2>
+
+    <br>
+
+    <form action="azure_cluster_creator_step3" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+
+
+
+{% endblock content %}
