@@ -5,14 +5,14 @@ with_driver 'azure'
 
 machine_options = {
   :bootstrap_options => {
-    :cloud_service_name => 'pleasedox',
-    :storage_account_name => 'pleasedox',
+    :cloud_service_name => 'whatox',
+    :storage_account_name => 'whatox',
     :vm_size => "Standard_D1",
     :location => "West US",
     :tcp_endpoints => '80:80',
   },
   :image_id => 'b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_2-LTS-amd64-server-20150706-en-us-30GB',
-  :password => "boromir",
+  :password => "Icarus.123",
 }
 
 with_chef_server "https://manage.chef.io/organizations/simple_server",
