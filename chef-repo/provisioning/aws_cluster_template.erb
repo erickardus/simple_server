@@ -3,9 +3,6 @@ require 'chef/provisioning/aws_driver'
 
 with_driver "aws::<%= @region %>"
 
-server_name = "<%= @name %>"
-num_servers = <%= @number %>
-
 with_machine_options({
     ssh_username: "<%= @ssh_username %>",
     bootstrap_options: {

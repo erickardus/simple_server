@@ -44,7 +44,7 @@ class BindMe
     @chef_url = options[:chef_url]
     @roles = options[:roles]
     @runlist = options[:runlist]
-    @template = File.read('./create_node.erb')
+    @template = File.read('./aws_cluster_template.erb')
   end
 
   def render
@@ -57,8 +57,8 @@ end
 
 x = BindMe.new(options)
 res = x.render
-result = File.open("./creator_script.rb", "w+")
+result = File.open("./aws_cluster_provisioning.rb", "w+")
 result << res
 result.close
 
-exec('chef-client -z creator_script.rb')
+exec('chef-client -z aws_cluster_provisioning.rb')
