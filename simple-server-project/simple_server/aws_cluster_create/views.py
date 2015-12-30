@@ -7,13 +7,13 @@ BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 
 
-def aws_creator_step1(request):
+def aws_cluster_creator_step1(request):
 
     form = CreateClusterStep1(request.POST or None)
-    return render(request, 'creator_step1.html', {'form': form})
+    return render(request, 'aws_cluster_creator_step1.html', {'form': form})
 
 
-def aws_creator_step2(request):
+def aws_cluster_creator_step2(request):
 
     if request.method == 'POST':
         form_past = CreateClusterStep1(request.POST)
@@ -25,12 +25,13 @@ def aws_creator_step2(request):
             region = form_past.cleaned_data['region']
             number = form_past.cleaned_data['number']
             user = form_past.cleaned_data['user']
-            return render(request, 'creator_step2.html', {'form': new_form, 'name': name, 'instance_type': instance_type,
-                                                          'ami': ami, 'region': region, 'number': number,
-                                                          'user': user})
+            return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
+                                                                      'instance_type': instance_type,
+                                                                      'ami': ami, 'region': region,
+                                                                      'number': number, 'user': user})
 
 
-def aws_creator_step3(request):
+def aws_cluster_creator_step3(request):
 
     if request.method == 'POST':
         form_past = CreateClusterStep2(request.POST or None)
@@ -54,7 +55,7 @@ def aws_creator_step3(request):
                 "name": name,
             }
 
-            return render(request, 'creator_step3.html', context)
+            return render(request, 'aws_cluster_creator_step3.html', context)
 
 
 def create_action(region, number, user, ami, instance_type, name, roles, runlist):
