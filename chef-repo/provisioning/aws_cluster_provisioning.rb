@@ -17,9 +17,11 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
 
 
 machine_batch "cluster" do
-    1.upto(1) do |i|
-        machine "server#{i}" do
+    1.upto(2) do |i|
+        machine "jessica#{i}" do
             
+            
+                role 'webserver'
             
         end
     end
@@ -27,7 +29,7 @@ end
 
 ruby_block "print out public IPs" do
     block do
-        nodes = search(:node, "name:server*")
+        nodes = search(:node, "name:jessica*")
         for node in nodes
             Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
         end

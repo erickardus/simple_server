@@ -60,6 +60,7 @@ def azure_cluster_creator_step3(request):
                                    tcp_endpoints
                                    )
             output = output.decode('utf-8').split('\n')
+            #output = output.split('\n')
             context = {
                 "output": output,
                 "image_id": image_id,
@@ -70,7 +71,6 @@ def azure_cluster_creator_step3(request):
             }
 
             return render(request, 'azure_cluster_creator_step3.html', context)
-
 
 
 def create_action(location, number, password, image_id, vm_size, name, roles, runlist,

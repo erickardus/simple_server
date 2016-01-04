@@ -12,7 +12,7 @@ machine_options = {
     :tcp_endpoints => '80:80',
   },
   :image_id => '<%= @image_id %>',
-  :password => "chefm3t4l\\m/",
+  :password => "<%= @password %>",
 }
 
 with_chef_server "<%= @chef_url %>",
@@ -21,4 +21,17 @@ with_chef_server "<%= @chef_url %>",
 
 machine '<%= @name %>' do
   machine_options machine_options
+end
+
+machine_batch "cluster" do
+    1.upto(<%= @number %>) do |i|
+        machine "<%= @name %>#{i}" do
+            <% for recipe in @runlist %>
+                recipe '<%= recipe %>'
+            <% end %>
+            <% for role in @roles %>
+                role '<%= role %>'
+            <% end %>
+        end
+    end
 end

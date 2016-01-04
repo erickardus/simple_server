@@ -1,0 +1,19 @@
+{
+  "name": "boromir",
+  "normal": {
+    "tags": null,
+    "chef_provisioning": {
+      "reference": {
+        "driver_url": "azure:c9d9f765-0c35-4775-b7d0-537bb9260194",
+        "driver_version": "0.4.0",
+        "allocated_at": "2016-01-04 20:55:18 UTC",
+        "host_node": "chefzero://localhost:8889/nodes/",
+        "image_id": "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_2-LTS-amd64-server-20150706-en-us-30GB",
+        "location": "West US",
+        "cloud_service": "erickardust",
+        "vm_name": "boromir",
+        "is_windows": false
+      }
+    }
+  }
+}
