@@ -5,8 +5,8 @@ with_driver 'azure'
 
 machine_options = {
   :bootstrap_options => {
-    :cloud_service_name => 'locots',
-    :storage_account_name => 'locots',
+    :cloud_service_name => 'caritasx',
+    :storage_account_name => 'caritasx',
     :vm_size => "Standard_D1",
     :location => "West US",
     :tcp_endpoints => '80:80',
@@ -19,6 +19,15 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
   :client_name => Chef::Config[:node_name],
   :signing_key_filename => Chef::Config[:client_key]
 
-machine 'chaco' do
-  machine_options machine_options
-end
+                                           
+machine_batch "cluster" do                   
+    1.upto(1) do |i|            
+        machine "mahalo#{i}" do
+            machine_options machine_options
+                                    
+                     
+                role 'webserver'           
+                                    
+        end                                  
+    end                                      
+end                                          

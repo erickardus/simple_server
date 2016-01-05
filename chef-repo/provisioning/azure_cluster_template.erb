@@ -19,6 +19,17 @@ with_chef_server "<%= @chef_url %>",
   :client_name => Chef::Config[:node_name],
   :signing_key_filename => Chef::Config[:client_key]
 
-machine '<%= @name %>' do
-  machine_options machine_options
-end
+                                           
+machine_batch "cluster" do                   
+    1.upto(<%= @number %>) do |i|            
+        machine "<%= @name %>#{i}" do
+            machine_options machine_options
+            <% for recipe in @runlist %>     
+                recipe '<%= recipe %>'       
+            <% end %>                        
+            <% for role in @roles %>         
+                role '<%= role %>'           
+            <% end %>                        
+        end                                  
+    end                                      
+end                                          

@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 971168018,
-        "kb_available": 877036765,
-        "kb_used": 94131253,
+        "kb_available": 877152292,
+        "kb_used": 94015726,
         "percent_used": 9,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1784984",
-        "free_space_in_paging_files": "653088",
-        "free_virtual_memory": "1929528",
+        "free_physical_memory": "1253188",
+        "free_space_in_paging_files": "920100",
+        "free_virtual_memory": "1671048",
         "install_date": "20151224220931.000000-360",
         "large_system_cache": null,
         "last_boot_up_time": "20151230160248.496868-360",
-        "local_date_time": "20160104164851.939000-360",
+        "local_date_time": "20160105110755.269000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,7 +78,7 @@
         ],
         "name": "Microsoft Windows 8.1 Single Language|C:\\WINDOWS|\\Device\\Harddisk0\\Partition5",
         "number_of_licensed_users": null,
-        "number_of_processes": 105,
+        "number_of_processes": 119,
         "number_of_users": 2,
         "operating_system_sku": 100,
         "organization": "",
@@ -527,6 +527,38 @@
           "manufacturer": "Microsoft",
           "name": null,
           "pdo": "\\Device\\00000057",
+          "signer": "Microsoft Windows",
+          "started": null,
+          "start_mode": null,
+          "status": null,
+          "system_creation_class_name": null,
+          "system_name": null,
+          "version": "6.3.9600.16384",
+          "date": "20060621"
+        },
+        "SWD\\DAFUPNPPROVIDER\\UUID:0E4E1C00-00F0-1000-B849-0C8910FF268E": {
+          "caption": null,
+          "class_guid": "{14b62f50-3f15-11dd-ae16-0800200c9a66}",
+          "compat_id": "UMB\\MS_DigitalMediaDeviceClass_DMR_V001",
+          "creation_class_name": null,
+          "description": "Digital Media Device",
+          "device_class": "DIGITALMEDIADEVICES",
+          "device_id": "SWD\\DAFUPNPPROVIDER\\UUID:0E4E1C00-00F0-1000-B849-0C8910FF268E",
+          "device_name": "Digital Media Device",
+          "dev_loader": null,
+          "driver_date": "20060621000000.******+***",
+          "driver_name": null,
+          "driver_provider_name": "Microsoft",
+          "driver_version": "6.3.9600.16384",
+          "friendly_name": "[TV]Samsung LED60",
+          "hard_ware_id": "UMB\\VEN_0105&DEV_VD0001",
+          "inf_name": "digitalmediadevice.inf",
+          "install_date": null,
+          "is_signed": true,
+          "location": "http://192.168.1.65:7676/smp_19_",
+          "manufacturer": "Samsung Electronics",
+          "name": null,
+          "pdo": "\\Device\\00000079",
           "signer": "Microsoft Windows",
           "started": null,
           "start_mode": null,
@@ -4170,6 +4202,38 @@
           "version": "6.3.9600.16384",
           "date": "20060621"
         },
+        "Digital Media Device": {
+          "caption": null,
+          "class_guid": "{14b62f50-3f15-11dd-ae16-0800200c9a66}",
+          "compat_id": "UMB\\MS_DigitalMediaDeviceClass_DMR_V001",
+          "creation_class_name": null,
+          "description": "Digital Media Device",
+          "device_class": "DIGITALMEDIADEVICES",
+          "device_id": "SWD\\DAFUPNPPROVIDER\\UUID:0E4E1C00-00F0-1000-B849-0C8910FF268E",
+          "device_name": "Digital Media Device",
+          "dev_loader": null,
+          "driver_date": "20060621000000.******+***",
+          "driver_name": null,
+          "driver_provider_name": "Microsoft",
+          "driver_version": "6.3.9600.16384",
+          "friendly_name": "[TV]Samsung LED60",
+          "hard_ware_id": "UMB\\VEN_0105&DEV_VD0001",
+          "inf_name": "digitalmediadevice.inf",
+          "install_date": null,
+          "is_signed": true,
+          "location": "http://192.168.1.65:7676/smp_19_",
+          "manufacturer": "Samsung Electronics",
+          "name": null,
+          "pdo": "\\Device\\00000079",
+          "signer": "Microsoft Windows",
+          "started": null,
+          "start_mode": null,
+          "status": null,
+          "system_creation_class_name": null,
+          "system_name": null,
+          "version": "6.3.9600.16384",
+          "date": "20060621"
+        },
         "Remote Desktop Device Redirector Bus": {
           "caption": null,
           "class_guid": "{4d36e97d-e325-11ce-bfc1-08002be10318}",
@@ -6511,10 +6575,10 @@
     "memory": {
       "swap": {
         "total": "1441792kB",
-        "free": "653128kB"
+        "free": "920164kB"
       },
       "total": "4077672kB",
-      "free": "1748372kB"
+      "free": "1226496kB"
     },
     "network": {
       "interfaces": {
@@ -6532,8 +6596,8 @@
             "default_ttl": null,
             "description": "NIC PCI-E de LAN inal��mbrica 802.11n Realtek RTL8188CE",
             "dhcp_enabled": true,
-            "dhcp_lease_expires": "20160105144949.000000-360",
-            "dhcp_lease_obtained": "20160104144949.000000-360",
+            "dhcp_lease_expires": "20160106084607.000000-360",
+            "dhcp_lease_obtained": "20160105084607.000000-360",
             "dhcp_server": "192.168.1.254",
             "dns_domain": null,
             "dns_domain_suffix_search_order": [
@@ -6833,8 +6897,8 @@
     "platform": "windows",
     "platform_version": "6.3.9600",
     "platform_family": "windows",
-    "uptime_seconds": 434768,
-    "uptime": "5 days 00 hours 46 minutes 08 seconds",
+    "uptime_seconds": 500714,
+    "uptime": "5 days 19 hours 05 minutes 14 seconds",
     "virtualization": {
       "systems": {
 
@@ -6910,7 +6974,7 @@
 
       }
     },
-    "ohai_time": 1451947747.821549,
+    "ohai_time": 1452013694.0299761,
     "root_group": "Administradores",
     "recipes": [
 
