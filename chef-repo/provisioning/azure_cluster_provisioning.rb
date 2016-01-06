@@ -5,8 +5,8 @@ with_driver 'azure'
 
 machine_options = {
   :bootstrap_options => {
-    :cloud_service_name => 'caritasx',
-    :storage_account_name => 'caritasx',
+    :cloud_service_name => 'carlosx',
+    :storage_account_name => 'carlosx',
     :vm_size => "Standard_D1",
     :location => "West US",
     :tcp_endpoints => '80:80',
@@ -22,7 +22,7 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
                                            
 machine_batch "cluster" do                   
     1.upto(1) do |i|            
-        machine "mahalo#{i}" do
+        machine "carlitox#{i}" do
             machine_options machine_options
                                     
                      

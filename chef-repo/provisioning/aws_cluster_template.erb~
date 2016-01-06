@@ -29,3 +29,11 @@ machine_batch "cluster" do
     end
 end
 
+ruby_block "print out public IPs" do
+    block do
+        nodes = search(:node, "name:<%= @name %>*")
+        for node in nodes
+            Chef::Log.info("Application can be accessed at http://#{node['ec2']['public_ipv4']}:3001")
+        end
+    end
+end
