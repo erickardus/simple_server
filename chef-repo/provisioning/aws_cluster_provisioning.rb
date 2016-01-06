@@ -18,10 +18,8 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
 
 machine_batch "cluster" do
     1.upto(1) do |i|
-        machine "boromir#{i}" do
+        machine "chaco#{i}" do
             
-            
-                role 'webserver'
             
         end
     end

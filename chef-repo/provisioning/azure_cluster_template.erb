@@ -3,25 +3,24 @@ require 'chef/provisioning/azure_driver'
 
 with_driver 'azure'
 
-machine_options = {
-  :bootstrap_options => {
-    :cloud_service_name => '<%= @cloud_service_name %>',
-    :storage_account_name => '<%= @storage_account_name %>',
-    :vm_size => "<%= @vm_size %>",
-    :location => "<%= @location %>",
-    :tcp_endpoints => '80:80',
-  },
-  :image_id => '<%= @image_id %>',
-  :password => "chefm3t4l\\m/",
-}
-
 with_chef_server "<%= @chef_url %>",
   :client_name => Chef::Config[:node_name],
   :signing_key_filename => Chef::Config[:client_key]
 
                                            
 machine_batch "cluster" do                   
-    1.upto(<%= @number %>) do |i|            
+    1.upto(<%= @number %>) do |i|
+        machine_options = {
+          :bootstrap_options => {
+            :cloud_service_name => "<%= @cloud_service_name %>#{i}",
+            :storage_account_name => "<%= @storage_account_name %>#{i}",
+            :vm_size => "<%= @vm_size %>",
+            :location => "<%= @location %>",
+            :tcp_endpoints => '80:80',
+          },
+          :image_id => '<%= @image_id %>',
+          :password => "chefm3t4l\\m/",
+        }            
         machine "<%= @name %>#{i}" do
             machine_options machine_options
             <% for recipe in @runlist %>     
