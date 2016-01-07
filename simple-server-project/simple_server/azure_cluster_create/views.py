@@ -24,16 +24,16 @@ def azure_cluster_creator_step2(request):
             image_id = form_past.cleaned_data['image_id']
             location = form_past.cleaned_data['location']
             number = form_past.cleaned_data['number']
-            password = form_past.cleaned_data['password']
-            cloud_service_name = form_past.cleaned_data['cloud_service_name']
-            storage_account_name = form_past.cleaned_data['storage_account_name']
+            #password = form_past.cleaned_data['password']
+            #cloud_service_name = form_past.cleaned_data['cloud_service_name']
+            #storage_account_name = form_past.cleaned_data['storage_account_name']
             tcp_endpoints = form_past.cleaned_data['tcp_endpoints']
             return render(request, 'azure_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                                         'vm_size': vm_size,
                                                                         'image_id': image_id, 'location': location,
-                                                                        'number': number, 'password': password,
-                                                                        'cloud_service_name': cloud_service_name,
-                                                                        'storage_account_name': storage_account_name,
+                                                                        'number': number, #'password': password,
+                                                                        #'cloud_service_name': cloud_service_name,
+                                                                        #'storage_account_name': storage_account_name,
                                                                         'tcp_endpoints': tcp_endpoints})
 
 
@@ -49,14 +49,13 @@ def azure_cluster_creator_step3(request):
             runlist = form_past.cleaned_data['runlist']
             location = form_past.cleaned_data['location']
             number = form_past.cleaned_data['number']
-            password = form_past.cleaned_data['password']
-            cloud_service_name = form_past.cleaned_data['cloud_service_name']
-            storage_account_name = form_past.cleaned_data['storage_account_name']
+            #password = form_past.cleaned_data['password']
+            #cloud_service_name = form_past.cleaned_data['cloud_service_name']
+            #storage_account_name = form_past.cleaned_data['storage_account_name']
             tcp_endpoints = form_past.cleaned_data['tcp_endpoints']
 
-            output = create_action(location, number, password, image_id,
+            output = create_action(location, number, image_id,
                                    vm_size, name, roles, runlist,
-                                   cloud_service_name, storage_account_name,
                                    tcp_endpoints
                                    )
             output = output.decode('utf-8').split('\n')
@@ -73,15 +72,14 @@ def azure_cluster_creator_step3(request):
             return render(request, 'azure_cluster_creator_step3.html', context)
 
 
-def create_action(location, number, password, image_id, vm_size, name, roles, runlist,
-                  cloud_service_name, storage_account_name, tcp_endpoints):
+def create_action(location, number, image_id, vm_size, name, roles, runlist, tcp_endpoints):
 
     try:
 
-        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-l", location, "-n", name, "-N", number, "-p", password,
+        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-l", location, "-n", name, "-N", number,
                                         "-i", image_id, "-s", vm_size, "--roles", roles,
-                                        "--runlist", runlist, "--cloud_service_name", cloud_service_name,
-                                        "--storage_account_name", storage_account_name,
+                                        "--runlist", runlist, "--cloud_service_name", name,
+                                        "--storage_account_name", name,
                                         "tcp_endpoints", tcp_endpoints], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output

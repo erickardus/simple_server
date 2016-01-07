@@ -12,8 +12,8 @@ machine_batch "cluster" do
     1.upto(<%= @number %>) do |i|
         machine_options = {
           :bootstrap_options => {
-            :cloud_service_name => "<%= @cloud_service_name %>#{i}",
-            :storage_account_name => "<%= @storage_account_name %>#{i}",
+            :cloud_service_name => "<%= @name %>#{i}",
+            :storage_account_name => "<%= @name %>#{i}",
             :vm_size => "<%= @vm_size %>",
             :location => "<%= @location %>",
             :tcp_endpoints => '80:80',
