@@ -6,6 +6,7 @@ class CreateClusterStep1(forms.Form):
     image_choices = (
         ('b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_2-LTS-amd64-server-20150706-en-us-30GB',
          'Ubuntu 14.04 LTS AMD64 Server EN_US 30GB'),
+        ('0b11de9248dd4d87b18621318e037d37__RightImage-CentOS-6.5-x64-v14.1', 'CentOS 6.5 x64'),
     )
 
     flavor_choices = (
@@ -82,7 +83,7 @@ class CreateClusterStep1(forms.Form):
     name = forms.CharField(label='Name', max_length=25, required=False)
     image_id = forms.ChoiceField(choices=image_choices, required=False, label='Image Id')
     vm_size = forms.ChoiceField(choices=flavor_choices, required=False, label='VM Size')
-    location = forms.CharField(label='Location', max_length=12, required=False)
+    location = forms.ChoiceField(choices=location_choices, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False)
     #password = forms.CharField(label='Password', max_length=12, required=False)
     #cloud_service_name = forms.CharField(label='Cloud Service Name', max_length=12, required=False)

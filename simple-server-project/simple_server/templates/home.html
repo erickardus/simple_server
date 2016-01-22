@@ -16,6 +16,17 @@
         <input type="submit" value="Create Cluster" id="toggle2" />
     </form>
 
+
+    <form action= 'cluster_create' method="get">
+        {% csrf_token %}
+        <input type="submit" value="Provision Environment" id="toggle2" />
+    </form>
+
+    <form action= 'cluster_create' method="get">
+        {% csrf_token %}
+        <input type="submit" value="Create App" id="toggle2" />
+    </form>
+
 {% endblock content %}
 
 
