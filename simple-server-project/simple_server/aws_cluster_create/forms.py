@@ -1,16 +1,22 @@
 from django import forms
+import boto3
+
+
+class CreateClusterStep0(forms.Form):
+
+    client = boto3.client('ec2')
+    region_choices = []
+    for region in client.describe_regions()['Regions']:
+        x = region['RegionName']
+        y = (x,x)
+        region_choices.append(y)
+
+    region = forms.ChoiceField(choices=region_choices, required=False, label='Regions')
 
 
 class CreateClusterStep1(forms.Form):
 
-    image_choices = (
-        ('ami-60b6c60a', 'Amazon Linux AMI 2015.03.1 (HVM), SSD Volume Type'),
-        ('ami-4dbf9e7d', 'Red Hat Enterprise Linux 7.1 (HVM), SSD Volume Type'),
-        ('ami-d7450be7', 'SUSE Linux Enterprise Server 12 (HVM), SSD Volume Type'),
-        ('ami-5189a661', 'Ubuntu Server 14.04 LTS (HVM), SSD Volume Type'),
-    )
-
-    flavor_choices = (
+    instance_types = (
         ('t2.micro', 't2.micro - 1 vCPU, 1 GiB, EBS Only'),
         ('t2.small', 't2.small - 1 vCPU, 2 GiB, EBS Only'),
         ('t2.medium', 't2.medium - 2 vCPU, 4 GiB, EBS Only'),
@@ -43,15 +49,33 @@ class CreateClusterStep1(forms.Form):
         ('g2.8xlarge', 'g2.8xlarge - 4 GPU, 32 vCPU, 60 GiB, 240 GB (SSD)'),
     )
 
+    number = forms.CharField(label='Number', max_length=2, required=False)
     name = forms.CharField(label='Name', max_length=25, required=False)
-    ami = forms.ChoiceField(choices=image_choices, required=False, label='Image Id')
-    instance_type = forms.ChoiceField(choices=flavor_choices, required=False, label='Flavor')
-    region = forms.CharField(label='Region', max_length=12, required=False)
+    instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Flavor')
     number = forms.CharField(label='Number', max_length=2, required=False)
     user = forms.CharField(label='User', max_length=12, required=False)
+    region = forms.CharField(label='Region', max_length=12, required=False)
+
+    def __init__(self, *args, **kwargs):
+
+        try:
+            myregion = kwargs.pop('myregion')
+            super(CreateClusterStep1, self).__init__(*args, **kwargs)
+            listOS = ['Amazon Linux AMI 2015*HVM*', 'Red Hat Enterprise Linux 6*HVM*',
+                      'SUSE Linux Enterprise Server 12*HVM*', 'Ubuntu Server 14.04*HVM*'
+                     ]
+            ec2_east = boto3.client('ec2', region_name=myregion)
+            ami_choices = []
+            data = ec2_east.describe_images(Filters=[{'Name': 'description', 'Values': listOS}])
+            for image in data['Images']:
+                ami_choices.append((image['ImageId'], image['Description']))
+            self.fields['ami'] = forms.ChoiceField(choices=ami_choices, required=False, label='Image Id')
+        except:
+            self.fields['ami'] = forms.CharField(max_length=20, required=False, label='Image Id')
 
 
 class CreateClusterStep2(forms.Form):
+
 
     name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
     ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())

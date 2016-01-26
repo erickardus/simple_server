@@ -1,34 +1,49 @@
 from django.shortcuts import render
-from aws_cluster_create.forms import CreateClusterStep1, CreateClusterStep2
+from aws_cluster_create.forms import CreateClusterStep0, CreateClusterStep1, CreateClusterStep2
 import subprocess
 import os
 
 BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
+myregion = ''
+
+def aws_cluster_creator_step0(request):
+
+    form = CreateClusterStep0(request.POST or None)
+    return render(request, 'aws_cluster_creator_step0.html', {'form': form})
 
 
 def aws_cluster_creator_step1(request):
 
-    form = CreateClusterStep1(request.POST or None)
-    return render(request, 'aws_cluster_creator_step1.html', {'form': form})
+    if request.method == 'POST':
+        old_form = CreateClusterStep0(request.POST)
+        if old_form.is_valid():
+            global myregion
+            region = old_form.cleaned_data['region']
+            new_form = CreateClusterStep1(request.POST or None, myregion=region)
+
+            return render(request, 'aws_cluster_creator_step1.html', {'form': new_form, 'region': region})
 
 
 def aws_cluster_creator_step2(request):
 
     if request.method == 'POST':
-        form_past = CreateClusterStep1(request.POST)
-        if form_past.is_valid():
+
+        old_form = CreateClusterStep1(request.POST, myregion=myregion)
+        if old_form.is_valid():
             new_form = CreateClusterStep2(request.POST or None)
-            name = form_past.cleaned_data['name']
-            instance_type = form_past.cleaned_data['instance_type']
-            ami = form_past.cleaned_data['ami']
-            region = form_past.cleaned_data['region']
-            number = form_past.cleaned_data['number']
-            user = form_past.cleaned_data['user']
+            name = old_form.cleaned_data['name']
+            instance_type = old_form.cleaned_data['instance_type']
+            ami = old_form.cleaned_data['ami']
+            region = old_form.cleaned_data['region']
+            number = old_form.cleaned_data['number']
+            user = old_form.cleaned_data['user']
+
             return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                                       'instance_type': instance_type,
                                                                       'ami': ami, 'region': region,
                                                                       'number': number, 'user': user})
+
 
 
 def aws_cluster_creator_step3(request):
