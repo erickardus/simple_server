@@ -31,6 +31,7 @@ OptionParser.new do |opt|
 end.parse!
 
 
+# Defines a class to pass parameters to ERB and render it.
 class BindMe
 
 
@@ -54,11 +55,12 @@ class BindMe
 end
 
 
-
+# Creates Chef provisioning script out of a template
 x = BindMe.new(options)
 res = x.render
 result = File.open("./aws_cluster_provisioning.rb", "w+")
 result << res
 result.close
 
+# Executes the recently created Chef provisioning script and actually provision infrastructure.
 exec('chef-client -z aws_cluster_provisioning.rb')
