@@ -1,0 +1,23 @@
+{
+  "name": "aftgect2est1",
+  "chef_environment": "_default",
+  "run_list": [
+  "role[webserver]"
+]
+,
+  "normal": {
+    "tags": null,
+    "chef_provisioning": {
+      "reference": {
+        "driver_version": "1.6.1",
+        "allocated_at": "2016-01-26 19:25:55 UTC",
+        "host_node": "chefzero://localhost:8889/nodes/",
+        "image_id": "ami-60b6c60a",
+        "instance_id": "i-c9699149",
+        "key_name": "chef_default",
+        "ssh_username": "ec2-user"
+      },
+      "driver_url": "aws::us-east-1"
+    }
+  }
+}
