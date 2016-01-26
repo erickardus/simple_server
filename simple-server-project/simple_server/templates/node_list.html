@@ -2,12 +2,11 @@
 
 {% block content %}
 
-    <h2>Server List:</h2><br>
-
-    {% for node in nodes %}
-
-        <p>{{ node }}</p>
-
+        <h2>Server List:</h2><br>
+    <table>
+      <tr><th>Cloud</th><th>Node Name</th><th>AWS Instance Name </th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
+        {% for node in nodes %}
+                <tr><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td><td>{{node.6}}</td><td>Action</td></tr>
     {% endfor %}
-
+</table>
 {% endblock content %}
