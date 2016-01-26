@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 497855492,
-        "kb_available": 356342341,
-        "kb_used": 141513151,
+        "kb_available": 356104290,
+        "kb_used": 141751202,
         "percent_used": 28,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -63,13 +63,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "11178696",
+        "free_physical_memory": "10573960",
         "free_space_in_paging_files": "15672660",
-        "free_virtual_memory": "26213760",
+        "free_virtual_memory": "25257044",
         "install_date": "20150521134954.000000-300",
         "large_system_cache": null,
         "last_boot_up_time": "20160126081956.109999-360",
-        "local_date_time": "20160126144500.692000-360",
+        "local_date_time": "20160126161119.733000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -79,7 +79,7 @@
         ],
         "name": "Microsoft Windows 7 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2",
         "number_of_licensed_users": null,
-        "number_of_processes": 117,
+        "number_of_processes": 135,
         "number_of_users": 3,
         "operating_system_sku": 4,
         "organization": "",
@@ -170,6 +170,7 @@
           "LM_Server",
           "NT",
           "Potential_Browser",
+          "Backup_Browser",
           "Master_Browser"
         ],
         "status": "OK",
@@ -10588,7 +10589,7 @@
         "free": "15672660kB"
       },
       "total": "15672660kB",
-      "free": "11167876kB"
+      "free": "10563720kB"
     },
     "network": {
       "interfaces": {
@@ -11048,16 +11049,21 @@
           "arp": {
             "10.6.6.1": "08:5b:0e:4c:4a:06",
             "10.6.6.16": "00:15:5d:05:18:04",
+            "10.6.6.51": "d4:be:d9:39:42:51",
             "10.6.6.55": "d4:be:d9:06:38:b0",
             "10.6.6.69": "00:21:9b:7d:0e:c2",
             "10.6.6.71": "d4:be:d9:39:43:24",
+            "10.6.6.74": "18:03:73:cc:15:a6",
             "10.6.6.77": "3c:a8:2a:86:ab:93",
             "10.6.6.78": "08:00:27:a6:a2:a1",
             "10.6.6.81": "d4:be:d9:06:27:84",
+            "10.6.6.82": "50:65:f3:bb:24:6b",
             "10.6.6.85": "74:46:a0:39:e7:00",
             "10.6.6.93": "d4:be:d9:39:3a:c3",
+            "10.6.6.94": "3c:a8:2a:86:a9:ed",
             "10.6.6.97": "5c:26:0a:88:98:c4",
             "10.6.6.99": "28:18:78:db:f4:af",
+            "10.6.6.100": "58:20:b1:76:34:63",
             "10.6.6.101": "00:1e:4f:e3:37:dd",
             "10.6.6.102": "50:65:f3:bb:32:02",
             "10.6.6.103": "d4:be:d9:1a:5c:83",
@@ -11066,6 +11072,7 @@
             "10.6.6.115": "d4:be:d9:02:d9:72",
             "10.6.6.116": "d4:be:d9:38:a6:da",
             "10.6.6.117": "5c:26:0a:88:7a:bd",
+            "10.6.6.119": "38:63:bb:b7:21:bc",
             "10.6.6.122": "2c:59:e5:ba:4e:e5",
             "10.6.6.124": "d4:be:d9:39:3a:25",
             "10.6.6.125": "00:0c:29:86:37:c3",
@@ -11077,7 +11084,9 @@
             "10.6.6.154": "58:20:b1:76:55:83",
             "10.6.6.163": "00:0c:29:97:a5:59",
             "10.6.6.172": "50:65:f3:bb:53:55",
+            "10.6.6.175": "d4:be:d9:21:22:69",
             "10.6.6.176": "d4:be:d9:39:56:da",
+            "10.6.6.184": "5c:f9:dd:6d:29:76",
             "10.6.6.185": "34:e6:d7:06:5e:3b",
             "10.6.6.194": "28:18:78:e5:17:8a",
             "10.6.6.198": "74:46:a0:3b:b3:2b",
@@ -11260,8 +11269,8 @@
     "platform": "windows",
     "platform_version": "6.1.7601",
     "platform_family": "windows",
-    "uptime_seconds": 23132,
-    "uptime": "6 hours 25 minutes 32 seconds",
+    "uptime_seconds": 28311,
+    "uptime": "7 hours 51 minutes 51 seconds",
     "virtualization": {
       "systems": {
 
@@ -11346,7 +11355,7 @@
 
       }
     },
-    "ohai_time": 1453841134.60004,
+    "ohai_time": 1453846313.797714,
     "root_group": "Administrators",
     "recipes": [
 

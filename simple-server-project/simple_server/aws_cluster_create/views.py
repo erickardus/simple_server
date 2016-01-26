@@ -2,14 +2,19 @@ from django.shortcuts import render
 from aws_cluster_create.forms import CreateClusterStep0, CreateClusterStep1, CreateClusterStep2
 import subprocess
 import os
+import logging
 
+
+log = logging.getLogger('simple_server')
 BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 myregion = ''
 
+
 def aws_cluster_creator_step0(request):
 
     form = CreateClusterStep0(request.POST or None)
+    log.info('Generated form CreateClusterStep0')
     return render(request, 'aws_cluster_creator_step0.html', {'form': form})
 
 
@@ -17,10 +22,15 @@ def aws_cluster_creator_step1(request):
 
     if request.method == 'POST':
         old_form = CreateClusterStep0(request.POST)
+        log.info('Obtained CreateClusterStep0 form data')
         if old_form.is_valid():
             global myregion
             region = old_form.cleaned_data['region']
-            new_form = CreateClusterStep1(request.POST or None, myregion=region)
+            log.info('Old form value region: %s' % region)
+            try:
+                new_form = CreateClusterStep1(request.POST or None, myregion=region)
+            except:
+                log.fatal('Unable to render form CreateClusterStep1. %s' % sys.exc_info()[0])
 
             return render(request, 'aws_cluster_creator_step1.html', {'form': new_form, 'region': region})
 
