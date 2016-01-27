@@ -12,8 +12,8 @@ machine_batch "cluster" do
     1.upto(2) do |i|
         machine_options = {
           :bootstrap_options => {
-            :cloud_service_name => "aftgazure#{i}",
-            :storage_account_name => "aftgazure#{i}",
+            :cloud_service_name => "practicazure#{i}",
+            :storage_account_name => "practicazure#{i}",
             :vm_size => "Basic_A0",
             :location => "Central US",
             :tcp_endpoints => '80:80',
@@ -21,7 +21,7 @@ machine_batch "cluster" do
           :image_id => 'b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_2-LTS-amd64-server-20150706-en-us-30GB',
           :password => "chefm3t4l\\m/",
         }            
-        machine "aftgazure#{i}" do
+        machine "practicazure#{i}" do
             machine_options machine_options
             chef_environment 'dev'
                                     

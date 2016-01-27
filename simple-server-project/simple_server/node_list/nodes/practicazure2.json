@@ -1,5 +1,5 @@
 {
-  "name": "aftgtest1",
+  "name": "practicazure2",
   "chef_environment": "dev",
   "run_list": [
   "role[webserver]"
@@ -11,12 +11,12 @@
       "reference": {
         "driver_url": "azure:c9d9f765-0c35-4775-b7d0-537bb9260194",
         "driver_version": "0.4.0",
-        "allocated_at": "2016-01-26 19:09:45 UTC",
+        "allocated_at": "2016-01-27 14:51:40 UTC",
         "host_node": "chefzero://localhost:8889/nodes/",
         "image_id": "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_2-LTS-amd64-server-20150706-en-us-30GB",
         "location": "Central US",
-        "cloud_service": "aftgtest1",
-        "vm_name": "aftgtest1",
+        "cloud_service": "practicazure2",
+        "vm_name": "practicazure2",
         "is_windows": false
       }
     }

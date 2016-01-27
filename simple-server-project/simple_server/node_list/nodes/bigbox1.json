@@ -1,8 +1,8 @@
 {
-  "name": "hello1",
+  "name": "bigbox1",
   "chef_environment": "_default",
   "run_list": [
-  "role[webserver]"
+  "recipe[apache]"
 ]
 ,
   "normal": {
@@ -10,10 +10,10 @@
     "chef_provisioning": {
       "reference": {
         "driver_version": "1.6.1",
-        "allocated_at": "2016-01-26 22:12:54 UTC",
+        "allocated_at": "2016-01-27 22:04:55 UTC",
         "host_node": "chefzero://localhost:8889/nodes/",
         "image_id": "ami-0d4cfd66",
-        "instance_id": "i-ce609b4e",
+        "instance_id": "i-cecebf47",
         "key_name": "chef_default",
         "ssh_username": "ec2-user"
       },

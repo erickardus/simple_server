@@ -1,5 +1,5 @@
 {
-  "name": "aftgect2est2",
+  "name": "practica1",
   "chef_environment": "_default",
   "run_list": [
   "role[webserver]"
@@ -10,10 +10,10 @@
     "chef_provisioning": {
       "reference": {
         "driver_version": "1.6.1",
-        "allocated_at": "2016-01-26 19:25:44 UTC",
+        "allocated_at": "2016-01-27 14:43:27 UTC",
         "host_node": "chefzero://localhost:8889/nodes/",
-        "image_id": "ami-60b6c60a",
-        "instance_id": "i-806b9300",
+        "image_id": "ami-0d4cfd66",
+        "instance_id": "i-9e48602d",
         "key_name": "chef_default",
         "ssh_username": "ec2-user"
       },
