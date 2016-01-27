@@ -45,6 +45,7 @@ def aws_cluster_creator_step2(request):
             name = old_form.cleaned_data['name']
             instance_type = old_form.cleaned_data['instance_type']
             ami = old_form.cleaned_data['ami']
+            vpc = old_form.cleaned_data['vpc']
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
             user = old_form.cleaned_data['user']
@@ -52,7 +53,10 @@ def aws_cluster_creator_step2(request):
             return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                                       'instance_type': instance_type,
                                                                       'ami': ami, 'region': region,
-                                                                      'number': number, 'user': user})
+                                                                      'number': number, 'user': user,
+                                                                      'vpc': vpc
+                                                                      }
+                          )
 
 
 
@@ -62,7 +66,7 @@ def aws_cluster_creator_step3(request):
         form_past = CreateClusterStep2(request.POST or None)
         if form_past.is_valid():
             ami = form_past.cleaned_data['ami']
-            log.debug('from last form ami %s' % ami)
+            vpc = form_past.cleaned_data['vpc']
             instance_type = form_past.cleaned_data['instance_type']
             log.debug('from last form ami %s' % ami)
             name = form_past.cleaned_data['name']

@@ -49,10 +49,10 @@ class CreateClusterStep1(forms.Form):
         ('g2.8xlarge', 'g2.8xlarge - 4 GPU, 32 vCPU, 60 GiB, 240 GB (SSD)'),
     )
 
-    number = forms.CharField(label='Number', max_length=2, required=False)
+
     name = forms.CharField(label='Name', max_length=25, required=False)
-    instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Flavor')
     number = forms.CharField(label='Number', max_length=2, required=False)
+    instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Flavor')
     user = forms.CharField(label='User', max_length=12, required=False)
     region = forms.CharField(label='Region', max_length=12, required=False)
 
@@ -69,9 +69,35 @@ class CreateClusterStep1(forms.Form):
             data = ec2_east.describe_images(Filters=[{'Name': 'description', 'Values': listOS}])
             for image in data['Images']:
                 ami_choices.append((image['ImageId'], image['Description']))
+            #self.fields['ami'] = forms.ChoiceField(choices=ami_choices, required=False, label='Image Id')
+
+            vpcs = []
+
+            data = ec2_east.describe_vpcs()
+
+            for vpc in data['Vpcs']:
+                if 'Tags' in vpc:
+                    mytag =  ''
+                    for tag in vpc['Tags']:
+                        if tag['Key'] == 'Name':
+                            mytag = tag['Value']
+
+                    cidr = vpc['CidrBlock']
+                    mystr = mytag + ' - (' + cidr + ')'
+                    vpcs.append((mytag,mystr))
+
+                else:
+                    cidr = vpc['CidrBlock']
+                    mystr = 'Default' + ' - (' + cidr + ')'
+                    vpcs.append(('Default',mystr))
+
+            self.fields['vpc'] = forms.ChoiceField(choices=vpcs, required=True, label='VPC')
             self.fields['ami'] = forms.ChoiceField(choices=ami_choices, required=False, label='Image Id')
+
+
         except:
             self.fields['ami'] = forms.CharField(max_length=20, required=False, label='Image Id')
+            self.fields['vpc'] = forms.CharField(max_length=20, required=False, label='VPC')
 
 
 class CreateClusterStep2(forms.Form):
@@ -79,6 +105,7 @@ class CreateClusterStep2(forms.Form):
 
     name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
     ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())
+    vpc = forms.CharField(label='VPC', max_length=25, required=False)
     instance_type = forms.CharField(label='Flavor', max_length=25, required=False, widget=forms.HiddenInput())
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
