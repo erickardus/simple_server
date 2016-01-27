@@ -62,7 +62,9 @@ def aws_cluster_creator_step3(request):
         form_past = CreateClusterStep2(request.POST or None)
         if form_past.is_valid():
             ami = form_past.cleaned_data['ami']
+            log.debug('from last form ami %s' % ami)
             instance_type = form_past.cleaned_data['instance_type']
+            log.debug('from last form ami %s' % ami)
             name = form_past.cleaned_data['name']
             roles = form_past.cleaned_data['roles']
             runlist = form_past.cleaned_data['runlist']

@@ -17,17 +17,8 @@ with_chef_server "https://manage.chef.io/organizations/simple_server",
 
 
 machine_batch "cluster" do
-<<<<<<< HEAD
-    1.upto(1) do |i|
-<<<<<<< HEAD
-        machine "server#{i}" do
-=======
-        machine "boombox#{i}" do
->>>>>>> 65da696e2d7ce42b86768d75219a7c7f55efebef
-=======
     1.upto(2) do |i|
-        machine "hello#{i}" do
->>>>>>> 1e9964cb6dc024555816a99dbb1be31a4352ffa0
+        machine "tttessst#{i}" do
             
             
                 role 'webserver'

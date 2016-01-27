@@ -1,0 +1,8 @@
+[26/Jan/2016 22:52:14] DEBUG [simple_server:5] hello
+[26/Jan/2016 22:53:32] DEBUG [simple_server:5] hello
+[26/Jan/2016 22:53:48] INFO [simple_server:17] Generated form CreateClusterStep0
+[26/Jan/2016 22:53:53] INFO [simple_server:25] Obtained CreateClusterStep0 form data
+[26/Jan/2016 22:53:53] INFO [simple_server:29] Old form value region: us-east-1
+[26/Jan/2016 22:57:29] DEBUG [simple_server:5] hello
+[26/Jan/2016 22:57:36] DEBUG [simple_server:65] from last form ami ami-0d4cfd66
+[26/Jan/2016 23:11:43] DEBUG [simple_server:5] hello
