@@ -29,6 +29,12 @@
 [27/Jan/2016 22:50:36] DEBUG [simple_server:5] hello
 [27/Jan/2016 22:56:06] DEBUG [simple_server:5] hello
 [27/Jan/2016 23:00:40] DEBUG [simple_server:5] hello
+<<<<<<< HEAD
+[27/Jan/2016 17:09:16] DEBUG [simple_server:5] hello
+[27/Jan/2016 17:09:29] INFO [simple_server:17] Generated form CreateClusterStep0
+[27/Jan/2016 17:09:32] INFO [simple_server:25] Obtained CreateClusterStep0 form data
+[27/Jan/2016 17:09:32] INFO [simple_server:29] Old form value region: us-east-1
+=======
 [28/Jan/2016 08:29:44] DEBUG [simple_server:5] hello
 [28/Jan/2016 08:30:15] DEBUG [simple_server:5] hello
 [28/Jan/2016 09:27:44] DEBUG [simple_server:5] hello
@@ -86,3 +92,4 @@
 [28/Jan/2016 13:38:36] DEBUG [simple_server:5] hello
 [28/Jan/2016 13:38:42] DEBUG [simple_server:5] hello
 [28/Jan/2016 13:39:58] DEBUG [simple_server:5] hello
+>>>>>>> 29618dd389d102fcd71d5a5745d3e20be1b57543

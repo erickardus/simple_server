@@ -2,6 +2,12 @@ import subprocess
 import json
 import boto3
 from django.views.generic import TemplateView
+import os
+import shutil
+
+BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
+PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
+
 
 #Boto EC connection
 
@@ -13,11 +19,11 @@ class NodeList(TemplateView):
     ### create nodes json fila
         ec2 = boto3.resource('ec2')
         nodesList = [] 
-
-        nodes = subprocess.check_output(["knife", "node", "list"], cwd='/home/aterrazas/simple_server/chef-repo/.chef')
+        os.chdir(PROVISIONING_DIR)
+        nodes = subprocess.getoutput(['knife', "node", "list"])
         node_list = nodes.split()
         for nodej in node_list:
-            chefcall = json.loads(subprocess.check_output(["knife", "node", "show", nodej, "-F" ,"json" ], cwd='/home/aterrazas/simple_server/chef-repo/.chef'))
+            chefcall = json.loads(subprocess.getoutput(['knife', "node", "show", str(nodej), "-F" ,"json" ]))
             driver = ''
             insid = ''
             if 'driver_url' in chefcall['normal']['chef_provisioning'] :
@@ -28,8 +34,9 @@ class NodeList(TemplateView):
             elif 'driver_url' in chefcall['normal']['chef_provisioning']['reference']:
                 driver = "Azure" 
                 insid = str(chefcall['normal']['chef_provisioning']['reference']['vm_name'])
-                azurecall = json.loads(subprocess.check_output(["azure", "vm", "show", insid , "--json" ]))
-                nodesList.append([driver,nodej,insid,str(azurecall['InstanceStatus']),str(azurecall['InstanceSize']),str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
+                azurecall = json.loads(subprocess.getoutput(["azure", "vm", "show", insid , "--json" ]))
+                insize = str(azurecall['InstanceSize']) if 'InstanceSize' in azurecall else ""
+                nodesList.append([driver,nodej,insid,str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
 
         return nodesList
 
