@@ -29,3 +29,7 @@
 [27/Jan/2016 22:50:36] DEBUG [simple_server:5] hello
 [27/Jan/2016 22:56:06] DEBUG [simple_server:5] hello
 [27/Jan/2016 23:00:40] DEBUG [simple_server:5] hello
+[27/Jan/2016 17:09:16] DEBUG [simple_server:5] hello
+[27/Jan/2016 17:09:29] INFO [simple_server:17] Generated form CreateClusterStep0
+[27/Jan/2016 17:09:32] INFO [simple_server:25] Obtained CreateClusterStep0 form data
+[27/Jan/2016 17:09:32] INFO [simple_server:29] Old form value region: us-east-1
