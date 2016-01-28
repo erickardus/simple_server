@@ -3,7 +3,7 @@
 import subprocess
 import json
 import boto3
-
+import os
 
 
 ec2 = boto3.resource('ec2')
