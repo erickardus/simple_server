@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 159930904,
-        "kb_available": 93990416,
-        "kb_used": 65940488,
+        "kb_available": 93974265,
+        "kb_used": 65956639,
         "percent_used": 41,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1778572",
-        "free_space_in_paging_files": "3400120",
-        "free_virtual_memory": "4913540",
+        "free_physical_memory": "1347640",
+        "free_space_in_paging_files": "2794060",
+        "free_virtual_memory": "3744568",
         "install_date": "20150519110422.000000-300",
         "large_system_cache": null,
-        "last_boot_up_time": "20160128075945.125599-360",
-        "local_date_time": "20160128111033.661000-360",
+        "last_boot_up_time": "20160128084549.734661-360",
+        "local_date_time": "20160128163346.380000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,7 +78,7 @@
         ],
         "name": "Microsoft Windows 7 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2",
         "number_of_licensed_users": 0,
-        "number_of_processes": 88,
+        "number_of_processes": 98,
         "number_of_users": 2,
         "operating_system_sku": 4,
         "organization": "",
@@ -168,7 +168,6 @@
           "LM_Server",
           "NT",
           "Potential_Browser",
-          "Backup_Browser",
           "Master_Browser"
         ],
         "status": "OK",
@@ -8440,10 +8439,10 @@
     "memory": {
       "swap": {
         "total": "4072500kB",
-        "free": "3400148kB"
+        "free": "2794132kB"
       },
       "total": "4072500kB",
-      "free": "1766884kB"
+      "free": "1346216kB"
     },
     "network": {
       "interfaces": {
@@ -8461,8 +8460,8 @@
             "default_ttl": null,
             "description": "Intel(R) 82579LM Gigabit Network Connection",
             "dhcp_enabled": true,
-            "dhcp_lease_expires": "20160207091955.000000-360",
-            "dhcp_lease_obtained": "20160128091955.000000-360",
+            "dhcp_lease_expires": "20160207152935.000000-360",
+            "dhcp_lease_obtained": "20160128152935.000000-360",
             "dhcp_server": "10.6.6.16",
             "dns_domain": "softtekea.com",
             "dns_domain_suffix_search_order": [
@@ -8573,7 +8572,7 @@
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
             "system_name": "STKAG90021",
-            "time_of_last_reset": "20160128075945.125599-360"
+            "time_of_last_reset": "20160128084549.734661-360"
           },
           "counters": {
 
@@ -8600,27 +8599,24 @@
             "10.6.6.1": "08:5b:0e:4c:4a:06",
             "10.6.6.16": "00:15:5d:05:18:04",
             "10.6.6.17": "00:15:5d:05:1e:01",
-            "10.6.6.71": "d4:be:d9:39:43:24",
-            "10.6.6.74": "18:03:73:cc:15:a6",
+            "10.6.6.58": "00:21:9b:55:03:99",
+            "10.6.6.67": "38:63:bb:bc:eb:78",
+            "10.6.6.77": "3c:a8:2a:86:ab:93",
+            "10.6.6.81": "d4:be:d9:06:27:84",
             "10.6.6.84": "d4:be:d9:94:3f:32",
             "10.6.6.85": "74:46:a0:39:e7:00",
-            "10.6.6.90": "d4:be:d9:21:15:ce",
             "10.6.6.91": "d4:be:d9:1b:d0:f6",
-            "10.6.6.93": "d4:be:d9:39:3a:c3",
             "10.6.6.99": "28:18:78:db:f4:af",
-            "10.6.6.102": "50:65:f3:bb:32:02",
-            "10.6.6.114": "d0:bf:9c:df:ac:06",
-            "10.6.6.115": "d4:be:d9:02:d9:72",
-            "10.6.6.117": "5c:26:0a:88:7a:bd",
-            "10.6.6.125": "00:0c:29:86:37:c3",
-            "10.6.6.144": "00:21:9b:60:b8:97",
+            "10.6.6.100": "58:20:b1:76:34:63",
+            "10.6.6.104": "ec:f4:bb:3a:1a:18",
+            "10.6.6.116": "d4:be:d9:38:a6:da",
+            "10.6.6.119": "38:63:bb:b7:21:bc",
+            "10.6.6.132": "d4:be:d9:1b:d6:17",
             "10.6.6.147": "d4:be:d9:16:1b:3e",
-            "10.6.6.154": "58:20:b1:76:55:83",
-            "10.6.6.163": "00:0c:29:97:a5:59",
+            "10.6.6.150": "a0:d3:c1:9a:06:c4",
+            "10.6.6.186": "18:03:73:c8:33:85",
             "10.6.6.194": "28:18:78:e5:17:8a",
-            "10.6.6.198": "74:46:a0:3b:b3:2b",
-            "10.6.6.199": "5c:f9:dd:6d:b1:04",
-            "10.6.6.233": "58:20:b1:76:15:88",
+            "10.6.6.249": "28:18:78:e5:36:b0",
             "10.6.6.255": "ff:ff:ff:ff:ff:ff",
             "224.0.0.22": "01:00:5e:00:00:16",
             "224.0.0.252": "01:00:5e:00:00:fc",
@@ -8748,7 +8744,7 @@
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
             "system_name": "STKAG90021",
-            "time_of_last_reset": "20160128075945.125599-360"
+            "time_of_last_reset": "20160128084549.734661-360"
           },
           "counters": {
 
@@ -8796,8 +8792,8 @@
     "platform": "windows",
     "platform_version": "6.1.7601",
     "platform_family": "windows",
-    "uptime_seconds": 10976,
-    "uptime": "3 hours 02 minutes 56 seconds",
+    "uptime_seconds": 28081,
+    "uptime": "7 hours 48 minutes 01 seconds",
     "virtualization": {
       "systems": {
 
@@ -8880,7 +8876,7 @@
 
       }
     },
-    "ohai_time": 1454001045.627116,
+    "ohai_time": 1454020435.2322738,
     "root_group": "Administrators",
     "recipes": [
 

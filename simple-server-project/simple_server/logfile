@@ -86,3 +86,6 @@
 [28/Jan/2016 13:38:36] DEBUG [simple_server:5] hello
 [28/Jan/2016 13:38:42] DEBUG [simple_server:5] hello
 [28/Jan/2016 13:39:58] DEBUG [simple_server:5] hello
+[28/Jan/2016 16:10:00] DEBUG [simple_server:5] hello
+[29/Jan/2016 09:18:45] DEBUG [simple_server:5] hello
+[29/Jan/2016 12:07:47] DEBUG [simple_server:5] hello

@@ -5,3 +5,5 @@ logfile
 chef-repo/nodes/erickardus.json
 chef-repo/provisioning/aws_cluster_provisioning.rb*
 chef-repo/data_bags
+*.pyc
+*.sw*
