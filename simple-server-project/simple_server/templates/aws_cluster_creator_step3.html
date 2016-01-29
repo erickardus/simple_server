@@ -1,21 +1,17 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 
+    <h2>Choose Software to install:</h2>
 
+    <br>
 
-    <h3>Creating Server:</h3> <br><br>
-    <b>Image Id:</b> {{  ami }}<br>
-    <b>Name Tag:</b> {{  name }} <br>
-    <b>Flavor:</b> {{  instance_type }} <br>
-    <b>Roles:</b> {{ roles }} <br>
-    <b>Runlist:</b> {{ runlist }} <br><br><br><br>
-
-    {% for line in output %}
-
-    {{ line }}<br>
-
-    {% endfor %}
+    <form action="aws_cluster_creator_step3" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
 
 
 

@@ -49,12 +49,19 @@ class CreateClusterStep1(forms.Form):
         ('g2.8xlarge', 'g2.8xlarge - 4 GPU, 32 vCPU, 60 GiB, 240 GB (SSD)'),
     )
 
+    vpc_choices = (
+        ('automatic', 'Automatic VPC Creation'),
+        ('existing', 'Existing VPC'),
+        ('new', 'New VPC'),
+    )
+
 
     name = forms.CharField(label='Name', max_length=25, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False)
     instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Flavor')
     user = forms.CharField(label='User', max_length=12, required=False)
     region = forms.CharField(label='Region', max_length=12, required=False)
+    vpc_selection = forms.ChoiceField(choices=vpc_choices, label='VPC Options', required=False)
 
     def __init__(self, *args, **kwargs):
 
@@ -69,47 +76,110 @@ class CreateClusterStep1(forms.Form):
             data = ec2_east.describe_images(Filters=[{'Name': 'description', 'Values': listOS}])
             for image in data['Images']:
                 ami_choices.append((image['ImageId'], image['Description']))
-            #self.fields['ami'] = forms.ChoiceField(choices=ami_choices, required=False, label='Image Id')
 
-            vpcs = []
-
-            data = ec2_east.describe_vpcs()
-
-            for vpc in data['Vpcs']:
-                if 'Tags' in vpc:
-                    mytag =  ''
-                    for tag in vpc['Tags']:
-                        if tag['Key'] == 'Name':
-                            mytag = tag['Value']
-
-                    cidr = vpc['CidrBlock']
-                    mystr = mytag + ' - (' + cidr + ')'
-                    vpcs.append((mytag,mystr))
-
-                else:
-                    cidr = vpc['CidrBlock']
-                    mystr = 'Default' + ' - (' + cidr + ')'
-                    vpcs.append(('Default',mystr))
-
-            self.fields['vpc'] = forms.ChoiceField(choices=vpcs, required=True, label='VPC')
             self.fields['ami'] = forms.ChoiceField(choices=ami_choices, required=False, label='Image Id')
-
 
         except:
             self.fields['ami'] = forms.CharField(max_length=20, required=False, label='Image Id')
-            self.fields['vpc'] = forms.CharField(max_length=20, required=False, label='VPC')
 
 
 class CreateClusterStep2(forms.Form):
 
-
     name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
     ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())
-    vpc = forms.CharField(label='VPC', max_length=25, required=False)
+    vpc = forms.CharField(label='VPC', max_length=25, required=False, widget=forms.HiddenInput())
     instance_type = forms.CharField(label='Flavor', max_length=25, required=False, widget=forms.HiddenInput())
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
+    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False)
+
+    def __init__(self, *args, **kwargs):
+
+        vpcs = []
+        vpc_selection = kwargs.pop('vpc_selection')
+        myregion = kwargs.pop('myregion')
+        super(CreateClusterStep2, self).__init__(*args, **kwargs)
+        if vpc_selection == 'existing':
+            ec2 = boto3.client('ec2', region_name=myregion)
+            data = ec2.describe_vpcs()
+            vpcinfo = {}
+            for vpc in data['Vpcs']:
+                vpc_name = vpc['VpcId']
+                vpcinfo[vpc['VpcId']] = {}
+                vpcinfo[vpc['VpcId']]['Subnets'] = {}
+                vpcinfo[vpc['VpcId']]['SGs'] = {}
+                subnets = ec2.describe_subnets(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
+                security_groups = ec2.describe_security_groups(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
+
+                for subnet in subnets['Subnets']:
+                    vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']] = {'CidrBlock': subnet['CidrBlock'],
+                                                                            'AvailabilityZone': subnet['AvailabilityZone']}
+
+                    if 'Tags' in subnet:
+                        name = ''
+                        for tag in subnet['Tags']:
+                            if tag['Key'] == 'Name':
+                                name = tag['Value']
+                                break
+                    else:
+                        name = 'default'
+
+                    vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']]['Name'] = name
+
+                for sg in security_groups['SecurityGroups']:
+                    vpcinfo[vpc['VpcId']]['SGs'][sg['GroupName']] = {'GroupId': sg['GroupId'],
+                                                                     'IpPermissions': sg['IpPermissions']}
+
+                if 'Tags' in vpc:
+                    name =  ''
+                    for tag in vpc['Tags']:
+                        if tag['Key'] == 'Name':
+                            name = tag['Value']
+                            break
+                    vpcinfo[vpc['VpcId']]['Name'] = name
+                else:
+                    vpcinfo[vpc['VpcId']]['Name'] = 'default'
+
+            vpc_choices = [(vpcinfo[key]['Name'],vpcinfo[key]['Name']) for key in vpcinfo.keys()]
+
+            subnet_choices = []
+            for key in vpcinfo.keys():
+                for subnetkey in vpcinfo[key]['Subnets'].keys():
+                    mystr = key + " - " + vpcinfo[key]['Subnets'][subnetkey]['Name'] + \
+                            " (" + vpcinfo[key]['Subnets'][subnetkey]['CidrBlock'] + ") [" + \
+                            vpcinfo[key]['Subnets'][subnetkey]['AvailabilityZone'] + "]"
+                    subnet_choices.append((subnetkey,mystr))
+
+            sg_choices = []
+            for key in vpcinfo.keys():
+                for sg in vpcinfo[key]['SGs'].keys():
+                    mystr = key + " - " + vpcinfo[key]['SGs'][sg]['GroupId'] + " " + sg
+                    sg_choices.append((vpcinfo[key]['SGs'][sg]['GroupId'], mystr))
+
+
+
+
+
+            self.fields['vpc'] = forms.ChoiceField(choices=vpc_choices, required=False, label='VPC')
+            self.fields['subnet'] = forms.ChoiceField(choices=subnet_choices, required=False, label='Subnet')
+            self.fields['sg'] = forms.ChoiceField(choices=sg_choices, required=False, label='Security Group')
+
+
+
+
+class CreateClusterStep3(forms.Form):
+
+    name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
+    ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())
+    vpc = forms.CharField(label='VPC', max_length=25, required=False, widget=forms.HiddenInput())
+    instance_type = forms.CharField(label='Flavor', max_length=25, required=False, widget=forms.HiddenInput())
+    region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
+    number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
+    user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
+    roles = forms.CharField(label='Roles', max_length=40, required=False)
+    runlist = forms.CharField(label='Runlist', max_length=40, required=False)
+    vpc_name = forms.CharField(label='vpc_name', max_length=20, required=False)
 

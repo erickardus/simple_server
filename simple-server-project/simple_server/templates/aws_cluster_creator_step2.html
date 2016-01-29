@@ -2,15 +2,29 @@
 
 {% block content %}
 
-    <h2>Choose Software to install:</h2>
 
-    <br>
+
+ {% if vpc_selection == "new" %}
+
+    Create a New VPC
+
+ {% elif vpc_selection == "existing" %}
+
+    Use an existing VPC
 
     <form action="aws_cluster_creator_step3" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit" />
     </form>
+
+
+ {% elif vpc_selection == "automatic" %}
+
+    Automatic VPC
+
+ {% endif %}
+
 
 
 
