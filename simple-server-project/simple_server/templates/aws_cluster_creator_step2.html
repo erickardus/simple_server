@@ -17,7 +17,7 @@
         {{ form.as_p }}
 
         <br><br>
-        <select id="myvpc" onchange="myFunk()">
+        <select name="myvpc" id="myvpc" onchange="myFunk()">
             <option value="" selected disabled>Select a VPC</option>
             {% for vpc in vpc_choices %}
             <option value="{{ vpc.0 }}">{{ vpc.1 }}</option>
@@ -25,7 +25,7 @@
         </select>
 
         <br><br>
-        <select id="mysubnet" onchange="myFunk2()">
+        <select name="mysubnet" id="mysubnet" onchange="myFunk2()">
             <option value="" selected disabled>Select a Subnet</option>
             {% for subnet in subnet_choices %}
             <option value="{{ subnet.0 }}">{{ subnet.1 }}</option>
@@ -33,7 +33,7 @@
         </select>
 
         <br><br>
-        <select id="mysg">
+        <select name="mysg" id="mysg">
             <option value="" selected disabled>Select a Security Group</option>
             {% for sg in sg_choices %}
             <option value="{{ sg.0 }}">{{ sg.1 }}</option>

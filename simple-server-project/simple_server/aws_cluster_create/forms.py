@@ -59,8 +59,7 @@ class CreateClusterStep1(forms.Form):
     name = forms.CharField(label='Name', max_length=25, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False)
     instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Flavor')
-    user = forms.CharField(label='User', max_length=12, required=False)
-    region = forms.CharField(label='Region', max_length=12, required=False)
+    region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     vpc_selection = forms.ChoiceField(choices=vpc_choices, label='VPC Options', required=False)
 
     def __init__(self, *args, **kwargs):
@@ -91,9 +90,6 @@ class CreateClusterStep2(forms.Form):
     instance_type = forms.CharField(label='Flavor', max_length=25, required=False, widget=forms.HiddenInput())
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
-    user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
-    #roles = forms.CharField(label='Roles', max_length=40, required=False)
-    #runlist = forms.CharField(label='Runlist', max_length=40, required=False)
     vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False, widget=forms.HiddenInput())
 
 
@@ -107,7 +103,8 @@ class CreateClusterStep3(forms.Form):
     instance_type = forms.CharField(label='Flavor', max_length=25, required=False, widget=forms.HiddenInput())
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
-    user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
-
+    myvpc = forms.CharField(label='VPC', max_length=40, required=False)
+    mysubnet = forms.CharField(label='Subnet', max_length=40, required=False)
+    mysg = forms.CharField(label='Security Group', max_length=40, required=False)

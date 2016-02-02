@@ -50,7 +50,6 @@ def aws_cluster_creator_step2(request):
             vpc_selection = old_form.cleaned_data['vpc_selection']
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
-            user = old_form.cleaned_data['user']
 
             new_form = CreateClusterStep2(request.POST or None)
 
@@ -59,7 +58,7 @@ def aws_cluster_creator_step2(request):
     return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                               'instance_type': instance_type,
                                                               'ami': ami, 'region': region,
-                                                              'number': number, 'user': user,
+                                                              'number': number,
                                                               'vpc_selection': vpc_selection,
                                                               'myregion': region, 'vpc_choices': vpc_choices,
                                                               'subnet_choices': subnet_choices,
@@ -84,14 +83,16 @@ def aws_cluster_creator_step3(request):
             vpc = old_form.cleaned_data['vpc']
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
-            user = old_form.cleaned_data['user']
+            myvpc = request.POST.get('myvpc')
+            mysubnet = request.POST.get('mysubnet')
+            mysg = request.POST.get('mysg')
 
 
     return render(request, 'aws_cluster_creator_step3.html', {'form': new_form, 'name': name,
-                                                                      'instance_type': instance_type,
-                                                                      'ami': ami, 'region': region,
-                                                                      'number': number, 'user': user,
-                                                                      'vpc': vpc
+                                                              'instance_type': instance_type,
+                                                              'ami': ami, 'region': region,
+                                                              'vpc': vpc, 'myvpc': myvpc,
+                                                              'mysubnet': mysubnet, 'mysg': mysg
                                                                       }
                           )
 
@@ -111,9 +112,8 @@ def aws_cluster_creator_step4(request):
             runlist = form_past.cleaned_data['runlist']
             region = form_past.cleaned_data['region']
             number = form_past.cleaned_data['number']
-            user = form_past.cleaned_data['user']
 
-            output = create_action(region, number, user, ami, instance_type, name, roles, runlist)
+            output = create_action(region, number, ami, instance_type, name, roles, runlist)
             output = output.decode('utf-8').split('\n')
             context = {
                 "output": output,
@@ -127,12 +127,12 @@ def aws_cluster_creator_step4(request):
             return render(request, 'aws_cluster_creator_step4.html', context)
 
 
-def create_action(region, number, user, ami, instance_type, name, roles, runlist):
+def create_action(region, number, ami, instance_type, name, roles, runlist):
 
     try:
 
         return subprocess.check_output(["ruby", "aws_cluster_creator.rb", "-r", region, "-n", name, "-N", number,
-                                        "-u", user, "-a", ami, "-t", instance_type, "--roles", roles,
+                                        "-a", ami, "-t", instance_type, "--roles", roles,
                                         "--runlist", runlist], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output
@@ -177,13 +177,11 @@ def getVPCinfo(region):
         else:
             vpcinfo[vpc['VpcId']]['Name'] = 'default'
 
-    #vpc_choices = [(vpcinfo[key]['Name'],vpcinfo[key]['Name']) for key in vpcinfo.keys()]
     vpc_choices = []
     for key in vpcinfo.keys():
         mystr = vpcinfo[key]['Name'] + " - " + key
         #vpc_choices.append((vpcinfo[key]['Name'], mystr))
         vpc_choices.append((key, mystr))
-
 
     subnet_choices = []
     for key in vpcinfo.keys():
