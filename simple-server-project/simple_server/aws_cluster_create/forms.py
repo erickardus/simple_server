@@ -92,80 +92,9 @@ class CreateClusterStep2(forms.Form):
     region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
-    roles = forms.CharField(label='Roles', max_length=40, required=False)
-    runlist = forms.CharField(label='Runlist', max_length=40, required=False)
-    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False)
-
-    def __init__(self, *args, **kwargs):
-
-        vpcs = []
-        vpc_selection = kwargs.pop('vpc_selection')
-        myregion = kwargs.pop('myregion')
-        super(CreateClusterStep2, self).__init__(*args, **kwargs)
-        if vpc_selection == 'existing':
-            ec2 = boto3.client('ec2', region_name=myregion)
-            data = ec2.describe_vpcs()
-            vpcinfo = {}
-            for vpc in data['Vpcs']:
-                vpc_name = vpc['VpcId']
-                vpcinfo[vpc['VpcId']] = {}
-                vpcinfo[vpc['VpcId']]['Subnets'] = {}
-                vpcinfo[vpc['VpcId']]['SGs'] = {}
-                subnets = ec2.describe_subnets(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
-                security_groups = ec2.describe_security_groups(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
-
-                for subnet in subnets['Subnets']:
-                    vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']] = {'CidrBlock': subnet['CidrBlock'],
-                                                                            'AvailabilityZone': subnet['AvailabilityZone']}
-
-                    if 'Tags' in subnet:
-                        name = ''
-                        for tag in subnet['Tags']:
-                            if tag['Key'] == 'Name':
-                                name = tag['Value']
-                                break
-                    else:
-                        name = 'default'
-
-                    vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']]['Name'] = name
-
-                for sg in security_groups['SecurityGroups']:
-                    vpcinfo[vpc['VpcId']]['SGs'][sg['GroupName']] = {'GroupId': sg['GroupId'],
-                                                                     'IpPermissions': sg['IpPermissions']}
-
-                if 'Tags' in vpc:
-                    name =  ''
-                    for tag in vpc['Tags']:
-                        if tag['Key'] == 'Name':
-                            name = tag['Value']
-                            break
-                    vpcinfo[vpc['VpcId']]['Name'] = name
-                else:
-                    vpcinfo[vpc['VpcId']]['Name'] = 'default'
-
-            vpc_choices = [(vpcinfo[key]['Name'],vpcinfo[key]['Name']) for key in vpcinfo.keys()]
-
-            subnet_choices = []
-            for key in vpcinfo.keys():
-                for subnetkey in vpcinfo[key]['Subnets'].keys():
-                    mystr = key + " - " + vpcinfo[key]['Subnets'][subnetkey]['Name'] + \
-                            " (" + vpcinfo[key]['Subnets'][subnetkey]['CidrBlock'] + ") [" + \
-                            vpcinfo[key]['Subnets'][subnetkey]['AvailabilityZone'] + "]"
-                    subnet_choices.append((subnetkey,mystr))
-
-            sg_choices = []
-            for key in vpcinfo.keys():
-                for sg in vpcinfo[key]['SGs'].keys():
-                    mystr = key + " - " + vpcinfo[key]['SGs'][sg]['GroupId'] + " " + sg
-                    sg_choices.append((vpcinfo[key]['SGs'][sg]['GroupId'], mystr))
-
-
-
-
-
-            self.fields['vpc'] = forms.ChoiceField(choices=vpc_choices, required=False, label='VPC')
-            self.fields['subnet'] = forms.ChoiceField(choices=subnet_choices, required=False, label='Subnet')
-            self.fields['sg'] = forms.ChoiceField(choices=sg_choices, required=False, label='Security Group')
+    #roles = forms.CharField(label='Roles', max_length=40, required=False)
+    #runlist = forms.CharField(label='Runlist', max_length=40, required=False)
+    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False, widget=forms.HiddenInput())
 
 
 
@@ -181,5 +110,4 @@ class CreateClusterStep3(forms.Form):
     user = forms.CharField(label='User', max_length=12, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
-    vpc_name = forms.CharField(label='vpc_name', max_length=20, required=False)
 

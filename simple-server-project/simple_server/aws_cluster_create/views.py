@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from aws_cluster_create.forms import CreateClusterStep0, CreateClusterStep1, CreateClusterStep2
+from aws_cluster_create.forms import CreateClusterStep0, CreateClusterStep1, CreateClusterStep2, CreateClusterStep3
 import subprocess
 import os
+import boto3
 import logging
 
 
@@ -13,7 +14,7 @@ myregion = ''
 
 def aws_cluster_creator_step0(request):
 
-    # AWS - Select a region
+    # AWS - Select a region to launch your servers
     form = CreateClusterStep0(request.POST or None)
     log.info('Generated form CreateClusterStep0')
     return render(request, 'aws_cluster_creator_step0.html', {'form': form})
@@ -51,15 +52,18 @@ def aws_cluster_creator_step2(request):
             number = old_form.cleaned_data['number']
             user = old_form.cleaned_data['user']
 
-            new_form = CreateClusterStep2(request.POST or None, vpc_selection=vpc_selection, myregion=region)
+            new_form = CreateClusterStep2(request.POST or None)
+
+            vpc_choices, subnet_choices, sg_choices = getVPCinfo(region)
 
     return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                               'instance_type': instance_type,
                                                               'ami': ami, 'region': region,
                                                               'number': number, 'user': user,
                                                               'vpc_selection': vpc_selection,
-                                                              'myregion': region
-
+                                                              'myregion': region, 'vpc_choices': vpc_choices,
+                                                              'subnet_choices': subnet_choices,
+                                                              'sg_choices': sg_choices
                                                               })
 
 
@@ -71,7 +75,7 @@ def aws_cluster_creator_step3(request):
 
     if request.method == 'POST':
 
-        old_form = CreateClusterStep2(request.POST, myregion=myregion)
+        old_form = CreateClusterStep2(request.POST)
         if old_form.is_valid():
             new_form = CreateClusterStep3(request.POST or None)
             name = old_form.cleaned_data['name']
@@ -81,13 +85,13 @@ def aws_cluster_creator_step3(request):
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
             user = old_form.cleaned_data['user']
-            vpc_name = old_form.cleaned_data['vpc_name']
+
 
     return render(request, 'aws_cluster_creator_step3.html', {'form': new_form, 'name': name,
                                                                       'instance_type': instance_type,
                                                                       'ami': ami, 'region': region,
                                                                       'number': number, 'user': user,
-                                                                      'vpc': vpc, 'vpc_name': vpc_name
+                                                                      'vpc': vpc
                                                                       }
                           )
 
@@ -134,5 +138,67 @@ def create_action(region, number, user, ami, instance_type, name, roles, runlist
         return exc.output
 
 
+def getVPCinfo(region):
+
+    ec2 = boto3.client('ec2', region_name=region)
+    data = ec2.describe_vpcs()
+    vpcinfo = {}
+    for vpc in data['Vpcs']:
+        vpcinfo[vpc['VpcId']] = {}
+        vpcinfo[vpc['VpcId']]['Subnets'] = {}
+        vpcinfo[vpc['VpcId']]['SGs'] = {}
+        subnets = ec2.describe_subnets(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
+        security_groups = ec2.describe_security_groups(Filters=[{'Name':'vpc-id','Values':[vpc['VpcId'],]}])
+
+        for subnet in subnets['Subnets']:
+            vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']] = {'CidrBlock': subnet['CidrBlock'],
+                                                                    'AvailabilityZone': subnet['AvailabilityZone']}
+            if 'Tags' in subnet:
+                name = ''
+                for tag in subnet['Tags']:
+                    if tag['Key'] == 'Name':
+                        name = tag['Value']
+                        break
+            else:
+                name = 'default'
+
+            vpcinfo[vpc['VpcId']]['Subnets'][subnet['SubnetId']]['Name'] = name
+
+        for sg in security_groups['SecurityGroups']:
+            vpcinfo[vpc['VpcId']]['SGs'][sg['GroupName']] = {'GroupId': sg['GroupId'],
+                                                             'IpPermissions': sg['IpPermissions']}
+        if 'Tags' in vpc:
+            name =  ''
+            for tag in vpc['Tags']:
+                if tag['Key'] == 'Name':
+                    name = tag['Value']
+                    break
+            vpcinfo[vpc['VpcId']]['Name'] = name
+        else:
+            vpcinfo[vpc['VpcId']]['Name'] = 'default'
+
+    #vpc_choices = [(vpcinfo[key]['Name'],vpcinfo[key]['Name']) for key in vpcinfo.keys()]
+    vpc_choices = []
+    for key in vpcinfo.keys():
+        mystr = vpcinfo[key]['Name'] + " - " + key
+        #vpc_choices.append((vpcinfo[key]['Name'], mystr))
+        vpc_choices.append((key, mystr))
+
+
+    subnet_choices = []
+    for key in vpcinfo.keys():
+        for subnetkey in vpcinfo[key]['Subnets'].keys():
+            mystr = key + " - " + vpcinfo[key]['Subnets'][subnetkey]['Name'] + \
+                    " (" + vpcinfo[key]['Subnets'][subnetkey]['CidrBlock'] + ") [" + \
+                    vpcinfo[key]['Subnets'][subnetkey]['AvailabilityZone'] + "]"
+            subnet_choices.append((subnetkey,mystr))
+
+    sg_choices = []
+    for key in vpcinfo.keys():
+        for sg in vpcinfo[key]['SGs'].keys():
+            mystr = key + " - " + vpcinfo[key]['SGs'][sg]['GroupId'] + " " + sg
+            sg_choices.append((vpcinfo[key]['SGs'][sg]['GroupId'], mystr))
+
+    return vpc_choices, subnet_choices, sg_choices
 
 

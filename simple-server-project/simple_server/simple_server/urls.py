@@ -18,8 +18,9 @@ from home.views import Home
 from node_list.views import NodeList
 from cluster_create.views import cluster_creator
 from aws_cluster_create.views import aws_cluster_creator_step0, aws_cluster_creator_step1, aws_cluster_creator_step2,\
-    aws_cluster_creator_step3
-from azure_cluster_create.views import azure_cluster_creator_step1, azure_cluster_creator_step2, azure_cluster_creator_step3
+    aws_cluster_creator_step3, aws_cluster_creator_step4
+from azure_cluster_create.views import azure_cluster_creator_step1, azure_cluster_creator_step2,\
+    azure_cluster_creator_step3
 
 urlpatterns = [
     url(r'^$', Home.as_view()),
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^aws_cluster_creator_step1$', aws_cluster_creator_step1, name='aws_cluster_creator_step1'),
     url(r'^aws_cluster_creator_step2$', aws_cluster_creator_step2, name='aws_cluster_created_step2'),
     url(r'^aws_cluster_creator_step3$', aws_cluster_creator_step3, name='aws_cluster_created_step3'),
+    url(r'^aws_cluster_creator_step4$', aws_cluster_creator_step4, name='aws_cluster_created_step4'),
     url(r'^azure_cluster_creator_step1$', azure_cluster_creator_step1, name='azure_cluster_creator_step1'),
     url(r'^azure_cluster_creator_step2$', azure_cluster_creator_step2, name='azure_cluster_created_step2'),
     url(r'^azure_cluster_creator_step3$', azure_cluster_creator_step3, name='azure_cluster_created_step3'),
