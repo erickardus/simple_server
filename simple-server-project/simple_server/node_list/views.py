@@ -45,10 +45,10 @@ def node_destroy(request):
         log.info( "Destroy node:",nodename, insid, driver )
     ### remove from CHEF
         os.chdir(PROVISIONING_DIR)
-        subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
+        #subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
     ### remove from AWS
         instance = ec2.Instance(insid)
-        response = instance.terminate()
+        #response = instance.terminate()
     
     #return render(request, 'node_action.html', {"nodename": nodename,"insid": insid})
     return redirect('node_list')

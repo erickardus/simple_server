@@ -9,16 +9,20 @@
         {% for node in nodesList %}
                 <tr><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
 				<td>{{node.6}}</td>
-				<td><form name="{{node.1}}" id="{{node.1}}">
+				<td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+			 	{% csrf_token %}
 				<input type="hidden" name="driver" value="{{node.0}}">
 				<input type="hidden" name="nodename" value="{{node.1}}">
 				<input type="hidden" name="insid" value="{{node.2}}">
-				<td><form name="{{node.1}}" id="{{node.1}}">
-			 	{% csrf_token %}
-				<button >+</button>
-				<button >x</button>
-				<button type="submit" formmethod="POST" formaction="node_destroy">Destroy</button>
-					</form>
+				<input id="submitBtn" type="submit" name="submit" value="Destroy" >
+				<script>
+    					var element = document.getElementById('submitBtn').click = function () {
+	               			if(confirm("Detroy")) {
+			                      // do what ever you want if the form is submitted.
+			                  }
+		               	}
+				</script>
+				</form>
 				</td></tr>
         {% endfor %}
 		</table>
