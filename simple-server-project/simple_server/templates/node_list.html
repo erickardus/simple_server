@@ -3,12 +3,23 @@
 {% block content %}
 
         <h2>Server List:</h2><br>
-<div >
+	<div >
 		<table>
 		<tr><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
-        {% for node in nodes %}
-                <tr class="{{node.0}}"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
-				<td>{{node.6}}</td><td>Action</td></tr>
+        {% for node in nodesList %}
+                <tr><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+				<td>{{node.6}}</td>
+				<td><form name="{{node.1}}" id="{{node.1}}">
+				<input type="hidden" name="driver" value="{{node.0}}">
+				<input type="hidden" name="nodename" value="{{node.1}}">
+				<input type="hidden" name="insid" value="{{node.2}}">
+				<td><form name="{{node.1}}" id="{{node.1}}">
+			 	{% csrf_token %}
+				<button >+</button>
+				<button >x</button>
+				<button type="submit" formmethod="POST" formaction="node_destroy">Destroy</button>
+					</form>
+				</td></tr>
         {% endfor %}
 		</table>
   </div>

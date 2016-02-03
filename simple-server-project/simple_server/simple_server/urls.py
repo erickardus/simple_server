@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from home.views import Home
-from node_list.views import NodeList
+from node_list.views import nodes, node_destroy
 from cluster_create.views import cluster_creator
 from aws_cluster_create.views import aws_cluster_creator_step0, aws_cluster_creator_step1, aws_cluster_creator_step2,\
     aws_cluster_creator_step3
@@ -23,7 +23,8 @@ from azure_cluster_create.views import azure_cluster_creator_step1, azure_cluste
 
 urlpatterns = [
     url(r'^$', Home.as_view()),
-    url(r'^list_server$', NodeList.as_view()),
+    url(r'^list_server$', nodes, name='node_list'),
+    url(r'^node_destroy$', node_destroy, name='node_destroy'),
     url(r'^cluster_create$', cluster_creator, name='cluster_creator'),
     url(r'^aws_cluster_creator_step0$', aws_cluster_creator_step0, name='aws_cluster_creator_step0'),
     url(r'^aws_cluster_creator_step1$', aws_cluster_creator_step1, name='aws_cluster_creator_step1'),
