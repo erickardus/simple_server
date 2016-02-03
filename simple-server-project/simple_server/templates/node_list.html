@@ -3,12 +3,13 @@
 {% block content %}
 
         <h2>Server List:</h2><br>
+	{{nodeList}}
 	<div >
 		<table>
-		<tr><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
+			<tr><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>Region</th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
         {% for node in nodesList %}
                 <tr><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
-				<td>{{node.6}}</td>
+			<td>{{node.6}}</td><td>{{node.7}}</td>
 				<td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
 			 	{% csrf_token %}
 				<input type="hidden" name="driver" value="{{node.0}}">

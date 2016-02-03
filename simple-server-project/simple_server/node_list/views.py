@@ -28,13 +28,13 @@ def nodes(request):
             driver = "AWS" 
             insid = str(chefcall['normal']['chef_provisioning']['reference']['instance_id'])
             instance = ec2.Instance(insid)
-            nodesList.append([driver,nodej,insid,instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
+            nodesList.append([driver,nodej,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
         elif 'driver_url' in chefcall['normal']['chef_provisioning']['reference']:
             driver = "Azure" 
             insid = str(chefcall['normal']['chef_provisioning']['reference']['vm_name'])
             azurecall = json.loads(subprocess.getoutput(["azure", "vm", "show", insid , "--json" ]))
             insize = str(azurecall['InstanceSize']) if 'InstanceSize' in azurecall else ""
-            nodesList.append([driver,nodej,insid,str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
+            nodesList.append([driver,nodej,insid,str(azurecall['Location']),str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):
@@ -45,10 +45,15 @@ def node_destroy(request):
         log.info( "Destroy node:",nodename, insid, driver )
     ### remove from CHEF
         os.chdir(PROVISIONING_DIR)
-        #subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
-    ### remove from AWS
-        instance = ec2.Instance(insid)
-        #response = instance.terminate()
+        subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
+        
+        if driver == "AWS" :
+        ### remove from AWS
+            instance = ec2.Instance(insid)
+            #response = instance.terminate()
+        elif driver == "Azure" :
+            subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )  
+            subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
     
     #return render(request, 'node_action.html', {"nodename": nodename,"insid": insid})
     return redirect('node_list')
