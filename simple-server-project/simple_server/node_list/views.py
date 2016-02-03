@@ -18,20 +18,18 @@ def nodes(request):
 ### create nodes json fila
     nodesList = [] 
     os.chdir(PROVISIONING_DIR)
-    nodes = subprocess.getoutput(['knife', "node", "list"])
-    node_list = nodes.split()
-    for nodej in node_list:
-        chefcall = json.loads(subprocess.getoutput(['knife', "node", "show", str(nodej), "-F" ,"json" ]))
-        driver = ''
-        insid = ''
-        if 'driver_url' in chefcall['normal']['chef_provisioning'] :
-            driver = "AWS" 
-            insid = str(chefcall['normal']['chef_provisioning']['reference']['instance_id'])
-            instance = ec2.Instance(insid)
-            nodesList.append([driver,nodej,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
-        elif 'driver_url' in chefcall['normal']['chef_provisioning']['reference']:
-            driver = "Azure" 
-            insid = str(chefcall['normal']['chef_provisioning']['reference']['vm_name'])
+    #for nodej in node_list:
+    #chefcall = json.loads(subprocess.getoutput(['knife', "node", "show", str(nodej), "-F" ,"json" ]))
+    awscall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
+    for nodeaws in awscall['Reservations']:
+        insid = str(nodeaws['Instances'][0]['InstanceId']) 
+        nodename = str(nodeaws['Instances'][0]['Tags'][0]['Value']) 
+        instance = ec2.Instance(insid)
+        nodesList.append(["AWS",nodename,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
+    
+    azurecall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
+    
+    for nodeazure in azurecall:
             azurecall = json.loads(subprocess.getoutput(["azure", "vm", "show", insid , "--json" ]))
             insize = str(azurecall['InstanceSize']) if 'InstanceSize' in azurecall else ""
             nodesList.append([driver,nodej,insid,str(azurecall['Location']),str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
@@ -50,7 +48,7 @@ def node_destroy(request):
         if driver == "AWS" :
         ### remove from AWS
             instance = ec2.Instance(insid)
-            #response = instance.terminate()
+            response = instance.terminate()
         elif driver == "Azure" :
             subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )  
             subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
