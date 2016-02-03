@@ -2,15 +2,99 @@
 
 {% block content %}
 
-    <h2>Choose Software to install:</h2>
 
-    <br>
+
+ {% if vpc_selection == "new" %}
+
+    Create a New VPC
+
+    <form>
+        VPC name:<br>
+        <input type="text" name="vpc">
+        <br>
+        CIDR:<br>
+        <input type="text" name="vpc_cidr">
+        <br>
+    </form>
+
+ {% elif vpc_selection == "existing" %}
+
+    Use an existing VPC
 
     <form action="aws_cluster_creator_step3" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <br><br>
+        <select name="myvpc" id="myvpc" onchange="myFunk()">
+            <option value="" selected disabled>Select a VPC</option>
+            {% for vpc in vpc_choices %}
+            <option value="{{ vpc.0 }}">{{ vpc.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <select name="mysubnet" id="mysubnet" onchange="myFunk2()">
+            <option value="" selected disabled>Select a Subnet</option>
+            {% for subnet in subnet_choices %}
+            <option value="{{ subnet.0 }}">{{ subnet.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <select name="mysg" id="mysg">
+            <option value="" selected disabled>Select a Security Group</option>
+            {% for sg in sg_choices %}
+            <option value="{{ sg.0 }}">{{ sg.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
         <input type="submit" value="Submit" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Back" onClick="history.go(-1);return true;">
+
     </form>
+
+    <script>
+    function myFunk() {
+       selection = document.getElementById("myvpc").value
+       form1 = document.getElementById("myvpc")
+       form2 = document.getElementById("mysubnet")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+    </script>
+
+    <script>
+     function myFunk2() {
+       selection = document.getElementById("myvpc").value
+       form1 = document.getElementById("myvpc")
+       form2 = document.getElementById("mysg")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+
+    </script>
+
+ {% elif vpc_selection == "automatic" %}
+
+    Automatic VPC
+
+ {% endif %}
+
 
 
 

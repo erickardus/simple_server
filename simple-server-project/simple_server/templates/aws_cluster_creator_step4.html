@@ -5,13 +5,11 @@
 
 
     <h3>Creating Server:</h3> <br><br>
-    <b>Image Id:</b> {{  image_id }}<br>
+    <b>Image Id:</b> {{  ami }}<br>
     <b>Name Tag:</b> {{  name }} <br>
-    <b>VM Size:</b> {{  vm_size }} <br>
+    <b>Flavor:</b> {{  instance_type }} <br>
     <b>Roles:</b> {{ roles }} <br>
-    <b>Runlist:</b> {{ runlist }}
-
-<br><br><br><br>
+    <b>Runlist:</b> {{ runlist }} <br><br><br><br>
 
     {% for line in output %}
 

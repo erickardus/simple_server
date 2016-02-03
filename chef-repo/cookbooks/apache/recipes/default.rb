@@ -16,7 +16,7 @@ package 'Install Apache' do
   case node[:platform]
     when 'redhat', 'centos', 'amazon'
       package_name 'httpd'
-    when 'ubuntu', 'debian'
+    when 'ubuntu', 'debian', 'suse'
       package_name 'apache2'
   end
 end
@@ -26,7 +26,7 @@ service 'apache' do
   case node[:platform]
     when 'redhat', 'centos', 'amazon'
       service_name 'httpd'
-    when 'ubuntu', 'debian'
+    when 'ubuntu', 'debian', 'suse'
       service_name 'apache2'
   end
   action [ :enable, :start ]

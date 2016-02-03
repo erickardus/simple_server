@@ -26,6 +26,18 @@ OptionParser.new do |opt|
   opt.on('-a', '--ami AMI-ID') { |o| options[:ami] = o if o != ""}
   opt.on('-t', '--type INSTANCE-TYPE') { |o| options[:instance_type] = o if o != ""}
   opt.on('-c', '--chef_url CHEF-URL') { |o| options[:chef_url] = o if o != ""}
+  opt.on('-V', '--vpc [VPC]') do |vpc|
+    options[:vpc] = vpc;
+  end
+  opt.on('-S', '--subnet_id [SUBNET]') do |subnet|
+    options[:subnet] = subnet;
+  end
+  opt.on('-s', '--securitygroup_id [SG]') do |sg|
+    options[:securitygroup] = sg;
+  end
+  opt.on('--vpcselection SELECTION') do |sel|
+    options[:vpcselection] = sel;
+  end
   opt.on("--roles role1,role2,role3", Array, "List of roles") { |o| options[:roles] = o if o != ""}
   opt.on("--runlist recipe1,recipe2,recipe3", Array, "List of recipes") { |o| options[:runlist] = o if o != ""}
 end.parse!
@@ -45,6 +57,10 @@ class BindMe
     @chef_url = options[:chef_url]
     @roles = options[:roles]
     @runlist = options[:runlist]
+    @vpc = options[:vpc]
+    @subnet = options[:subnet]
+    @securitygroup = options[:securitygroup]
+    @vpcselection = options[:vpcselection]
     @template = File.read('./aws_cluster_template.erb')
   end
 

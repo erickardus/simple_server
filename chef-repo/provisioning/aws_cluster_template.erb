@@ -3,56 +3,95 @@ require 'chef/provisioning/aws_driver'
 
 with_driver "aws::<%= @region %>"
 
-my_vpc = aws_vpc 'myapp-vpcx' do
-    cidr_block '10.0.0.0/16'
-    main_routes '0.0.0.0/0' => :internet_gateway
-    internet_gateway true
-end
 
-my_sg = aws_security_group 'myapp-sgx' do
-    vpc lazy { my_vpc.aws_object_id }
-    inbound_rules '0.0.0.0/0' => [ 22, 80, 3306 ]
-end
-
-my_subnet = aws_subnet 'myapp-public1x' do
-    vpc lazy { my_vpc.aws_object_id}
-    cidr_block '10.0.1.0/24'
-    availability_zone '<%= @region %>a'
-    map_public_ip_on_launch true
-end
-
-with_chef_server "<%= @chef_url %>",
-  :client_name => Chef::Config[:node_name],
-  :signing_key_filename => Chef::Config[:client_key]
+<% if @vpcselection == "existing" %>
+    with_chef_server "<%= @chef_url %>",
+      :client_name => Chef::Config[:node_name],
+      :signing_key_filename => Chef::Config[:client_key]
 
 
-machine_batch "cluster" do
-    1.upto(<%= @number %>) do |i|
-        machine "<%= @name %>#{i}" do
+    machine_batch "cluster" do
+        1.upto(<%= @number %>) do |i|
+            machine "<%= @name %>#{i}" do
 
-            machine_options(
-                lazy do
-                {
-                    ssh_username: "<%= @ssh_username %>",
-                    bootstrap_options: {
-                        image_id: "<%= @ami %>",
-                        instance_type: "<%= @instance_type %>",
-                        subnet_id: my_subnet.aws_object_id,
-                        security_group_ids: [my_sg.aws_object_id]
-                    },
-                }
-                end
-            )
+                machine_options(
+                    lazy do
+                    {
+                        ssh_username: "<%= @ssh_username %>",
+                        bootstrap_options: {
+                            image_id: "<%= @ami %>",
+                            instance_type: "<%= @instance_type %>",
+                            subnet_id: '<%= @subnet %>',
+                            security_group_ids: ['<%= @securitygroup %>']
+                        },
+                    }
+                    end
+                )
 
-            <% for recipe in @runlist %>
-                recipe '<%= recipe %>'
-            <% end %>
+                <% for recipe in @runlist %>
+                    recipe '<%= recipe %>'
+                <% end %>
+ 
+                <% for role in @roles %>
+                    role '<%= role %>'
+                <% end %>
 
-            <% for role in @roles %>
-                role '<%= role %>'
-            <% end %>
+            end
+        end
+    end    
 
+<% elsif @vpcselection == "automatic" %>
+    my_vpc = aws_vpc '<%= @name %>' do
+        cidr_block '10.0.0.0/16'
+        main_routes '0.0.0.0/0' => :internet_gateway
+        internet_gateway true
+    end
+
+    my_sg = aws_security_group '<%= @name %>' do
+        vpc lazy { my_vpc.aws_object_id }
+        inbound_rules '0.0.0.0/0' => [ 22, 80, 3306 ]
+    end
+
+    my_subnet = aws_subnet '<%= @name %>' do
+        vpc lazy { my_vpc.aws_object_id}
+        cidr_block '10.0.1.0/24'
+        availability_zone '<%= @region %>a'
+        map_public_ip_on_launch true
+    end
+
+    with_chef_server "<%= @chef_url %>",
+      :client_name => Chef::Config[:node_name],
+      :signing_key_filename => Chef::Config[:client_key]
+
+
+    machine_batch "cluster" do
+        1.upto(<%= @number %>) do |i|
+            machine "<%= @name %>#{i}" do
+
+                machine_options(
+                    lazy do
+                    {
+                        ssh_username: "<%= @ssh_username %>",
+                        bootstrap_options: {
+                            image_id: "<%= @ami %>",
+                            instance_type: "<%= @instance_type %>",
+                            subnet_id: my_subnet.aws_object_id,
+                            security_group_ids: [my_sg.aws_object_id]
+                        },
+                    }
+                    end
+                )
+
+                <% for recipe in @runlist %>
+                    recipe '<%= recipe %>'
+                <% end %>
+ 
+                <% for role in @roles %>
+                    role '<%= role %>'
+                <% end %>
+
+            end
         end
     end
-end
 
+<% end %>
