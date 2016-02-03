@@ -489,3 +489,28 @@
 [02/Feb/2016 16:36:00] INFO [simple_server:19] Generated form CreateClusterStep0
 [02/Feb/2016 16:36:04] INFO [simple_server:28] Obtained CreateClusterStep0 form data
 [02/Feb/2016 16:36:04] INFO [simple_server:32] Old form value region: us-east-1
+[02/Feb/2016 16:46:24] DEBUG [simple_server:5] hello
+[02/Feb/2016 16:46:50] DEBUG [simple_server:5] hello
+[02/Feb/2016 16:48:10] DEBUG [simple_server:5] hello
+[02/Feb/2016 16:49:57] INFO [simple_server:19] Generated form CreateClusterStep0
+[02/Feb/2016 16:50:10] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[02/Feb/2016 16:50:10] INFO [simple_server:32] Old form value region: us-east-1
+[02/Feb/2016 16:50:18] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[02/Feb/2016 16:50:18] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 08:34:04] DEBUG [simple_server:5] hello
+[03/Feb/2016 08:34:40] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 08:34:44] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 08:34:44] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 09:20:09] DEBUG [simple_server:5] hello
+[03/Feb/2016 09:20:24] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 09:20:35] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 09:21:07] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 09:21:07] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 09:24:38] DEBUG [simple_server:109] from last form ami ami-0d4cfd66
+[03/Feb/2016 09:31:18] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 09:33:58] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 09:33:58] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 09:37:01] DEBUG [simple_server:5] hello
+[03/Feb/2016 09:37:05] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 09:37:05] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 09:52:06] DEBUG [simple_server:5] hello

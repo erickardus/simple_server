@@ -26,6 +26,9 @@ OptionParser.new do |opt|
   opt.on('-a', '--ami AMI-ID') { |o| options[:ami] = o if o != ""}
   opt.on('-t', '--type INSTANCE-TYPE') { |o| options[:instance_type] = o if o != ""}
   opt.on('-c', '--chef_url CHEF-URL') { |o| options[:chef_url] = o if o != ""}
+  opt.on('-V', '--vpc VPC')
+  opt.on('-S', '--subnet SUBNET')
+  opt.on('-s', '--security-group')
   opt.on("--roles role1,role2,role3", Array, "List of roles") { |o| options[:roles] = o if o != ""}
   opt.on("--runlist recipe1,recipe2,recipe3", Array, "List of recipes") { |o| options[:runlist] = o if o != ""}
 end.parse!
