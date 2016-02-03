@@ -556,3 +556,26 @@
 [03/Feb/2016 12:04:58] INFO [simple_server:28] Obtained CreateClusterStep0 form data
 [03/Feb/2016 12:04:58] INFO [simple_server:32] Old form value region: us-east-1
 [03/Feb/2016 12:05:35] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 13:50:20] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 13:50:24] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 13:50:24] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 13:58:08] DEBUG [simple_server:5] hello
+[03/Feb/2016 13:58:31] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 13:58:35] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 13:58:35] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:00:14] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:02:10] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:03:02] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:05:24] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:10:37] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:10:41] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:10:41] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:12:07] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:19:57] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:20:02] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:20:02] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:22:37] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:23:02] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:26:24] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:26:27] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:26:27] INFO [simple_server:32] Old form value region: us-east-1

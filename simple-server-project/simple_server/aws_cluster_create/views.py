@@ -47,23 +47,37 @@ def aws_cluster_creator_step2(request):
             name = old_form.cleaned_data['name']
             instance_type = old_form.cleaned_data['instance_type']
             ami = old_form.cleaned_data['ami']
-            vpc_selection = old_form.cleaned_data['vpc_selection']
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
+            vpc_selection = old_form.cleaned_data['vpc_selection']
 
-            new_form = CreateClusterStep2(request.POST or None)
+            if vpc_selection == "automatic":
+                new_form = CreateClusterStep3(request.POST or None)
+                myvpc = ''
+                mysubnet = ''
+                mysg = ''
+                return render(request, 'aws_cluster_creator_step3.html', {'form': new_form, 'name': name,
+                                                                          'instance_type': instance_type,
+                                                                          'ami': ami, 'region': region,
+                                                                          'myvpc': myvpc,
+                                                                          'mysubnet': mysubnet, 'mysg': mysg
+                                                                         }
+                              )
 
-            vpc_choices, subnet_choices, sg_choices = getVPCinfo(region)
+            if vpc_selection == "existing":
 
-    return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
-                                                              'instance_type': instance_type,
-                                                              'ami': ami, 'region': region,
-                                                              'number': number,
-                                                              'vpc_selection': vpc_selection,
-                                                              'myregion': region, 'vpc_choices': vpc_choices,
-                                                              'subnet_choices': subnet_choices,
-                                                              'sg_choices': sg_choices
-                                                              })
+                new_form = CreateClusterStep2(request.POST or None)
+                vpc_choices, subnet_choices, sg_choices = getVPCinfo(region)
+
+                return render(request, 'aws_cluster_creator_step2.html', {'form': new_form, 'name': name,
+                                                                          'instance_type': instance_type,
+                                                                          'ami': ami, 'region': region,
+                                                                          'number': number,
+                                                                          'vpc_selection': vpc_selection,
+                                                                          'myregion': region, 'vpc_choices': vpc_choices,
+                                                                          'subnet_choices': subnet_choices,
+                                                                          'sg_choices': sg_choices
+                                                                         })
 
 
 
