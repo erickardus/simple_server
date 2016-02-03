@@ -29,10 +29,10 @@ OptionParser.new do |opt|
   opt.on('-V', '--vpc [VPC]') do |vpc|
     options[:vpc] = vpc;
   end
-  opt.on('-S', '--subnet [SUBNET]') do |subnet|
+  opt.on('-S', '--subnet_id [SUBNET]') do |subnet|
     options[:subnet] = subnet;
   end
-  opt.on('-s', '--securitygroup [SG]') do |sg|
+  opt.on('-s', '--securitygroup_id [SG]') do |sg|
     options[:securitygroup] = sg;
   end
   opt.on('--vpcselection SELECTION') do |sel|
@@ -79,4 +79,4 @@ result << res
 result.close
 
 # Executes the recently created Chef provisioning script and actually provision infrastructure.
-#exec('chef-client -z aws_cluster_provisioning.rb')
+exec('chef-client -z aws_cluster_provisioning.rb')

@@ -21,8 +21,8 @@ with_driver "aws::<%= @region %>"
                         bootstrap_options: {
                             image_id: "<%= @ami %>",
                             instance_type: "<%= @instance_type %>",
-                            subnet_id: <%= @subnet %>,
-                            security_group_ids: [<%= @securitygroup %>]
+                            subnet_id: '<%= @subnet %>',
+                            security_group_ids: ['<%= @securitygroup %>']
                         },
                     }
                     end

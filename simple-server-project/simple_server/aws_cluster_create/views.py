@@ -80,22 +80,21 @@ def aws_cluster_creator_step3(request):
             name = old_form.cleaned_data['name']
             instance_type = old_form.cleaned_data['instance_type']
             ami = old_form.cleaned_data['ami']
-            vpc = old_form.cleaned_data['vpc']
+            #vpc = old_form.cleaned_data['vpc']
             region = old_form.cleaned_data['region']
+            vpc_selection = old_form.cleaned_data['vpc_selection']
             number = old_form.cleaned_data['number']
             myvpc = request.POST.get('myvpc')
             mysubnet = request.POST.get('mysubnet')
             mysg = request.POST.get('mysg')
 
-
     return render(request, 'aws_cluster_creator_step3.html', {'form': new_form, 'name': name,
                                                               'instance_type': instance_type,
                                                               'ami': ami, 'region': region,
-                                                              'vpc': vpc, 'myvpc': myvpc,
+                                                              'myvpc': myvpc,
                                                               'mysubnet': mysubnet, 'mysg': mysg
-                                                                      }
-                          )
-
+                                                              }
+                  )
 
 
 def aws_cluster_creator_step4(request):
@@ -104,7 +103,7 @@ def aws_cluster_creator_step4(request):
         form_past = CreateClusterStep3(request.POST or None)
         if form_past.is_valid():
             ami = form_past.cleaned_data['ami']
-            vpc = form_past.cleaned_data['vpc']
+            #vpc = form_past.cleaned_data['vpc']
             instance_type = form_past.cleaned_data['instance_type']
             log.debug('from last form ami %s' % ami)
             name = form_past.cleaned_data['name']
@@ -112,8 +111,13 @@ def aws_cluster_creator_step4(request):
             runlist = form_past.cleaned_data['runlist']
             region = form_past.cleaned_data['region']
             number = form_past.cleaned_data['number']
+            vpc_selection = form_past.cleaned_data['vpc_selection']
+            myvpc = form_past.cleaned_data['myvpc']
+            mysubnet = form_past.cleaned_data['mysubnet']
+            mysg = form_past.cleaned_data['mysg']
 
-            output = create_action(region, number, ami, instance_type, name, roles, runlist)
+            output = create_action(region, number, ami, instance_type, name, roles, runlist, vpc_selection, myvpc,
+                                   mysubnet, mysg)
             output = output.decode('utf-8').split('\n')
             context = {
                 "output": output,
@@ -127,13 +131,15 @@ def aws_cluster_creator_step4(request):
             return render(request, 'aws_cluster_creator_step4.html', context)
 
 
-def create_action(region, number, ami, instance_type, name, roles, runlist):
+def create_action(region, number, ami, instance_type, name, roles, runlist, vpc_selection, myvpc, mysubnet, mysg):
 
     try:
 
         return subprocess.check_output(["ruby", "aws_cluster_creator.rb", "-r", region, "-n", name, "-N", number,
                                         "-a", ami, "-t", instance_type, "--roles", roles,
-                                        "--runlist", runlist], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
+                                        "--runlist", runlist, '--vpcselection', vpc_selection,
+                                        "--vpc", myvpc, '--subnet_id', mysubnet, "--securitygroup_id", mysg],
+                                       cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output
 
