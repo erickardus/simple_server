@@ -516,3 +516,67 @@
 [03/Feb/2016 09:52:06] DEBUG [simple_server:5] hello
 [03/Feb/2016 09:52:34] DEBUG [simple_server:5] hello
 [03/Feb/2016 10:49:54] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:43:53] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:44:01] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 11:44:04] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 11:44:04] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 11:44:14] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 11:44:14] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 11:47:31] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:47:45] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:48:05] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:48:30] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:48:45] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:48:54] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 11:48:58] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 11:48:58] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 11:51:59] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:52:17] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:52:35] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:54:10] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:54:17] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:54:31] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:55:00] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:55:08] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:55:28] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:55:44] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:56:14] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 11:56:17] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 11:56:17] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 11:57:13] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 11:57:42] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:57:48] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 11:57:56] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 11:58:45] DEBUG [simple_server:5] hello
+[03/Feb/2016 11:58:52] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 11:58:55] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 11:58:55] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 11:59:26] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 12:04:54] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 12:04:58] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 12:04:58] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 12:05:35] DEBUG [simple_server:108] from last form ami ami-0d4cfd66
+[03/Feb/2016 13:50:20] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 13:50:24] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 13:50:24] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 13:58:08] DEBUG [simple_server:5] hello
+[03/Feb/2016 13:58:31] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 13:58:35] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 13:58:35] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:00:14] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:02:10] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:03:02] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:05:24] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:10:37] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:10:41] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:10:41] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:12:07] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:19:57] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:20:02] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:20:02] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 14:22:37] DEBUG [simple_server:5] hello
+[03/Feb/2016 14:23:02] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[03/Feb/2016 14:26:24] INFO [simple_server:19] Generated form CreateClusterStep0
+[03/Feb/2016 14:26:27] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[03/Feb/2016 14:26:27] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 16:26:12] DEBUG [simple_server:5] hello

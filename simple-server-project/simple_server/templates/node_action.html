@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+ {% csrf_token %}
+{% block content %}
+
+        <h2>Server Action: Detroying</h2><br>
+	<div >		
+	{{nodename}}
+	{{insid}}
+	</div>
+{% endblock content %}

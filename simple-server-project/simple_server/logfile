@@ -579,3 +579,4 @@
 [03/Feb/2016 14:26:24] INFO [simple_server:19] Generated form CreateClusterStep0
 [03/Feb/2016 14:26:27] INFO [simple_server:28] Obtained CreateClusterStep0 form data
 [03/Feb/2016 14:26:27] INFO [simple_server:32] Old form value region: us-east-1
+[03/Feb/2016 16:26:12] DEBUG [simple_server:5] hello
