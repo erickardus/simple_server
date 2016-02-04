@@ -15,6 +15,9 @@
         CIDR:<br>
         <input type="text" name="vpc_cidr">
         <br>
+        <input name="validate_vpc" onclick="validate_vpc()" type="submit" value="Validate" />
+
+
     </form>
 
  {% elif vpc_selection == "existing" %}
@@ -88,10 +91,6 @@
     }
 
     </script>
-
- {% elif vpc_selection == "automatic" %}
-
-    Automatic VPC
 
  {% endif %}
 

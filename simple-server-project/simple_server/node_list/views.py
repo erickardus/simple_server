@@ -26,13 +26,14 @@ def nodes(request):
         nodename = str(nodeaws['Instances'][0]['Tags'][0]['Value']) 
         instance = ec2.Instance(insid)
         nodesList.append(["AWS",nodename,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
-    
+    '''
     azurecall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
     
     for nodeazure in azurecall:
             azurecall = json.loads(subprocess.getoutput(["azure", "vm", "show", insid , "--json" ]))
             insize = str(azurecall['InstanceSize']) if 'InstanceSize' in azurecall else ""
             nodesList.append([driver,nodej,insid,str(azurecall['Location']),str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
+    '''
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):

@@ -590,3 +590,103 @@
 [03/Feb/2016 16:51:33] DEBUG [simple_server:122] from last form ami ami-03238b70
 [04/Feb/2016 08:39:21] DEBUG [simple_server:5] hello
 [04/Feb/2016 08:42:50] DEBUG [simple_server:5] hello
+[04/Feb/2016 08:45:46] DEBUG [simple_server:5] hello
+[04/Feb/2016 08:46:06] DEBUG [simple_server:5] hello
+[04/Feb/2016 09:03:23] DEBUG [simple_server:5] hello
+[04/Feb/2016 09:05:07] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 09:05:12] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 09:05:12] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 09:05:55] DEBUG [simple_server:122] from last form ami ami-0d4cfd66
+[04/Feb/2016 09:10:13] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 09:10:17] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 09:10:17] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 09:11:37] DEBUG [simple_server:5] hello
+[04/Feb/2016 09:55:05] DEBUG [simple_server:5] hello
+[04/Feb/2016 09:55:11] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 09:55:14] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 09:55:14] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 09:58:56] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 09:58:59] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 09:58:59] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:09:52] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:11:34] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:11:51] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:12:19] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:12:23] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:12:23] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:13:33] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:13:33] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:14:33] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:15:08] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:15:13] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:15:17] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:15:17] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:16:50] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:16:50] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:20:05] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:20:05] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:21:08] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:21:08] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:22:08] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:22:08] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:23:01] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:23:01] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:23:28] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:23:28] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:23:56] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:23:58] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:23:58] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:24:21] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:24:21] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:25:29] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:25:29] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:26:11] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:26:11] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:27:32] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:27:32] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:27:57] DEBUG [simple_server:5] hello
+[04/Feb/2016 10:28:03] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:28:11] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:28:11] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:28:52] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:28:52] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:29:21] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:29:21] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:29:36] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:29:36] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:29:54] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:29:54] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:30:37] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:30:37] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:30:55] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:30:55] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:31:11] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:31:11] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:32:04] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:32:04] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:32:25] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:32:25] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:33:43] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:33:46] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:33:46] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:34:16] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:34:16] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:36:20] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:36:20] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:37:18] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:37:18] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:37:25] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:37:25] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:37:59] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:37:59] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:38:31] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:38:31] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:39:33] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:39:33] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:42:18] INFO [simple_server:19] Generated form CreateClusterStep0
+[04/Feb/2016 10:42:21] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:42:21] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:43:14] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:43:14] INFO [simple_server:32] Old form value region: us-east-1
+[04/Feb/2016 10:45:06] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[04/Feb/2016 10:45:06] INFO [simple_server:32] Old form value region: us-east-1
