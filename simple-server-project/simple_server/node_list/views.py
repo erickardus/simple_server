@@ -15,11 +15,7 @@ PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 ec2 = boto3.resource('ec2')
 
 def nodes(request):
-### create nodes json fila
     nodesList = [] 
-    #os.chdir(PROVISIONING_DIR)
-    #for nodej in node_list:
-    #chefcall = json.loads(subprocess.getoutput(['knife', "node", "show", str(nodej), "-F" ,"json" ]))
     awscall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
     for nodeaws in awscall['Reservations']:
         insid = str(nodeaws['Instances'][0]['InstanceId']) 
@@ -29,9 +25,15 @@ def nodes(request):
 
     azurecall = json.loads(subprocess.getoutput(['azure', 'vm', 'list', '--json']))
     for nodeazure in azurecall:
+<<<<<<< HEAD
+            insize = str(nodeazure['InstanceSize']) if 'InstanceSize' in nodeazure else ""
+            nodesList.append(["Azure",str(nodeazure['VMName']),str(nodeazure['VMName']),str(nodeazure['Location']),str(nodeazure['InstanceStatus']),insize,str(nodeazure['DNSName']),str(nodeazure['IPAddress'])],)
+    
+=======
             insize = str(azurecall[0]['InstanceSize']) if 'InstanceSize' in azurecall[0] else ""
             nodesList.append(["Azure",str(azurecall[0]['VMName']),insid,str(azurecall[0]['Location']),str(azurecall[0]['InstanceStatus']),insize,str(azurecall[0]['DNSName']),str(azurecall[0]['IPAddress'])],)
 
+>>>>>>> b69e764c36a780c1cc48f4b157560d0503eb1fd5
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):
@@ -40,7 +42,7 @@ def node_destroy(request):
         nodename = request.POST.get('nodename')
         insid = request.POST.get('insid')   
         log.info( "Destroy node:",nodename, insid, driver )
-    ### remove from CHEF
+        ### remove from CHEF
         os.chdir(PROVISIONING_DIR)
         subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
         
@@ -52,6 +54,5 @@ def node_destroy(request):
             subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )  
             subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
     
-    #return render(request, 'node_action.html', {"nodename": nodename,"insid": insid})
     return redirect('node_list')
 

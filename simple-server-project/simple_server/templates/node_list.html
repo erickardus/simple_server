@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basenodes.html" %}
 
 {% block content %}
 
@@ -15,13 +15,7 @@
 				<input type="hidden" name="driver" value="{{node.0}}">
 				<input type="hidden" name="nodename" value="{{node.1}}">
 				<input type="hidden" name="insid" value="{{node.2}}">
-				<input id="submitBtn" type="submit" name="submit" value="Destroy" >
-				<script>
-    					var element = document.getElementById('submitBtn').click = function () {
-	               			if(confirm("Detroy")) {
-			                      // do what ever you want if the form is submitted.
-			                  }
-		               	}
+				<input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
 				</script>
 				</form>
 				</td></tr>
