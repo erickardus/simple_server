@@ -31,25 +31,30 @@ def aws_cluster_creator_step1(request):
             region = old_form.cleaned_data['region']
             log.info('Old form value region: %s' % region)
             try:
-                new_form = CreateClusterStep1(request.POST or None, myregion=region)
+                new_form = CreateClusterStep1(request.POST or None)
+                ami_choices = getAMIs(region)
             except:
                 log.fatal('Unable to render form CreateClusterStep1. %s' % sys.exc_info()[0])
 
-            return render(request, 'aws_cluster_creator_step1.html', {'form': new_form, 'region': region})
+            return render(request, 'aws_cluster_creator_step1.html', {'form': new_form, 'region': region,
+                                                                      'ami_choices': ami_choices
+                                                                      })
 
 
 def aws_cluster_creator_step2(request):
 
     # AWS - Select or Create a VPC
     if request.method == 'POST':
-        old_form = CreateClusterStep1(request.POST, myregion=myregion)
+        old_form = CreateClusterStep1(request.POST)
         if old_form.is_valid():
             name = old_form.cleaned_data['name']
             instance_type = old_form.cleaned_data['instance_type']
-            ami = old_form.cleaned_data['ami']
+            #ami = old_form.cleaned_data['ami']
             region = old_form.cleaned_data['region']
             number = old_form.cleaned_data['number']
             vpc_selection = old_form.cleaned_data['vpc_selection']
+            ami = request.POST.get('ami')
+            ssh_username = request.POST.get('ssh_username')
 
             if vpc_selection == "automatic":
                 new_form = CreateClusterStep3(request.POST or None)
@@ -60,11 +65,12 @@ def aws_cluster_creator_step2(request):
                                                                           'instance_type': instance_type,
                                                                           'ami': ami, 'region': region,
                                                                           'myvpc': myvpc,
-                                                                          'mysubnet': mysubnet, 'mysg': mysg
+                                                                          'mysubnet': mysubnet, 'mysg': mysg,
+                                                                          'ssh_username': ssh_username
                                                                          }
                               )
 
-            if vpc_selection == "existing":
+            if (vpc_selection == "existing") or (vpc_selection == "new"):
 
                 new_form = CreateClusterStep2(request.POST or None)
                 vpc_choices, subnet_choices, sg_choices = getVPCinfo(region)
@@ -129,9 +135,10 @@ def aws_cluster_creator_step4(request):
             myvpc = form_past.cleaned_data['myvpc']
             mysubnet = form_past.cleaned_data['mysubnet']
             mysg = form_past.cleaned_data['mysg']
+            ssh_username = form_past.cleaned_data['ssh_username']
 
             output = create_action(region, number, ami, instance_type, name, roles, runlist, vpc_selection, myvpc,
-                                   mysubnet, mysg)
+                                   mysubnet, mysg, ssh_username)
             output = output.decode('utf-8').split('\n')
             context = {
                 "output": output,
@@ -145,14 +152,16 @@ def aws_cluster_creator_step4(request):
             return render(request, 'aws_cluster_creator_step4.html', context)
 
 
-def create_action(region, number, ami, instance_type, name, roles, runlist, vpc_selection, myvpc, mysubnet, mysg):
+def create_action(region, number, ami, instance_type, name, roles, runlist, vpc_selection,
+                  myvpc, mysubnet, mysg, ssh_username):
 
     try:
 
         return subprocess.check_output(["ruby", "aws_cluster_creator.rb", "-r", region, "-n", name, "-N", number,
                                         "-a", ami, "-t", instance_type, "--roles", roles,
                                         "--runlist", runlist, '--vpcselection', vpc_selection,
-                                        "--vpc", myvpc, '--subnet_id', mysubnet, "--securitygroup_id", mysg],
+                                        "--vpc", myvpc, '--subnet_id', mysubnet, "--securitygroup_id", mysg,
+                                        "--user", ssh_username],
                                        cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output
@@ -219,4 +228,22 @@ def getVPCinfo(region):
 
     return vpc_choices, subnet_choices, sg_choices
 
+
+def getAMIs(region):
+
+    listOS = ['Amazon Linux AMI 2015*HVM*', 'Red Hat Enterprise Linux 6*HVM*',
+              'SUSE Linux Enterprise Server 12*HVM*', 'Ubuntu Server 14.04*HVM*'
+             ]
+
+    try:
+        ec2 = boto3.client('ec2', region_name=region)
+        ami_choices = []
+        data = ec2.describe_images(Filters=[{'Name': 'description', 'Values': listOS}])
+        for image in data['Images']:
+            ami_choices.append((image['ImageId'], image['Description']))
+
+        return ami_choices
+
+    except:
+        pass
 
