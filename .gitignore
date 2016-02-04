@@ -7,4 +7,5 @@ chef-repo/provisioning/aws_cluster_provisioning.rb*
 chef-repo/data_bags
 *.pyc
 *.sw*
+chef-repo/provisioning/*_cluster_provisioning.rb
 simple-server-project/simple_server/logfile
