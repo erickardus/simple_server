@@ -25,7 +25,6 @@ def nodes(request):
 
     azurecall = json.loads(subprocess.getoutput(['azure', 'vm', 'list', '--json']))
     for nodeazure in azurecall:
-
             insize = str(nodeazure['InstanceSize']) if 'InstanceSize' in nodeazure else ""
             nodesList.append(["Azure",str(nodeazure['VMName']),str(nodeazure['VMName']),str(nodeazure['Location']),str(nodeazure['InstanceStatus']),insize,str(nodeazure['DNSName']),str(nodeazure['IPAddress'])],)
     
