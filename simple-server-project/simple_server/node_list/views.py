@@ -17,7 +17,7 @@ ec2 = boto3.resource('ec2')
 def nodes(request):
 ### create nodes json fila
     nodesList = [] 
-    os.chdir(PROVISIONING_DIR)
+    #os.chdir(PROVISIONING_DIR)
     #for nodej in node_list:
     #chefcall = json.loads(subprocess.getoutput(['knife', "node", "show", str(nodej), "-F" ,"json" ]))
     awscall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
@@ -26,6 +26,7 @@ def nodes(request):
         nodename = str(nodeaws['Instances'][0]['Tags'][0]['Value']) 
         instance = ec2.Instance(insid)
         nodesList.append(["AWS",nodename,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
+<<<<<<< HEAD
     '''
     azurecall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
     
@@ -34,6 +35,13 @@ def nodes(request):
             insize = str(azurecall['InstanceSize']) if 'InstanceSize' in azurecall else ""
             nodesList.append([driver,nodej,insid,str(azurecall['Location']),str(azurecall['InstanceStatus']),insize,str(azurecall['DNSName']),str(azurecall['IPAddress'])],)
     '''
+=======
+    
+    azurecall = json.loads(subprocess.getoutput(['azure', 'vm', 'list', '--json']))
+    for nodeazure in azurecall:
+            insize = str(azurecall[0]['InstanceSize']) if 'InstanceSize' in azurecall[0] else ""
+            nodesList.append(["Azure",str(azurecall[0]['VMName']),insid,str(azurecall[0]['Location']),str(azurecall[0]['InstanceStatus']),insize,str(azurecall[0]['DNSName']),str(azurecall[0]['IPAddress'])],)
+>>>>>>> ead42e20dc56eedf7c8621a0d93c8272da299d76
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):
