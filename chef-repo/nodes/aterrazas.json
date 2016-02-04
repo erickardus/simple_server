@@ -24,9 +24,9 @@
     "filesystem": {
       "C:": {
         "kb_size": 159930904,
-        "kb_available": 91428122,
-        "kb_used": 68502782,
-        "percent_used": 42,
+        "kb_available": 90526932,
+        "kb_used": 69403972,
+        "percent_used": 43,
         "mount": "C:",
         "fs_type": "ntfs",
         "volume_name": ""
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "2144860",
-        "free_space_in_paging_files": "3140120",
-        "free_virtual_memory": "4814556",
+        "free_physical_memory": "1141748",
+        "free_space_in_paging_files": "3924368",
+        "free_virtual_memory": "4851856",
         "install_date": "20150519110422.000000-300",
         "large_system_cache": null,
-        "last_boot_up_time": "20160203081126.412388-360",
-        "local_date_time": "20160203100649.338000-360",
+        "last_boot_up_time": "20160204074928.109999-360",
+        "local_date_time": "20160204095215.353000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,7 +78,7 @@
         ],
         "name": "Microsoft Windows 7 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2",
         "number_of_licensed_users": 0,
-        "number_of_processes": 95,
+        "number_of_processes": 96,
         "number_of_users": 2,
         "operating_system_sku": 4,
         "organization": "",
@@ -168,7 +168,6 @@
           "LM_Server",
           "NT",
           "Potential_Browser",
-          "Backup_Browser",
           "Master_Browser"
         ],
         "status": "OK",
@@ -496,6 +495,38 @@
           "manufacturer": "Microsoft",
           "name": null,
           "pdo": "\\Device\\00000046",
+          "signer": "Microsoft Windows",
+          "started": null,
+          "start_mode": null,
+          "status": null,
+          "system_creation_class_name": null,
+          "system_name": null,
+          "version": "6.1.7601.17514",
+          "date": "20060621"
+        },
+        "SW\\{EEAB7790-C514-11D1-B42B-00805FC1270E}\\ASYNCMAC": {
+          "caption": null,
+          "class_guid": "{4d36e972-e325-11ce-bfc1-08002be10318}",
+          "compat_id": null,
+          "creation_class_name": null,
+          "description": "RAS Async Adapter",
+          "device_class": "NET",
+          "device_id": "SW\\{EEAB7790-C514-11D1-B42B-00805FC1270E}\\ASYNCMAC",
+          "device_name": "RAS Async Adapter",
+          "dev_loader": null,
+          "driver_date": "20060621000000.******+***",
+          "driver_name": null,
+          "driver_provider_name": "Microsoft",
+          "driver_version": "6.1.7601.17514",
+          "friendly_name": null,
+          "hard_ware_id": "SW\\{eeab7790-c514-11d1-b42b-00805fc1270e}",
+          "inf_name": "netrasa.inf",
+          "install_date": null,
+          "is_signed": true,
+          "location": null,
+          "manufacturer": "Microsoft",
+          "name": null,
+          "pdo": "\\Device\\KSENUM#00000001",
           "signer": "Microsoft Windows",
           "started": null,
           "start_mode": null,
@@ -4755,6 +4786,38 @@
           "version": "6.1.7601.17514",
           "date": "20060621"
         },
+        "RAS Async Adapter": {
+          "caption": null,
+          "class_guid": "{4d36e972-e325-11ce-bfc1-08002be10318}",
+          "compat_id": null,
+          "creation_class_name": null,
+          "description": "RAS Async Adapter",
+          "device_class": "NET",
+          "device_id": "SW\\{EEAB7790-C514-11D1-B42B-00805FC1270E}\\ASYNCMAC",
+          "device_name": "RAS Async Adapter",
+          "dev_loader": null,
+          "driver_date": "20060621000000.******+***",
+          "driver_name": null,
+          "driver_provider_name": "Microsoft",
+          "driver_version": "6.1.7601.17514",
+          "friendly_name": null,
+          "hard_ware_id": "SW\\{eeab7790-c514-11d1-b42b-00805fc1270e}",
+          "inf_name": "netrasa.inf",
+          "install_date": null,
+          "is_signed": true,
+          "location": null,
+          "manufacturer": "Microsoft",
+          "name": null,
+          "pdo": "\\Device\\KSENUM#00000001",
+          "signer": "Microsoft Windows",
+          "started": null,
+          "start_mode": null,
+          "status": null,
+          "system_creation_class_name": null,
+          "system_name": null,
+          "version": "6.1.7601.17514",
+          "date": "20060621"
+        },
         "Plug and Play Software Device Enumerator": {
           "caption": null,
           "class_guid": "{4d36e97d-e325-11ce-bfc1-08002be10318}",
@@ -8248,10 +8311,10 @@
     "memory": {
       "swap": {
         "total": "4072500kB",
-        "free": "3140800kB"
+        "free": "3924404kB"
       },
       "total": "4072500kB",
-      "free": "2132416kB"
+      "free": "1131436kB"
     },
     "network": {
       "interfaces": {
@@ -8269,8 +8332,8 @@
             "default_ttl": null,
             "description": "Intel(R) 82579LM Gigabit Network Connection",
             "dhcp_enabled": true,
-            "dhcp_lease_expires": "20160213093917.000000-360",
-            "dhcp_lease_obtained": "20160203093917.000000-360",
+            "dhcp_lease_expires": "20160214074947.000000-360",
+            "dhcp_lease_obtained": "20160204074947.000000-360",
             "dhcp_server": "10.6.6.16",
             "dns_domain": "softtekea.com",
             "dns_domain_suffix_search_order": [
@@ -8381,7 +8444,7 @@
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
             "system_name": "STKAG90021",
-            "time_of_last_reset": "20160203081126.412388-360"
+            "time_of_last_reset": "20160204074928.109999-360"
           },
           "counters": {
 
@@ -8406,13 +8469,32 @@
           "type": "Ethernet 802.3",
           "arp": {
             "10.6.6.1": "08:5b:0e:4c:4a:06",
+            "10.6.6.2": "28:8a:1c:37:f9:57",
             "10.6.6.16": "00:15:5d:05:18:04",
             "10.6.6.17": "00:15:5d:05:1e:01",
-            "10.6.6.74": "18:03:73:cc:15:a6",
-            "10.6.6.81": "d4:be:d9:06:27:84",
             "10.6.6.84": "d4:be:d9:94:3f:32",
-            "10.6.6.164": "2c:59:e5:ba:3e:c0",
+            "10.6.6.86": "d4:be:d9:1c:35:c8",
+            "10.6.6.89": "ec:f4:bb:3a:7d:9a",
+            "10.6.6.90": "d4:be:d9:21:15:ce",
+            "10.6.6.91": "d4:be:d9:1b:d0:f6",
+            "10.6.6.92": "3c:a8:2a:86:89:c8",
+            "10.6.6.99": "28:18:78:db:f4:af",
+            "10.6.6.144": "00:21:9b:60:b8:97",
+            "10.6.6.147": "d4:be:d9:16:1b:3e",
+            "10.6.6.148": "d4:be:d9:20:27:0f",
+            "10.6.6.154": "58:20:b1:76:55:83",
+            "10.6.6.156": "ec:f4:bb:3a:7a:30",
+            "10.6.6.163": "00:0c:29:97:a5:59",
+            "10.6.6.168": "5c:26:0a:76:b2:40",
+            "10.6.6.171": "00:0e:c6:8f:07:6f",
             "10.6.6.176": "d4:be:d9:39:56:da",
+            "10.6.6.181": "d4:be:d9:1a:59:31",
+            "10.6.6.187": "00:26:b9:e3:8f:4a",
+            "10.6.6.193": "94:57:a5:b9:7f:d6",
+            "10.6.6.198": "74:46:a0:3b:b3:2b",
+            "10.6.6.203": "5c:26:0a:88:7a:bc",
+            "10.6.6.207": "ec:b1:d7:40:40:c4",
+            "10.6.6.249": "28:18:78:e5:36:b0",
             "10.6.6.255": "ff:ff:ff:ff:ff:ff",
             "224.0.0.22": "01:00:5e:00:00:16",
             "224.0.0.252": "01:00:5e:00:00:fc",
@@ -8540,7 +8622,7 @@
             "status_info": null,
             "system_creation_class_name": "Win32_ComputerSystem",
             "system_name": "STKAG90021",
-            "time_of_last_reset": "20160203081126.412388-360"
+            "time_of_last_reset": "20160204074928.109999-360"
           },
           "counters": {
 
@@ -8567,7 +8649,6 @@
             "169.254.255.255": "ff:ff:ff:ff:ff:ff",
             "224.0.0.22": "01:00:5e:00:00:16",
             "224.0.0.252": "01:00:5e:00:00:fc",
-            "239.255.255.250": "01:00:5e:7f:ff:fa",
             "255.255.255.255": "ff:ff:ff:ff:ff:ff"
           },
           "encapsulation": "Ethernet"
@@ -8589,8 +8670,8 @@
     "platform": "windows",
     "platform_version": "6.1.7601",
     "platform_family": "windows",
-    "uptime_seconds": 6930,
-    "uptime": "1 hours 55 minutes 30 seconds",
+    "uptime_seconds": 7380,
+    "uptime": "2 hours 03 minutes 00 seconds",
     "virtualization": {
       "systems": {
 
@@ -8673,7 +8754,7 @@
 
       }
     },
-    "ohai_time": 1454515621.743702,
+    "ohai_time": 1454601164.050199,
     "root_group": "Administrators",
     "recipes": [
 
