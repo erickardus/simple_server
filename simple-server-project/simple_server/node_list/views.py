@@ -25,15 +25,10 @@ def nodes(request):
 
     azurecall = json.loads(subprocess.getoutput(['azure', 'vm', 'list', '--json']))
     for nodeazure in azurecall:
-<<<<<<< HEAD
+
             insize = str(nodeazure['InstanceSize']) if 'InstanceSize' in nodeazure else ""
             nodesList.append(["Azure",str(nodeazure['VMName']),str(nodeazure['VMName']),str(nodeazure['Location']),str(nodeazure['InstanceStatus']),insize,str(nodeazure['DNSName']),str(nodeazure['IPAddress'])],)
     
-=======
-            insize = str(azurecall[0]['InstanceSize']) if 'InstanceSize' in azurecall[0] else ""
-            nodesList.append(["Azure",str(azurecall[0]['VMName']),insid,str(azurecall[0]['Location']),str(azurecall[0]['InstanceStatus']),insize,str(azurecall[0]['DNSName']),str(azurecall[0]['IPAddress'])],)
-
->>>>>>> b69e764c36a780c1cc48f4b157560d0503eb1fd5
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):
