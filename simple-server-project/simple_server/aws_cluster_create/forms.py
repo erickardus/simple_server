@@ -58,7 +58,7 @@ class CreateClusterStep1(forms.Form):
     name = forms.CharField(label='Name', max_length=25, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False)
     instance_type = forms.ChoiceField(choices=instance_types, required=False, label='Instance Type')
-    region = forms.CharField(label='Region', max_length=12, required=False)
+    region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
     vpc_selection = forms.ChoiceField(choices=vpc_choices, label='VPC Options', required=False)
 
 
@@ -75,16 +75,16 @@ class CreateClusterStep2(forms.Form):
 
 class CreateClusterStep3(forms.Form):
 
-    name = forms.CharField(label='Name', max_length=25, required=False)
-    ami = forms.CharField(label='Image Id', max_length=25, required=False)
-    instance_type = forms.CharField(label='Flavor', max_length=25)
-    region = forms.CharField(label='Region', max_length=12, required=False)
-    number = forms.CharField(label='Number', max_length=2, required=False)
+    name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
+    ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())
+    instance_type = forms.CharField(label='Flavor', max_length=25, widget=forms.HiddenInput())
+    region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
+    number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
-    myvpc = forms.CharField(label='VPC', max_length=40, required=False)
-    mysubnet = forms.CharField(label='Subnet', max_length=40, required=False)
-    mysg = forms.CharField(label='Security Group', max_length=40, required=False)
-    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False)
-    ssh_username = forms.CharField(label='SSH username', max_length=10, required=False)
+    myvpc = forms.CharField(label='VPC', max_length=40, required=False, widget=forms.HiddenInput())
+    mysubnet = forms.CharField(label='Subnet', max_length=40, required=False, widget=forms.HiddenInput())
+    mysg = forms.CharField(label='Security Group', max_length=40, required=False, widget=forms.HiddenInput())
+    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False, widget=forms.HiddenInput())
+    ssh_username = forms.CharField(label='SSH username', max_length=10, required=False, widget=forms.HiddenInput())
 

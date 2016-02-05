@@ -1,14 +1,10 @@
-from django.views.generic import TemplateView
+from django.shortcuts import render
 import logging
+
 log = logging.getLogger('simple_server')
 
-log.debug('hello')
 
-class Home(TemplateView):
-    template_name = "home.html"
+def home(request):
 
-
-
-
-
+    return render(request, 'home.html')
 
