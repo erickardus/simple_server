@@ -1,43 +1,37 @@
 from django.shortcuts import render
 from azure_cluster_create.forms import CreateClusterStep1, CreateClusterStep2
-import subprocess
-import os
+from scripts.common import azure_cluster_create
+import logging
 
-BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
-PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
+log = logging.getLogger('simple_server')
 
 
 def azure_cluster_creator_step1(request):
+    """Step 1. Selection of name, number, ImageId, VM size and location.
+    """
 
-    form = CreateClusterStep1(request.POST or None)
+    form = CreateClusterStep1
+    log.info('Rendering CreateClusterStep1')
     return render(request, 'azure_cluster_creator_step1.html', {'form': form})
 
 
 def azure_cluster_creator_step2(request):
+    """Step 2. Selection of roles or runlist to configure in the target nodes.
+    """
 
     if request.method == 'POST':
         form_past = CreateClusterStep1(request.POST)
+        log.info('Successfully obtain data from POST request CreateClusterStep1')
         if form_past.is_valid():
-            new_form = CreateClusterStep2(request.POST or None)
-            name = form_past.cleaned_data['name']
-            vm_size = form_past.cleaned_data['vm_size']
-            image_id = form_past.cleaned_data['image_id']
-            location = form_past.cleaned_data['location']
-            number = form_past.cleaned_data['number']
-            #password = form_past.cleaned_data['password']
-            #cloud_service_name = form_past.cleaned_data['cloud_service_name']
-            #storage_account_name = form_past.cleaned_data['storage_account_name']
-            tcp_endpoints = form_past.cleaned_data['tcp_endpoints']
-            return render(request, 'azure_cluster_creator_step2.html', {'form': new_form, 'name': name,
-                                                                        'vm_size': vm_size,
-                                                                        'image_id': image_id, 'location': location,
-                                                                        'number': number, #'password': password,
-                                                                        #'cloud_service_name': cloud_service_name,
-                                                                        #'storage_account_name': storage_account_name,
-                                                                        'tcp_endpoints': tcp_endpoints})
+            form = CreateClusterStep2(request.POST or None)
+            log.info('Rendering CreateClusterStep2')
+            return render(request, 'azure_cluster_creator_step2.html', {'form': form})
 
 
 def azure_cluster_creator_step3(request):
+    """Step 3. This screen will run the Chef provisioning script that provisions servers
+    based on a ERB templated and parameters passed from this page.
+    """
 
     if request.method == 'POST':
         form_past = CreateClusterStep2(request.POST or None)
@@ -49,17 +43,10 @@ def azure_cluster_creator_step3(request):
             runlist = form_past.cleaned_data['runlist']
             location = form_past.cleaned_data['location']
             number = form_past.cleaned_data['number']
-            #password = form_past.cleaned_data['password']
-            #cloud_service_name = form_past.cleaned_data['cloud_service_name']
-            #storage_account_name = form_past.cleaned_data['storage_account_name']
             tcp_endpoints = form_past.cleaned_data['tcp_endpoints']
 
-            output = create_action(location, number, image_id,
-                                   vm_size, name, roles, runlist,
-                                   tcp_endpoints
-                                   )
+            output = azure_cluster_create(location, number, image_id, vm_size, name, roles, runlist, tcp_endpoints)
             output = output.decode('utf-8').split('\n')
-            #output = output.split('\n')
             context = {
                 "output": output,
                 "image_id": image_id,
@@ -72,17 +59,6 @@ def azure_cluster_creator_step3(request):
             return render(request, 'azure_cluster_creator_step3.html', context)
 
 
-def create_action(location, number, image_id, vm_size, name, roles, runlist, tcp_endpoints):
-
-    try:
-
-        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-l", location, "-n", name, "-N", number,
-                                        "-i", image_id, "-s", vm_size, "--roles", roles,
-                                        "--runlist", runlist, "--cloud_service_name", name,
-                                        "--storage_account_name", name,
-                                        "tcp_endpoints", tcp_endpoints], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as exc:
-        return exc.output
 
 
 

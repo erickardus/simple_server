@@ -106,3 +106,16 @@ def aws_cluster_create(region, number, ami, instance_type, name, roles, runlist,
 
 def handle_exception(ex):
     log.error('%s (%s)' % (ex.message, type(ex)))
+
+
+def azure_cluster_create(location, number, image_id, vm_size, name, roles, runlist, tcp_endpoints):
+
+    try:
+
+        return subprocess.check_output(["ruby", "azure_cluster_creator.rb", "-l", location, "-n", name, "-N", number,
+                                        "-i", image_id, "-s", vm_size, "--roles", roles,
+                                        "--runlist", runlist, "--cloud_service_name", name,
+                                        "--storage_account_name", name,
+                                        "tcp_endpoints", tcp_endpoints], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as exc:
+        return exc.output

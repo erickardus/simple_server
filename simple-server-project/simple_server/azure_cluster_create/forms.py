@@ -85,9 +85,6 @@ class CreateClusterStep1(forms.Form):
     vm_size = forms.ChoiceField(choices=flavor_choices, required=False, label='VM Size')
     location = forms.ChoiceField(choices=location_choices, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False)
-    #password = forms.CharField(label='Password', max_length=12, required=False)
-    #cloud_service_name = forms.CharField(label='Cloud Service Name', max_length=12, required=False)
-    #storage_account_name = forms.CharField(label='Storage Account Name', max_length=12, required=False)
     tcp_endpoints = forms.CharField(label='TCP Endpoints', max_length=12, required=False)
 
 
@@ -98,9 +95,6 @@ class CreateClusterStep2(forms.Form):
     vm_size = forms.CharField(label='VM Size', max_length=25, required=False, widget=forms.HiddenInput())
     location = forms.CharField(label='Location', max_length=12, required=False, widget=forms.HiddenInput())
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
-    #password = forms.CharField(label='Password', max_length=12, required=False, widget=forms.HiddenInput())
-    #cloud_service_name = forms.CharField(label='Cloud Service Name', max_length=12, required=False)
-    #storage_account_name = forms.CharField(label='Storage Account Name', max_length=12, required=False)
     tcp_endpoints = forms.CharField(label='TCP Endpoints', max_length=12, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
