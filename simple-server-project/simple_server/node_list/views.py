@@ -12,47 +12,49 @@ PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 
 
 #Boto EC connection
-ec2 = boto3.resource('ec2')
 
 def nodes(request):
+    ec2 = boto3.client('ec2')
     nodesList = [] 
-    awscall = json.loads(subprocess.getoutput(['aws', "ec2", "describe-instances"]))
-    for nodeaws in awscall['Reservations']:
-        insid = str(nodeaws['Instances'][0]['InstanceId']) 
-        nodename = str(nodeaws['Instances'][0]['Tags'][0]['Value']) 
-        instance = ec2.Instance(insid)
-        nodesList.append(["AWS",nodename,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address],)
-
-    azurecall = json.loads(subprocess.getoutput(['azure', 'vm', 'list', '--json']))
+    awszones = [region['RegionName'] for region in ec2.describe_regions()['Regions']]
+    for zone in awszones:
+        ec2 = boto3.client('ec2', region_name=zone)
+        for insaws in ec2.describe_instances()['Reservations']:
+            insid = insaws['Instances'][0]['InstanceId']
+            nodename = insaws['Instances'][0]['Tags'][0]['Value']
+            ec2 = boto3.resource('ec2', region_name=zone)
+            instance = ec2.Instance(insid)
+            nodesList.append(["AWS",nodename,insid,instance.placement['AvailabilityZone'],instance.state['Name'],instance.instance_type,instance.public_dns_name,instance.public_ip_address,zone],)
+    
+    azurecall = json.loads(subprocess.getoutput('azure vm list --json'))
     for nodeazure in azurecall:
-<<<<<<< HEAD
             insize = str(nodeazure['InstanceSize']) if 'InstanceSize' in nodeazure else ""
             nodesList.append(["Azure",str(nodeazure['VMName']),str(nodeazure['VMName']),str(nodeazure['Location']),str(nodeazure['InstanceStatus']),insize,str(nodeazure['DNSName']),str(nodeazure['IPAddress'])],)
     
-=======
-            insize = str(azurecall[0]['InstanceSize']) if 'InstanceSize' in azurecall[0] else ""
-            nodesList.append(["Azure",str(azurecall[0]['VMName']),insid,str(azurecall[0]['Location']),str(azurecall[0]['InstanceStatus']),insize,str(azurecall[0]['DNSName']),str(azurecall[0]['IPAddress'])],)
-
->>>>>>> b69e764c36a780c1cc48f4b157560d0503eb1fd5
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
 def node_destroy(request):
+    
     if request.method == 'POST':
         driver = request.POST.get('driver')
+        region = request.POST.get('region')
         nodename = request.POST.get('nodename')
         insid = request.POST.get('insid')   
-        log.info( "Destroy node:",nodename, insid, driver )
+        log.info( "Destroy node: %s %s %s %s" % (nodename, insid, driver, region))
         ### remove from CHEF
         os.chdir(PROVISIONING_DIR)
         subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
         
         if driver == "AWS" :
         ### remove from AWS
+            ec2 = boto3.resource('ec2', region_name=region)
             instance = ec2.Instance(insid)
             response = instance.terminate()
+        
         elif driver == "Azure" :
+        ### remove from AWS
             subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )  
-            subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
+            #subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
     
     return redirect('node_list')
 

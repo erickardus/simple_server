@@ -248,3 +248,72 @@
 [04/Feb/2016 10:24:13] DEBUG [simple_server:5] hello
 [04/Feb/2016 10:59:33] DEBUG [simple_server:5] hello
 [04/Feb/2016 11:33:12] DEBUG [simple_server:5] hello
+[04/Feb/2016 11:36:56] DEBUG [simple_server:5] hello
+[04/Feb/2016 11:37:01] DEBUG [simple_server:5] hello
+[04/Feb/2016 12:17:28] DEBUG [simple_server:5] hello
+[04/Feb/2016 12:19:05] DEBUG [simple_server:5] hello
+[04/Feb/2016 12:26:33] DEBUG [simple_server:5] hello
+[05/Feb/2016 08:29:35] DEBUG [simple_server:5] hello
+[05/Feb/2016 08:32:02] INFO [simple_server:19] Generated form CreateClusterStep0
+[05/Feb/2016 08:32:05] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[05/Feb/2016 08:32:05] INFO [simple_server:32] Old form value region: eu-west-1
+[05/Feb/2016 08:33:08] DEBUG [simple_server:128] from last form ami ami-0ed18e79
+[05/Feb/2016 08:39:42] DEBUG [simple_server:128] from last form ami ami-0ed18e79
+[05/Feb/2016 08:45:32] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[05/Feb/2016 08:45:32] INFO [simple_server:32] Old form value region: eu-west-1
+[05/Feb/2016 08:46:07] DEBUG [simple_server:128] from last form ami ami-0ed18e79
+[05/Feb/2016 08:52:56] DEBUG [simple_server:128] from last form ami ami-03238b70
+[05/Feb/2016 08:59:30] DEBUG [simple_server:128] from last form ami ami-0ed18e79
+[05/Feb/2016 10:33:05] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:33:41] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:34:04] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:36:09] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:41:46] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:42:43] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:42:52] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:46:55] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:47:57] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:48:12] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:50:41] DEBUG [simple_server:5] hello
+[05/Feb/2016 10:51:55] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:09:55] INFO [simple_server:19] Generated form CreateClusterStep0
+[05/Feb/2016 11:09:59] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[05/Feb/2016 11:09:59] INFO [simple_server:32] Old form value region: us-east-1
+[05/Feb/2016 11:10:26] DEBUG [simple_server:128] from last form ami ami-10cae778
+[05/Feb/2016 11:23:27] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:25:25] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:25:47] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:25:49] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:26:23] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:26:57] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:27:47] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:33:14] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:35:01] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:35:44] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:38:48] DEBUG [simple_server:5] hello
+[05/Feb/2016 11:38:58] DEBUG [simple_server:5] hello
+[05/Feb/2016 12:08:13] DEBUG [simple_server:5] hello
+[05/Feb/2016 12:08:52] DEBUG [simple_server:5] hello
+[05/Feb/2016 12:09:39] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:42:37] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:43:20] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:43:39] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:44:14] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:44:42] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:45:27] DEBUG [simple_server:5] hello
+[05/Feb/2016 13:45:48] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:27:12] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:32:05] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:34:14] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:40:22] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:41:20] INFO [simple_server:19] Generated form CreateClusterStep0
+[05/Feb/2016 15:41:27] INFO [simple_server:28] Obtained CreateClusterStep0 form data
+[05/Feb/2016 15:41:27] INFO [simple_server:32] Old form value region: us-west-1
+[05/Feb/2016 15:43:41] DEBUG [simple_server:128] from last form ami ami-17985c53
+[05/Feb/2016 15:47:31] DEBUG [simple_server:128] from last form ami ami-2708f363
+[05/Feb/2016 15:51:44] INFO [simple_server:43] Destroy node: westyx1 i-3ba5be89 AWS us-west-1
+[05/Feb/2016 15:52:31] DEBUG [simple_server:5] hello
+[05/Feb/2016 15:52:33] INFO [simple_server:43] Destroy node: westyx1 i-3ba5be89 AWS us-west-1
+[05/Feb/2016 15:53:53] INFO [simple_server:43] Destroy node: niceguy1 i-92643417 AWS us-east-1
+[05/Feb/2016 16:12:35] INFO [simple_server:43] Destroy node: azuredes1 azuredes1 Azure 
+[05/Feb/2016 16:12:53] DEBUG [simple_server:5] hello
