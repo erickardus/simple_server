@@ -3,6 +3,9 @@ import boto3
 
 
 class CreateClusterStep0(forms.Form):
+    """Form class to be loaded in aws_cluster_create step #0.
+    It uses AWS SDK to obtain available regions and builds a form out of the options.
+    """
 
     client = boto3.client('ec2')
     region_choices = []
@@ -15,7 +18,12 @@ class CreateClusterStep0(forms.Form):
 
 
 class CreateClusterStep1(forms.Form):
+    """Form calls to be loaded in aws_cluster_create step #1.
+    It doesn't contain all the forms to be loaded in the template. AMI selection is missing
+    look for it in the template itself.
+    """
 
+    # Currently there is no way to obtain the instance_types list from the AWS API.
     instance_types = (
         ('t2.micro', 't2.micro - 1 vCPU, 1 GiB, EBS Only'),
         ('t2.small', 't2.small - 1 vCPU, 2 GiB, EBS Only'),
@@ -49,10 +57,10 @@ class CreateClusterStep1(forms.Form):
         ('g2.8xlarge', 'g2.8xlarge - 4 GPU, 32 vCPU, 60 GiB, 240 GB (SSD)'),
     )
 
+    # Need to add another choice for "new", so it enables you to create your own VPC, subnet and security group.
     vpc_choices = (
         ('automatic', 'Automatic VPC Creation'),
         ('existing', 'Existing VPC'),
-        #('new', 'New VPC'),
     )
 
     name = forms.CharField(label='Name', max_length=25, required=False)
@@ -75,16 +83,16 @@ class CreateClusterStep2(forms.Form):
 
 class CreateClusterStep3(forms.Form):
 
-    name = forms.CharField(label='Name', max_length=25, required=False)
-    ami = forms.CharField(label='Image Id', max_length=25, required=False)
-    instance_type = forms.CharField(label='Flavor', max_length=25)
-    region = forms.CharField(label='Region', max_length=12, required=False)
-    number = forms.CharField(label='Number', max_length=2, required=False)
+    name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
+    ami = forms.CharField(label='Image Id', max_length=25, required=False, widget=forms.HiddenInput())
+    instance_type = forms.CharField(label='Flavor', max_length=25, widget=forms.HiddenInput())
+    region = forms.CharField(label='Region', max_length=12, required=False, widget=forms.HiddenInput())
+    number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
     runlist = forms.CharField(label='Runlist', max_length=40, required=False)
-    myvpc = forms.CharField(label='VPC', max_length=40, required=False)
-    mysubnet = forms.CharField(label='Subnet', max_length=40, required=False)
-    mysg = forms.CharField(label='Security Group', max_length=40, required=False)
-    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False)
-    ssh_username = forms.CharField(label='SSH username', max_length=10, required=False)
+    vpc = forms.CharField(label='VPC', max_length=40, required=False)
+    subnet = forms.CharField(label='Subnet', max_length=40, required=False)
+    sg = forms.CharField(label='Security Group', max_length=40, required=False)
+    vpc_selection = forms.CharField(label='vpc_name', max_length=20, required=False, widget=forms.HiddenInput())
+    ssh_username = forms.CharField(label='SSH username', max_length=10, required=False, widget=forms.HiddenInput())
 

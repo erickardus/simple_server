@@ -29,7 +29,7 @@
         {{ form.as_p }}
 
         <br><br>
-        <select name="myvpc" id="myvpc" onchange="myFunk()">
+        <select name="vpc" id="vpc" onchange="myFunk()">
             <option value="" selected disabled>Select a VPC</option>
             {% for vpc in vpc_choices %}
             <option value="{{ vpc.0 }}">{{ vpc.1 }}</option>
@@ -37,7 +37,7 @@
         </select>
 
         <br><br>
-        <select name="mysubnet" id="mysubnet" onchange="myFunk2()">
+        <select name="subnet" id="subnet" onchange="myFunk2()">
             <option value="" selected disabled>Select a Subnet</option>
             {% for subnet in subnet_choices %}
             <option value="{{ subnet.0 }}">{{ subnet.1 }}</option>
@@ -45,7 +45,7 @@
         </select>
 
         <br><br>
-        <select name="mysg" id="mysg">
+        <select name="sg" id="sg">
             <option value="" selected disabled>Select a Security Group</option>
             {% for sg in sg_choices %}
             <option value="{{ sg.0 }}">{{ sg.1 }}</option>
@@ -61,9 +61,9 @@
 
     <script>
     function myFunk() {
-       selection = document.getElementById("myvpc").value
-       form1 = document.getElementById("myvpc")
-       form2 = document.getElementById("mysubnet")
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("subnet")
        for (i=0; i<form2.length; i++) {
           if (form2.options[i].text.indexOf(selection) >= 0) {
              form2.options[i].disabled = false;
@@ -77,9 +77,9 @@
 
     <script>
      function myFunk2() {
-       selection = document.getElementById("myvpc").value
-       form1 = document.getElementById("myvpc")
-       form2 = document.getElementById("mysg")
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("sg")
        for (i=0; i<form2.length; i++) {
           if (form2.options[i].text.indexOf(selection) >= 0) {
              form2.options[i].disabled = false;
