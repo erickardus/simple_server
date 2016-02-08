@@ -318,3 +318,15 @@
 [05/Feb/2016 16:12:35] INFO [simple_server:43] Destroy node: azuredes1 azuredes1 Azure 
 [05/Feb/2016 16:12:53] DEBUG [simple_server:5] hello
 [05/Feb/2016 16:20:53] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:30:05] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:30:11] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:30:43] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:31:13] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:31:23] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:31:36] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:32:01] INFO [simple_server:33] Variables East US
+[05/Feb/2016 16:32:12] INFO [simple_server:33] Variables West US
+[05/Feb/2016 16:41:40] DEBUG [simple_server:5] hello
+[05/Feb/2016 16:42:55] INFO [simple_server:43] Destroy node: viernes1 viernes1 Azure 
+[05/Feb/2016 16:56:07] INFO [simple_server:43] Destroy node: minime1 i-528cdcd7 AWS us-east-1
+[05/Feb/2016 16:57:26] INFO [simple_server:43] Destroy node: testx1 i-21a3f3a4 AWS us-east-1

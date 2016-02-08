@@ -24,8 +24,8 @@
     "filesystem": {
       "C:": {
         "kb_size": 159930904,
-        "kb_available": 92369743,
-        "kb_used": 67561161,
+        "kb_available": 92261498,
+        "kb_used": 67669406,
         "percent_used": 42,
         "mount": "C:",
         "fs_type": "ntfs",
@@ -62,13 +62,13 @@
         "distributed": false,
         "encryption_level": 256,
         "foreground_application_boost": 2,
-        "free_physical_memory": "1033064",
-        "free_space_in_paging_files": "3617276",
-        "free_virtual_memory": "4665340",
+        "free_physical_memory": "1350504",
+        "free_space_in_paging_files": "3635248",
+        "free_virtual_memory": "4936144",
         "install_date": "20150519110422.000000-300",
         "large_system_cache": null,
         "last_boot_up_time": "20160205075634.109999-360",
-        "local_date_time": "20160205160203.983000-360",
+        "local_date_time": "20160205163230.295000-360",
         "locale": "080a",
         "manufacturer": "Microsoft Corporation",
         "max_number_of_processes": -1,
@@ -78,7 +78,7 @@
         ],
         "name": "Microsoft Windows 7 Enterprise |C:\\Windows|\\Device\\Harddisk0\\Partition2",
         "number_of_licensed_users": 0,
-        "number_of_processes": 94,
+        "number_of_processes": 88,
         "number_of_users": 2,
         "operating_system_sku": 4,
         "organization": "",
@@ -184,6 +184,38 @@
       },
       "machine": "x86_64",
       "pnp_drivers": {
+        "STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT1": {
+          "caption": null,
+          "class_guid": "{533c5b84-ec70-11d2-9505-00c04f79deaf}",
+          "compat_id": null,
+          "creation_class_name": null,
+          "description": "Generic volume shadow copy",
+          "device_class": "VOLUMESNAPSHOT",
+          "device_id": "STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT1",
+          "device_name": "Generic volume shadow copy",
+          "dev_loader": null,
+          "driver_date": "20060621000000.******+***",
+          "driver_name": null,
+          "driver_provider_name": "Microsoft",
+          "driver_version": "6.1.7600.16385",
+          "friendly_name": null,
+          "hard_ware_id": "STORAGE\\VolumeSnapshot",
+          "inf_name": "volsnap.inf",
+          "install_date": null,
+          "is_signed": true,
+          "location": null,
+          "manufacturer": "Microsoft",
+          "name": null,
+          "pdo": "\\Device\\HarddiskVolumeShadowCopy7",
+          "signer": "Microsoft Windows",
+          "started": null,
+          "start_mode": null,
+          "status": null,
+          "system_creation_class_name": null,
+          "system_name": null,
+          "version": "6.1.7600.16385",
+          "date": "20060621"
+        },
         "STORAGE\\VOLUMESNAPSHOT\\HARDDISKVOLUMESNAPSHOT6": {
           "caption": null,
           "class_guid": "{533c5b84-ec70-11d2-9505-00c04f79deaf}",
@@ -8343,10 +8375,10 @@
     "memory": {
       "swap": {
         "total": "4072500kB",
-        "free": "3617276kB"
+        "free": "3635280kB"
       },
       "total": "4072500kB",
-      "free": "1023036kB"
+      "free": "1334456kB"
     },
     "network": {
       "interfaces": {
@@ -8525,6 +8557,7 @@
             "10.6.6.116": "d4:be:d9:38:a6:da",
             "10.6.6.117": "5c:26:0a:88:7a:bd",
             "10.6.6.118": "30:8d:99:c2:d8:ab",
+            "10.6.6.119": "38:63:bb:b7:21:bc",
             "10.6.6.122": "2c:59:e5:ba:4e:e5",
             "10.6.6.124": "d4:be:d9:39:3a:25",
             "10.6.6.125": "00:0c:29:86:37:c3",
@@ -8537,6 +8570,7 @@
             "10.6.6.154": "58:20:b1:76:55:83",
             "10.6.6.160": "00:1a:a0:e9:7c:99",
             "10.6.6.163": "00:0c:29:97:a5:59",
+            "10.6.6.172": "50:65:f3:bb:53:55",
             "10.6.6.176": "d4:be:d9:39:56:da",
             "10.6.6.180": "d4:be:d9:01:75:28",
             "10.6.6.181": "d4:be:d9:1a:59:31",
@@ -8720,8 +8754,8 @@
     "platform": "windows",
     "platform_version": "6.1.7601",
     "platform_family": "windows",
-    "uptime_seconds": 29133,
-    "uptime": "8 hours 05 minutes 33 seconds",
+    "uptime_seconds": 30964,
+    "uptime": "8 hours 36 minutes 04 seconds",
     "virtualization": {
       "systems": {
 
@@ -8804,7 +8838,7 @@
 
       }
     },
-    "ohai_time": 1454709732.2394502,
+    "ohai_time": 1454711563.116972,
     "root_group": "Administrators",
     "recipes": [
 

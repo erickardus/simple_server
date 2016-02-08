@@ -2,7 +2,9 @@ from django.shortcuts import render
 from azure_cluster_create.forms import CreateClusterStep1, CreateClusterStep2
 import subprocess
 import os
+import logging
 
+log = logging.getLogger('simple_server')
 BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
 PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
 
@@ -28,6 +30,7 @@ def azure_cluster_creator_step2(request):
             #cloud_service_name = form_past.cleaned_data['cloud_service_name']
             #storage_account_name = form_past.cleaned_data['storage_account_name']
             tcp_endpoints = form_past.cleaned_data['tcp_endpoints']
+            log.info("Variables %s" % location)
             return render(request, 'azure_cluster_creator_step2.html', {'form': new_form, 'name': name,
                                                                         'vm_size': vm_size,
                                                                         'image_id': image_id, 'location': location,
