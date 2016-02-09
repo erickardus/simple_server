@@ -93,7 +93,7 @@ class CreateClusterStep2(forms.Form):
     name = forms.CharField(label='Name', max_length=25, required=False, widget=forms.HiddenInput())
     image_id = forms.CharField(label='Image Id', max_length=125, required=False, widget=forms.HiddenInput())
     vm_size = forms.CharField(label='VM Size', max_length=25, required=False, widget=forms.HiddenInput())
-    location = forms.CharField(label='Location', max_length=12, required=False, widget=forms.HiddenInput())
+    location = forms.CharField(label='Location', max_length=12, required=False)
     number = forms.CharField(label='Number', max_length=2, required=False, widget=forms.HiddenInput())
     tcp_endpoints = forms.CharField(label='TCP Endpoints', max_length=12, required=False, widget=forms.HiddenInput())
     roles = forms.CharField(label='Roles', max_length=40, required=False)
