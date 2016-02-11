@@ -2,6 +2,8 @@ import boto3
 import subprocess
 import os
 import logging
+from django.shortcuts import redirect
+
 
 log = logging.getLogger('simple_server')
 BASE_DIR = os.path.join(os.path.dirname(__file__), "../")
@@ -119,3 +121,5 @@ def azure_cluster_create(location, number, image_id, vm_size, name, roles, runli
                                         "tcp_endpoints", tcp_endpoints], cwd=PROVISIONING_DIR, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         return exc.output
+
+

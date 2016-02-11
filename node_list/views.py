@@ -6,9 +6,8 @@ import os
 import logging
 
 log = logging.getLogger('simple_server')
-
-BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
-PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
+BASE_DIR = os.path.join(os.path.dirname(__file__), "../")
+PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-provisioning")
 
 
 #Boto EC connection
@@ -33,28 +32,29 @@ def nodes(request):
     
     return render(request, 'node_list.html', {"nodesList": nodesList})
        
+
+
 def node_destroy(request):
-    
+
     if request.method == 'POST':
         driver = request.POST.get('driver')
         region = request.POST.get('region')
         nodename = request.POST.get('nodename')
-        insid = request.POST.get('insid')   
+        insid = request.POST.get('insid')
         log.info( "Destroy node: %s %s %s %s" % (nodename, insid, driver, region))
         ### remove from CHEF
         os.chdir(PROVISIONING_DIR)
         subprocess.run(['knife','node','delete', nodename,'--y'], shell=True )
-        
+
         if driver == "AWS" :
         ### remove from AWS
             ec2 = boto3.resource('ec2', region_name=region)
             instance = ec2.Instance(insid)
             response = instance.terminate()
-        
+
         elif driver == "Azure" :
         ### remove from AWS
-            subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )  
-            #subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )  
-    
-    return redirect('node_list')
+            subprocess.run(['azure', 'vm', 'delete', nodename,'-b', '-q' ], shell=True )
+            #subprocess.run(['azure', 'storage', 'account', 'delete', nodename,'-q' ], shell=True )
 
+    return redirect('node_list')
