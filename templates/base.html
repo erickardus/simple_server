@@ -1,0 +1,57 @@
+<html>
+    <head>
+        {% load staticfiles %}
+    	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    	<title>Softtek - Simple Server Provisioner</title>
+    	<style type="text/css" media="all">@import "{% static "css/master.css" %}";</style>
+    	<style type="text/css" media="all">@import "{% static "css/nodesList.css" %}";</style>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(window).load(function() {
+	            $(".loader").fadeOut("slow");
+            })
+        </script>
+
+    </head>
+
+    <body class="about">
+
+	    <div class="loader"></div>
+
+        <nav id="main-nav">
+            <a href="/">Home</a> |
+            <a href="/list_server">Server List</a> |
+            <a href="/cluster_create">Create Server</a>
+        </nav>
+
+        <div id="page-container">
+
+	        <div id="header">
+                <p>Welcome: <b>Erick Ramirez</b></p>
+	        </div>
+
+	        <div id="content">
+
+                {% block content %}{% endblock content %}
+
+	        </div>
+
+        <div id="footer">
+	        <div id="altnav">
+		        <a href="#">About</a> -
+            	<a href="#">Contact the dev</a>
+            </div>
+
+	        <div id="copyright">
+    	        Copyright &copy; <a href="https://www.softtek.com//">Softtek</a><br />
+    	        Powered by <a href="https://www.djangoproject.com//">Django</a>
+    	    </div>
+        </div>
+
+</div>
+
+</body>
+
+<div class="se-pre-con"></div>
+</html>

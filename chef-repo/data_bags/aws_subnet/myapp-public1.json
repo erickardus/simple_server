@@ -1,7 +1,0 @@
-{
-  "id": "myapp-public1",
-  "reference": {
-    "id": "subnet-ddec59ab"
-  },
-  "driver_url": "aws::us-east-1"
-}

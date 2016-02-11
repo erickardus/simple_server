@@ -1,9 +1,0 @@
-# phpinfo - PHP utility function for displaying php configuration
-# Allows access to anybody 
-
-Alias /phpinfo <%= node.phpinfo_location %>
-<Directory <%= node.phpinfo_location %>>
-   order deny,allow
-   deny from all
-   allow from all
-</Directory>
