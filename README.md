@@ -35,3 +35,8 @@ set AWS_DEFAULT_OUTPUT=json
 
 
 Install and configure Azure CLI
+
+
+### License
+
+This application is licensed to Softtek under Apache.
