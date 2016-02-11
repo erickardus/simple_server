@@ -1,19 +1,23 @@
+Simple Server Provisioning
+==========================
+This is a server provisioning tool, it's purpose is to help you provision servers, clusters and entire application infrastructure with minimal knowledge of the cloud. It's meant to work with the most popular Cloud providers
 
-You will need to create the following env variables in your machine:
+Cloud providers:
+> AWS
+> Azure
 
---------------- Chef ---------------------
+Prerequisites
+-------------
 
-You need to create a .chef folder inside chef-repo, containing knife.rb and related credentials to your chef server.
+### Chef
 
-> dir
+Inside the "chef-provisioning" folder, create a .chef folder, this folder needs to contain the necessary files in order for you to connect to your Chef Server:
 
-29/12/2015  10:23 p. m.    <DIR>          .
-29/12/2015  10:23 p. m.    <DIR>          ..
-29/12/2015  10:16 p. m.    <DIR>          chef-repo
-29/12/2015  12:19 p. m.               372 README.md
-29/12/2015  12:24 p. m.    <DIR>          simple-server-project
+> knife.rb
+> <validator>.pem
+> <user>.pem
 
-------------- AWS ------------------------
+### AWS
 
 ENV["AWS_ACCESS_KEY_ID"]
 ENV["AWS_SECRET_ACCESS_KEY"]
@@ -27,7 +31,7 @@ set AWS_SECRET_ACCESS_KEY=76TjRiiV3tc89AKo5FmicwESK5X8QHps7aUGEpo0
 set AWS_DEFAULT_REGION=us-east-1
 set AWS_DEFAULT_OUTPUT=json
 
+### Azure
 
--------------- Azure -----------------------
 
 Install and configure Azure CLI
