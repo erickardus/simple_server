@@ -4,8 +4,8 @@ import os
 import logging
 
 log = logging.getLogger('simple_server')
-BASE_DIR = os.path.join(os.path.dirname(__file__), "../../..")
-PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-repo/provisioning")
+BASE_DIR = os.path.join(os.path.dirname(__file__), "../")
+PROVISIONING_DIR = os.path.join(BASE_DIR, "chef-provisioning")
 
 
 def getVPCinfo(region):
