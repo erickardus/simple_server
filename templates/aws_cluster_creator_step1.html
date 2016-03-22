@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"><h2>Choose a Server size and OS:</h2><br></div>
+            <div class="panel panel">
+                <form action="aws_cluster_creator_step2" method="post" id="myform">
+                {% csrf_token %}
+                {{ form.as_p }}
+                AMI: <select name="ami" id="ami" onchange="switchami()">
+                <option value="" selected disabled>Select an AMI</option>
+                {% for ami in ami_choices %}
+                <option value="{{ ami.0 }}">{{ ami.1 }}</option>
+                {% endfor %}
+                </select>
+                <br><br>
+                SSH Username: <input name="ssh_username" id="ssh_username" type="text" name="SSH Username"><br><br>
+                <input type="submit" value="Submit" /> <a href="https://aws.amazon.com/es/ec2/instance-types/" ><p align="right">More info</p></a>
+                </form>
+            </div>
+    </div>
+    <script>
+        function switchami() {
+            var form1 = document.getElementById("ami")
+            var form2 = document.getElementById("ssh_username")
+            var selection = form1.options[form1.selectedIndex].text
+
+            if (selection.indexOf('Amazon') >= 0) {
+                form2.value = 'ec2-user';
+            }
+            else if (selection.indexOf('SUSE') >= 0) {
+                form2.value = 'root';
+            }
+            else if (selection.indexOf('Ubuntu') >= 0) {
+                form2.value = 'ubuntu';
+            }
+        }
+    </script>
+{% elif request.user.is_staff %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"><h2>Choose a Server size and OS:</h2><br></div>
+            <div class="panel panel">
+                <form action="aws_cluster_creator_step2" method="post" id="myform">
+                {% csrf_token %}
+                {{ form.as_p }}
+                AMI: <select name="ami" id="ami" onchange="switchami()">
+                <option value="" selected disabled>Select an AMI</option>
+                {% for ami in ami_choices %}
+                <option value="{{ ami.0 }}">{{ ami.1 }}</option>
+                {% endfor %}
+                </select>
+                <br><br>
+                SSH Username: <input name="ssh_username" id="ssh_username" type="text" name="SSH Username"><br><br>
+                <input type="submit" value="Submit" /> <a href="https://aws.amazon.com/es/ec2/instance-types/" ><p align="right">More info</p></a>
+                </form>
+            </div>
+    </div>
+    <script>
+        function switchami() {
+            var form1 = document.getElementById("ami")
+            var form2 = document.getElementById("ssh_username")
+            var selection = form1.options[form1.selectedIndex].text
+
+            if (selection.indexOf('Amazon') >= 0) {
+                form2.value = 'ec2-user';
+            }
+            else if (selection.indexOf('SUSE') >= 0) {
+                form2.value = 'root';
+            }
+            else if (selection.indexOf('Ubuntu') >= 0) {
+                form2.value = 'ubuntu';
+            }
+        }
+    </script>
+    {% elif request.user.is_authenticated %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>Hello {{ user }}, </p>
+            <p>You are not authorized for this action, please contact the administrator.</p>
+        </div>   
+    {% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}

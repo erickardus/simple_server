@@ -1,0 +1,104 @@
+body {
+  min-height: 100%;
+}
+
+.navbar-static-top {
+    font-family: Candara, Arial ;
+  margin-bottom: 19px;
+  /*background-color: #6BB7FE;*/
+  /*background-color: #0498D2;*/
+  /*background-color: #337ab7;*/
+  /*background-color:#466A8B;*/
+  background-color:#284864;
+  border-color: #1A5F23;
+  text-shadow: 5px 5px 5px #000000;
+}
+
+.navbar-default .navbar-brand {
+    font-family: Candara;
+  color: #FFF;
+}
+
+.navbar-default .navbar-brand:hover {
+    font-family: Candara;
+  /*color: #777;*/
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  /*color: #999;*/
+  color: white;
+}
+
+.navbar-default .navbar-toggle {
+ border-color: transparent !important;
+}
+
+.navbar-toggle:hover {
+	background-color: #1A5F23 !important;
+}
+
+.navbar-toggle {
+	background-color: #0E3D14 !important;
+}
+
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 800%;
+  height: 800%;
+  z-index: 9999;
+  background: url('../img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+#footer {
+  clear: both;
+  /*height: 66px;*/
+  font-family: Candara, Tahoma, Arial, Helvetica, Sans-serif;
+  font-size: 10px;
+  color: #c9c9c9;
+  border-top: 1px solid #efefef;
+  padding: 9px 25px;
+  line-height: 10px;
+  /*footr*/
+  background: #000;
+  position:absolute; /*El div será ubicado con relación a la pantalla*/
+  left:3px; /*A la derecha deje un espacio de 0px*/
+  right:3px; /*A la izquierda deje un espacio de 0px*/
+  bottom:3px; /*Abajo deje un espacio de 0px*/
+  height:50px; /*alto del div*/
+  z-index:0;
+}
+
+#footer #altnav {
+  width: 350px;
+  float: right;
+  text-align: right;
+  padding-top: 5px;
+}
+
+#footer #copyright {
+  padding-top: 5px;
+}
+
+#footer a {
+  color: #c9c9c9;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #db6d16;
+}
+
+ #inferior{
+color: #FFF;
+background: #000;
+position:absolute; /*El div será ubicado con relación a la pantalla*/
+left:0px; /*A la derecha deje un espacio de 0px*/
+right:0px; /*A la izquierda deje un espacio de 0px*/
+bottom:0px; /*Abajo deje un espacio de 0px*/
+height:50px; /*alto del div*/
+z-index:0;
+ }

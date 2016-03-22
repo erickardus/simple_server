@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">
+            <h2>Choose Software to install:</h2>
+        </div>
+        <div class="panel panel-body">
+            <br>
+            <form action="azure_cluster_creator_step3" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+{% elif request.user.is_staff %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">
+            <h2>Choose Software to install:</h2>
+        </div>
+        <div class="panel panel-body">
+            <br>
+            <form action="azure_cluster_creator_step3" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>    
+{% elif request.user.is_authenticated %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>Hello {{ user }}, </p>
+            <p>You are not authorized for this action, please contact the administrator.</p>
+        </div>       
+{% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}

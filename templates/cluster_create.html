@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h2>{{ user.first_name }}, Select an Infrastructure Provider</h2></div>
+            <div class="panel-body">
+            <table>
+                <tr>
+                    <th width="50%" align="center"><a href="aws_cluster_creator_step0"><img src="http://assets.toptal.io/uploads/blog/category/logo/106/C.png"/></a></th>
+                    <th width="50%" align="center"><a href="azure_cluster_creator_step1"><img src="http://www.sangfor.net/assets/img/posts/Microsoft-Azure_logo.png"/></a></th>
+                </tr>
+            </table>
+            </div>
+    </div>
+{% elif request.user.is_staff %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h2>{{ user.first_name }}, Select an Infrastructure Provider</h2></div>
+            <div class="panel-body">
+            <table>
+                <tr>
+                    <th width="50%" align="center"><a href="aws_cluster_creator_step0"><img src="http://assets.toptal.io/uploads/blog/category/logo/106/C.png"/></a></th>
+                    <th width="50%" align="center"><a href="azure_cluster_creator_step1"><img src="http://www.sangfor.net/assets/img/posts/Microsoft-Azure_logo.png"/></a></th>
+                </tr>
+            </table>
+            </div>
+    </div>
+{% elif request.user.is_authenticated %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>Hello {{ user }}, </p>
+            <p>You are not authorized for this action, please contact the administrator.</p>
+        </div>    
+{% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}
+
+
+

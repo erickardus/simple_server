@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+ {% if vpc_selection == "new" %}
+    <div class="panel panel-primary">
+      <div class="panel panel-heading">Create a New VPC</div>
+        <div class="panel panel-body">
+          <form>
+              VPC name:<br>
+              <input type="text" name="vpc">
+              <br>
+              CIDR:<br>
+              <input type="text" name="vpc_cidr">
+              <br>
+              <input name="validate_vpc" onclick="validate_vpc()" type="submit" value="Validate" />
+          </form>
+        </div>
+    </div>
+ {% elif vpc_selection == "existing" %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Use an existing VPC</div>
+          <div class="panel panel-body">
+            <form action="aws_cluster_creator_step3" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+                <br><br>
+                <select name="vpc" id="vpc" onchange="myFunk()">
+                <option value="" selected disabled>Select a VPC</option>
+              {% for vpc in vpc_choices %}
+                <option value="{{ vpc.0 }}">{{ vpc.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <select name="subnet" id="subnet" onchange="myFunk2()">
+                <option value="" selected disabled>Select a Subnet</option>
+              {% for subnet in subnet_choices %}
+                <option value="{{ subnet.0 }}">{{ subnet.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <select name="sg" id="sg">
+                <option value="" selected disabled>Select a Security Group</option>
+              {% for sg in sg_choices %}
+                <option value="{{ sg.0 }}">{{ sg.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <input type="submit" value="Submit" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="Back" onClick="history.go(-1);return true;">
+            </form>
+          </div>
+    </div>
+    <script>
+    function myFunk() {
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("subnet")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+    </script>
+    <script>
+     function myFunk2() {
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("sg")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+    </script>
+  {% endif %}
+{% elif request.user.is_staff %}
+ {% if vpc_selection == "new" %}
+    <div class="panel panel-primary">
+      <div class="panel panel-heading">Create a New VPC</div>
+        <div class="panel panel-body">
+          <form>
+              VPC name:<br>
+              <input type="text" name="vpc">
+              <br>
+              CIDR:<br>
+              <input type="text" name="vpc_cidr">
+              <br>
+              <input name="validate_vpc" onclick="validate_vpc()" type="submit" value="Validate" />
+          </form>
+        </div>
+    </div>
+ {% elif vpc_selection == "existing" %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Use an existing VPC</div>
+          <div class="panel panel-body">
+            <form action="aws_cluster_creator_step3" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+                <br><br>
+                <select name="vpc" id="vpc" onchange="myFunk()">
+                <option value="" selected disabled>Select a VPC</option>
+              {% for vpc in vpc_choices %}
+                <option value="{{ vpc.0 }}">{{ vpc.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <select name="subnet" id="subnet" onchange="myFunk2()">
+                <option value="" selected disabled>Select a Subnet</option>
+              {% for subnet in subnet_choices %}
+                <option value="{{ subnet.0 }}">{{ subnet.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <select name="sg" id="sg">
+                <option value="" selected disabled>Select a Security Group</option>
+              {% for sg in sg_choices %}
+                <option value="{{ sg.0 }}">{{ sg.1 }}</option>
+              {% endfor %}
+                </select>
+                <br><br>
+                <input type="submit" value="Submit" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="Back" onClick="history.go(-1);return true;">
+            </form>
+          </div>
+    </div>
+    <script>
+    function myFunk() {
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("subnet")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+    </script>
+    <script>
+     function myFunk2() {
+       selection = document.getElementById("vpc").value
+       form1 = document.getElementById("vpc")
+       form2 = document.getElementById("sg")
+       for (i=0; i<form2.length; i++) {
+          if (form2.options[i].text.indexOf(selection) >= 0) {
+             form2.options[i].disabled = false;
+          }
+          else {
+             form2.options[i].disabled = true;
+          }
+       }
+    }
+    </script>
+  {% endif %}
+{% elif request.user.is_authenticated %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>Hello {{ user }}, </p>
+            <p>You are not authorized for this action, please contact the administrator.</p>
+        </div> 
+{% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}

@@ -1,0 +1,53 @@
+   {% load staticfiles %}
+   <div class="loader"></div>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">Provisioning Tool</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+{% if request.user.is_authenticated %}
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+            <li><a href="{% url 'node_list' %}">Server List</a></li>
+            <li><a href="{% url 'cluster_creator' %}">Create Server</a></li>
+          </ul>
+{% else %}
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+            <!-- <li><a href="#">Server List</a></li> -->
+            <!-- <li><a href="#">Create Server</a></li> -->
+          </ul>
+{% endif %}
+
+
+          <ul class="nav navbar-nav navbar-right">
+          {% if request.user.is_authenticated %}
+
+            <li><a><img src="{% static 'img/glyphicons-744-fingerprint-ok.png' %}" />  Wellcome: {{ user.first_name }} {{ user.last_name }}</a></li>
+            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+            {% else %}
+            <li><a><img src="{% static 'img/glyphicons-743-fingerprint-lock.png' %}" /></a></li>
+            {% endif %}
+          </ul>
+
+          {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+            <form class='navbar-form navbar-right' method='POST' action="{% url 'auth_login' %}">{% csrf_token %}
+              <div class='form-group'>
+                  <input type='text' class='form-control' name='username' placeholder='Username' /> 
+              </div>
+              <div class='form-group'>
+                  <input type='password' class='form-control' name='password' placeholder='Password' />
+              </div>
+              <button type='submit' class='btn btn-default'>Login</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </nav>

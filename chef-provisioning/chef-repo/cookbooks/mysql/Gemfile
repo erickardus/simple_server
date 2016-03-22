@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+group :development do
+  gem 'guard', '~> 1.0'
+  gem 'guard-kitchen'
+  gem 'guard-foodcritic'
+end

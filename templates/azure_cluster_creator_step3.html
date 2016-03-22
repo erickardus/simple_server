@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Creating Server:</div>
+            <div class="panel panel-body">
+                <b>Image Id:</b> {{  image_id }}<br>
+                <b>Name Tag:</b> {{  name }} <br>
+                <b>VM Size:</b> {{  vm_size }} <br>
+                <b>Roles:</b> {{ roles }} <br>
+                <b>Runlist:</b> {{ runlist }}
+            </div>
+    </div>
+{% include 'azure_log.html' %}
+{% elif request.user.is_staff %}
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"><h3>Creating Server:</h3> <br><br></div>
+            <div class="panel panel-body">
+                <b>Image Id:</b> {{  image_id }}<br>
+                <b>Name Tag:</b> {{  name }} <br>
+                <b>VM Size:</b> {{  vm_size }} <br>
+                <b>Roles:</b> {{ roles }} <br>
+                <b>Runlist:</b> {{ runlist }}
+            </div>
+    </div>
+{% include 'azure_log.html' %}
+{% elif request.user.is_authenticated %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>Hello {{ user }}, </p>
+            <p>You are not authorized for this action, please contact the administrator.</p>
+        </div>   
+{% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}

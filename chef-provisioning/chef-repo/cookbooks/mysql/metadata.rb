@@ -1,0 +1,7 @@
+name 'mysql'
+maintainer 'Erick Ramirez'
+maintainer_email 'erick.ramirez@softtek.com'
+license 'all_rights'
+description 'Installs/Configures mysql'
+long_description 'Installs/Configures mysql'
+version '0.1.1'

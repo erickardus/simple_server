@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% if request.user.is_superuser %}
+<meta http-equiv="refresh" content="30">
+<link href="{% static 'css/navbar-static-top.css' %}" rel="stylesheet">
+<script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+})
+</script>
+<div class="panel panel-primary">
+        <div class="panel-heading"><h2>Server List:</h2><br></div>
+    {{nodeList}}
+    <div class="panel-body" style="overflow: scroll; height: 450px;">
+        <table class="table table-condensed">
+            <tr class="active"><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>Region</th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
+        {% for node in nodesList %}
+            {% if node.4 == "stopped" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                    <td>{{node.6}}</td><td>{{node.7}}</td>
+       <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+       {% csrf_token %}
+       <input type="hidden" name="driver" value="{{node.0}}">
+       <input type="hidden" name="region" value="{{node.8}}">
+       <input type="hidden" name="nodename" value="{{node.1}}">
+       <input type="hidden" name="insid" value="{{node.2}}">
+       <!-- <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" > -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action<span class="caret"></span>   
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="btn btn-success" id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: #')">Start</a></li>
+                <!-- <li><a class="btn btn-warning" id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: #')">Stop</a></li> -->
+                <li role="separator" class="divider"></li>
+                <li><a class="btn btn-danger" id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')">Destroy</a></li>
+            </ul>
+        </div>                       
+       </script>
+       </form>
+       </td></tr>
+            {% elif node.4 == "running" %}
+                <tr class="success"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                
+                </script>
+                </form>
+                </td></tr>
+            {% elif node.4 == "terminated" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                
+                </script>
+                </form>
+                </td></tr>
+            {% else %}
+                <tr class="warning"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                </script>
+                </form>
+                </td></tr>
+            {% endif %}
+
+        {% endfor %}
+        </table>
+            </div>        
+</div>
+{% elif request.user.is_staff %}
+<meta http-equiv="refresh" content="30">
+<link href="{% static 'css/navbar-static-top.css' %}" rel="stylesheet">
+<script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+})
+</script>
+<div class="panel panel-primary">
+        <div class="panel-heading"><h2>Server List:</h2><br></div>
+    {{nodeList}}
+    <div class="panel-body" style="overflow: scroll; height: 450px;">
+        <table class="table table-condensed">
+            <tr class="active"><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>Region</th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
+        {% for node in nodesList %}
+            {% if node.4 == "stopped" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                    <td>{{node.6}}</td><td>{{node.7}}</td>
+       <td>
+       <form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+       {% csrf_token %}
+       <input type="hidden" name="driver" value="{{node.0}}">
+       <input type="hidden" name="region" value="{{node.8}}">
+       <input type="hidden" name="nodename" value="{{node.1}}">
+       <input type="hidden" name="insid" value="{{node.2}}">
+       <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+       </script>
+       </form>
+       </td></tr>
+            {% elif node.4 == "running" %}
+                <tr class="success"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                
+                </script>
+                </form>
+                </td></tr>
+            {% elif node.4 == "terminated" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                </script>
+                </form>
+                </td></tr>
+            {% else %}
+                <tr class="warning"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+                <td><form name="{{node.1}}" id="{{node.1}}" method="POST" action="node_destroy">
+                {% csrf_token %}
+                <input type="hidden" name="driver" value="{{node.0}}">
+                <input type="hidden" name="region" value="{{node.8}}">
+                <input type="hidden" name="nodename" value="{{node.1}}">
+                <input type="hidden" name="insid" value="{{node.2}}">
+                <input id="submitBtn" type="submit" name="submit" value="Destroy" onclick="confirm('Are you sure want to DESTROY: {{node.1}}')" >
+                </script>
+                </form>
+                </td></tr>
+            {% endif %}
+
+        {% endfor %}
+        </table>
+            </div>        
+</div>
+{% elif request.user.is_authenticated %}
+<meta http-equiv="refresh" content="30">
+<link href="{% static 'css/navbar-static-top.css' %}" rel="stylesheet">
+<script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+})
+</script>
+<div class="panel panel-primary">
+        <div class="panel-heading"><h2>Server List:</h2><br></div>
+    {{nodeList}}
+    <div class="panel-body" style="overflow: scroll; height: 450px;">
+        <table class="table table-condensed">
+            <tr class="active"><th>Cloud</th><th>Node Name</th><th>Instance Name </th><th>Region</th><th>State</th><th>Type</th><th>Public DNS</th><th>Public IP</th><th>Action</th></tr>
+        {% for node in nodesList %}
+            {% if node.4 == "stopped" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                    <td>{{node.6}}</td><td>{{node.7}}</td>
+            {% elif node.4 == "running" %}
+                <tr class="success"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                    <td>{{node.6}}</td><td>{{node.7}}</td>
+            {% elif node.4 == "terminated" %}
+                <tr class="danger"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+            {% else %}
+                <tr class="warning"><td>{{node.0}}</td><td>{{node.1}}</td><td>{{node.2}}</td><td>{{node.3}}</td><td>{{node.4}}</td><td>{{node.5}}</td>
+                        <td>{{node.6}}</td><td>{{node.7}}</td>
+            {% endif %}
+
+        {% endfor %}
+        </table>
+            </div>        
+</div>                                                        
+{% else %}
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>You are not currently logged in, please try again or contact the administrator.</p>
+        </div>    
+
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}
+

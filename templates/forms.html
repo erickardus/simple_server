@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="panel panel-primary">
+    {% if title %}
+        <div class="panel panel-heading"><h2 class='{% if title_align_center %}text-align-center{% endif %}'>{{ title }}</h2></div>
+    {% endif %}
+            <div class="panel panel-body">
+                <form method='POST' action=''>{% csrf_token %}
+                    {{ form|crispy }}
+                    <input class='btn btn-default' type='submit' value='Submit' />
+                </form>
+            </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

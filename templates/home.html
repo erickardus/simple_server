@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+<style>
+{% block style %}
+.navbar-static-top {
+	margin-bottom: 0px !important;
+}
+
+.jumbotron {
+	/*background-color:#0E3D14;*/
+	background-color:#FFFFFF;
+	/*color: #FFF;*/
+	color: #000000;
+	font-family: Candara;
+}
+{% endblock %}
+</style>     
+{% block presenta %}
+ {% if not request.user.is_authenticated %}
+<div class="jumbotron">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/softtek.png' %}" />
+            <hr size="20" />
+            <h1></a>Provisioning Tool</h1>
+            <p>It is an application designed for unattended deploymens.</p>
+        </div>   
+    </div>
+</div>
+ {% endif %}
+{% endblock %}
+{% block content %}
+ {% if request.user.is_authenticated %}
+<br />
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"><h2>Welcome Provisioning Tool</h2></div>
+            <div class="panel panel-body">
+                </br>
+                <p>
+                <a class="btn btn-lg btn-primary" href="{% url 'node_list' %}" role="button">Server List &raquo;</a>
+                <a class="btn btn-lg btn-primary" href="{% url 'cluster_creator' %}" role="button">Create Server &raquo;</a>
+                </p>
+            </div>
+    </div>
+{% include 'footer.html' %}
+ {% else %}
+{% include 'footer.html' %}
+{% endif %}
+{% endblock %}

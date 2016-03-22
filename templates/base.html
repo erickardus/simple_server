@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>{% block head_title %}Softtek - Provisioning Tool{% endblock %}</title>
+    {# verbatim #} <!--#Esto inicia mostrar codigo en pantalla (Nota: Cambiar los signos # por %)-->
+    {% include 'head_css.html' %}
+    {# endverbatim #} <!--#Exto finaliza mostrar codigo en pantalla-->
+    <style>
+      {% block style %}{% endblock %}
+    </style>
+  </head>
+
+  <body>
+    <frameset>
+      <frame name="cabecera" src={% include 'navbar.html' %}  
+    </frameset>
+    <iframe name="cabecera" frameborder="no" width="100%" height="0" onload="autofitIframe1(this)" scrolling="no"  src="#"></iframe>
+{% block presenta %}          
+{% endblock %}
+    <div class="container" padding-top: 60px;>
+{% block content %}
+{% endblock %}
+    </div> 
+{% include "javascript.html" %}
+{% block footer %}
+{% endblock footer %}    
+  </body>
+</html>
