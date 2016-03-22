@@ -1,7 +1,0 @@
-.idea
-.chef
-*pyc
-__pycache__
-chef-provisioning/*provisioning.rb
-logfile
-nodes/
