@@ -55,20 +55,18 @@ body {
 
 #footer {
   clear: both;
-  /*height: 66px;*/
   font-family: Candara, Tahoma, Arial, Helvetica, Sans-serif;
   font-size: 10px;
   color: #c9c9c9;
   border-top: 1px solid #efefef;
   padding: 9px 25px;
   line-height: 10px;
-  /*footr*/
   background: #000;
-  position:absolute; /*El div será ubicado con relación a la pantalla*/
-  left:3px; /*A la derecha deje un espacio de 0px*/
-  right:3px; /*A la izquierda deje un espacio de 0px*/
-  bottom:3px; /*Abajo deje un espacio de 0px*/
-  height:50px; /*alto del div*/
+  position:absolute; 
+  left:3px; 
+  right:3px; 
+  bottom:3px;
+  height:50px; 
   z-index:0;
 }
 

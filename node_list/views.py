@@ -18,10 +18,10 @@ def nodes(request):
     nodesList = [] 
     awszones = [region['RegionName'] for region in ec2.describe_regions()['Regions']]
     for zone in awszones:
-        #log.info( "AWS zone: %s" % (zone))
+        log.info( "AWS zone: %s" % (zone))
         ec2 = boto3.client('ec2', region_name=zone)
         for reservation in ec2.describe_instances()['Reservations']:
-            #log.info( "Reservation: %s" % (reservation))
+            log.info( "Reservation: %s" % (reservation))
             for insaws in reservation['Instances']:
                 insid = insaws['InstanceId']
                 nodename = insaws['Tags'][0]['Value']

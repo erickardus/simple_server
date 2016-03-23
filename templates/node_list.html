@@ -204,6 +204,47 @@ $(window).load(function() {
         </div>    
 
 {% endif %}
-{% include 'footer.html' %}
+<style type="text/css">
+#footer {
+  clear: both;
+  /*height: 66px;*/
+  /* width: 100%; */
+  font-family: Candara, Tahoma, Arial, Helvetica, Sans-serif;
+  font-size: 10px;
+  color: #c9c9c9;
+  border-top: 1px solid #efefef;
+  padding: 9px 25px;
+  line-height: 10px;
+  /*footr*/
+  background: #000;
+  position:relative; 
+  left:3px;
+  right:3px;
+  bottom:3px;
+  height:50px;
+  z-index:0;
+}
+
+#footer #altnav {
+  width: 350px;
+  float: right;
+  text-align: right;
+  padding-top: 5px;
+}
+
+#footer #copyright {
+  padding-top: 5px;
+}
+
+#footer a {
+  color: #c9c9c9;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  color: #db6d16;
+}
+</style>
+
 {% endblock content %}
 
